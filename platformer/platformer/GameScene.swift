@@ -19,30 +19,30 @@ class GameScene: SKScene {
         
         // player at middle-bottom of screen
         let sprite = SKSpriteNode(imageNamed:"Spaceship")
+        sprite.name = "player"
         sprite.xScale = 0.2
         sprite.yScale = 0.2
         sprite.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMinY(self.frame) + 150)
         self.addChild(sprite)
+        
+        // add tap recogizer
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
+        tapRecognizer.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)];
+        view.addGestureRecognizer(tapRecognizer)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        // TODO make ship jump
-//        
-//        for touch in touches {
-//            let location = touch.locationInNode(self)
-//            
-//            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-//            
-//            sprite.xScale = 0.5
-//            sprite.yScale = 0.5
-//            sprite.position = location
-//            
-//            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-//            
-//            sprite.runAction(SKAction.repeatActionForever(action))
-//            
-//            self.addChild(sprite)
-//        }
+    func tapped(gestureRecognizer: UIGestureRecognizer) {
+        // make ship jump when tapped
+        let sprite = self.childNodeWithName("player")!
+        
+        // create jump animation
+        let height = CGFloat(200)
+        let duration = 1.0
+        let rise = SKAction.moveByX(0, y: height, duration: duration/2)
+        let fall = SKAction.moveByX(0, y: -height, duration: duration/2)
+        let jump = SKAction.sequence([rise, fall])
+        
+        sprite.runAction(jump)
     }
    
     override func update(currentTime: CFTimeInterval) {
