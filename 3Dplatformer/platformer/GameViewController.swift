@@ -65,13 +65,21 @@ class GameViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
         var gestureRecognizers = [UIGestureRecognizer]()
         gestureRecognizers.append(tapGesture)
+        
+        // add a swipe gesture recognizer
+        let swipeRecognizer = UISwipeGestureRecognizer(target: self, action: "swiped:")
+        swipeRecognizer.direction = .Right // TODO recognize left gesture
+        gestureRecognizers.append(swipeRecognizer)
+        
+        // attach interaction listeners
         if let existingGestureRecognizers = scnView.gestureRecognizers {
             gestureRecognizers.appendContentsOf(existingGestureRecognizers)
         }
         scnView.gestureRecognizers = gestureRecognizers
     }
     
-    func handleTap(gestureRecognize: UIGestureRecognizer) {
+    // Box jumps when remote is tapped
+    func handleTap(gestureRecognizer: UIGestureRecognizer) {
         // retrieve the SCNView
         let scnView = self.view as! SCNView
         
@@ -89,6 +97,20 @@ class GameViewController: UIViewController {
                 box.runAction(SCNAction.moveByX(0, y: -speed, z: 0, duration: time))
             })
         }
+    }
+    
+    func swiped(gestureRecognizer: UIGestureRecognizer) {
+        // retrieve the SCNView
+        let scnView = self.view as! SCNView
+        
+        // retrieve box object
+        let box = scnView.scene!.rootNode.childNodeWithName("box", recursively: true)!
+        
+        // movement variables
+        let speed : CGFloat = 3
+        
+        // move right
+        box.runAction(SCNAction.repeatActionForever(SCNAction.moveByX(speed, y: 0, z: 0, duration: 1)))
     }
     
     override func didReceiveMemoryWarning() {
