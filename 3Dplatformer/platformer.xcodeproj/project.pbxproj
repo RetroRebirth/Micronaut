@@ -193,6 +193,7 @@
 				TargetAttributes = {
 					4BF7C40B1BD2F7EB00C64127 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = L9GDAR3R36;
 					};
 					4BF7C41E1BD2F7EB00C64127 = {
 						CreatedOnToolsVersion = 7.1;
@@ -390,10 +391,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = platformer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.platformer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -402,10 +406,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = platformer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.platformer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -478,6 +485,7 @@
 				4BF7C4351BD2F7EB00C64127 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BF7C4361BD2F7EB00C64127 /* Build configuration list for PBXNativeTarget "platformerTests" */ = {
 			isa = XCConfigurationList;
@@ -486,6 +494,7 @@
 				4BF7C4381BD2F7EB00C64127 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BF7C4391BD2F7EB00C64127 /* Build configuration list for PBXNativeTarget "platformerUITests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +503,7 @@
 				4BF7C43B1BD2F7EB00C64127 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
