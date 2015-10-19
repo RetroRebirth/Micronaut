@@ -37,6 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = CGPoint(x:size.width * 0.5, y:size.height * 0.8)
         player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
         player.physicsBody?.categoryBitMask = PhysicsCategory.Player
+        player.physicsBody?.contactTestBitMask = PhysicsCategory.All
         player.physicsBody?.dynamic = true
         player.physicsBody?.friction = 0.0
         player.physicsBody?.restitution = 0.0
@@ -46,8 +47,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let floor = SKShapeNode(rect: CGRectMake(0, size.height * 0.15, size.width, size.height * 0.1))
         floor.fillColor = SKColor.whiteColor()
         floor.physicsBody = SKPhysicsBody(edgeFromPoint: CGPointMake(0, size.height * 0.25), toPoint: CGPointMake(size.width, size.height * 0.25))
-        floor.physicsBody?.dynamic = false
         floor.physicsBody?.categoryBitMask = PhysicsCategory.World
+        floor.physicsBody?.dynamic = false
         floor.physicsBody?.restitution = 0.0
         self.addChild(floor)
         
