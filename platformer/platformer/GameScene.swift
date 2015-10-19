@@ -8,21 +8,62 @@
 
 import SpriteKit
 
+struct PhysicsCategory {
+    static let None     : UInt32 = 0
+    static let All      : UInt32 = UInt32.max
+    static let Player   : UInt32 = 0b1
+    static let World    : UInt32 = 0b10
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let player = SKSpriteNode(imageNamed:"Spaceship")
-    let runningSpeed = CGFloat(500)
+    let runningSpeed = CGFloat(400)
     
     override func didMoveToView(view: SKView) {
         // create physics engine
         physicsWorld.gravity = CGVectorMake(0, -10)
         
+        // create title @ top-middle
+        let title = SKLabelNode(fontNamed:"Chalkduster")
+        title.text = "Platformer"
+        title.fontSize = 65
+        title.position = CGPoint(x:size.width * 0.5, y:size.height * 0.8)
+        self.addChild(title)
+        
+        // create player falls with gravity @ bottom-middle
+        player.xScale = 0.2
+        player.yScale = 0.2
+        player.position = CGPoint(x:size.width * 0.5, y:size.height * 0.8)
+        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
+        player.physicsBody?.dynamic = true
+        player.physicsBody?.friction = 0.0
+        player.physicsBody?.categoryBitMask = PhysicsCategory.Player
+        self.addChild(player)
+        
         // create floor
         let floor = SKShapeNode(rect: CGRectMake(0, size.height * 0.15, size.width, size.height * 0.1))
         floor.fillColor = SKColor.whiteColor()
-        floor.physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(size.width * 2, size.height * 0.5)) // TODO why isn't physics body wrapping node correctly? whatever, this works for now
+        floor.physicsBody = SKPhysicsBody(edgeFromPoint: CGPointMake(0, size.height * 0.25), toPoint: CGPointMake(size.width, size.height * 0.25))
         floor.physicsBody?.dynamic = false
+        floor.physicsBody?.categoryBitMask = PhysicsCategory.World
         self.addChild(floor)
+        
+        // create left wall
+        let leftWall = SKShapeNode(rect: CGRectMake(0, size.height * 0.15, size.width * 0.05, size.height))
+        leftWall.fillColor = SKColor.whiteColor()
+        leftWall.physicsBody = SKPhysicsBody(edgeFromPoint: CGPointMake(size.width * 0.05, size.height * 0.25), toPoint: CGPointMake(size.width * 0.05, size.height))
+        leftWall.physicsBody?.dynamic = false
+        leftWall.physicsBody?.categoryBitMask = PhysicsCategory.World
+        self.addChild(leftWall)
+        
+        // create right wall
+        let rightWall = SKShapeNode(rect: CGRectMake(size.width * 0.95, size.height * 0.15, size.width * 0.05, size.height))
+        rightWall.fillColor = SKColor.whiteColor()
+        rightWall.physicsBody = SKPhysicsBody(edgeFromPoint: CGPointMake(size.width * 0.95, size.height * 0.25), toPoint: CGPointMake(size.width * 0.95, size.height))
+        rightWall.physicsBody?.dynamic = false
+        rightWall.physicsBody?.categoryBitMask = PhysicsCategory.World
+        self.addChild(rightWall)
         
         // add tap recogizer
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "jump:")
@@ -48,28 +89,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let swipeDownRecognizer = UISwipeGestureRecognizer(target: self, action: "stopRunning:")
         swipeDownRecognizer.direction = .Down
         view.addGestureRecognizer(swipeDownRecognizer)
-        
-        // create title @ top-middle
-        let title = SKLabelNode(fontNamed:"Chalkduster")
-        title.text = "Platformer"
-        title.fontSize = 65
-        title.position = CGPoint(x:size.width * 0.5, y:size.height * 0.8)
-        self.addChild(title)
-        
-        // create player falls with gravity @ bottom-middle
-        player.xScale = 0.2
-        player.yScale = 0.2
-        player.position = CGPoint(x:size.width * 0.5, y:size.height * 0.8)
-        player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
-        player.physicsBody?.dynamic = true
-        player.physicsBody?.friction = 0.0
-        self.addChild(player)
     }
     
     // jump when tapped or swipe up
     func jump(gestureRecognizer: UIGestureRecognizer) {
-        // stop the player from jumping too high if you mash the button
-        if player.position.y < size.height * 0.4 {
+        print(player.position.y)
+        print(size.height * 0.3)
+        print("")
+        
+        if player.position.y < size.height * 0.3 {
             player.physicsBody?.applyImpulse(CGVectorMake(0, 200))
         }
     }
