@@ -93,10 +93,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // jump when tapped or swipe up
     func jump(gestureRecognizer: UIGestureRecognizer) {
-        print(player.position.y)
-        print(size.height * 0.3)
-        print("")
-        
         if player.position.y < size.height * 0.3 {
             player.physicsBody?.applyImpulse(CGVectorMake(0, 200))
         }
