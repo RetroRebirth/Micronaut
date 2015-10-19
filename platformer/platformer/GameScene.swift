@@ -36,9 +36,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.yScale = 0.2
         player.position = CGPoint(x:size.width * 0.5, y:size.height * 0.8)
         player.physicsBody = SKPhysicsBody(rectangleOfSize: player.size)
+        player.physicsBody?.categoryBitMask = PhysicsCategory.Player
         player.physicsBody?.dynamic = true
         player.physicsBody?.friction = 0.0
-        player.physicsBody?.categoryBitMask = PhysicsCategory.Player
+        player.physicsBody?.restitution = 0.0
         self.addChild(player)
         
         // create floor
@@ -47,22 +48,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         floor.physicsBody = SKPhysicsBody(edgeFromPoint: CGPointMake(0, size.height * 0.25), toPoint: CGPointMake(size.width, size.height * 0.25))
         floor.physicsBody?.dynamic = false
         floor.physicsBody?.categoryBitMask = PhysicsCategory.World
+        floor.physicsBody?.restitution = 0.0
         self.addChild(floor)
         
         // create left wall
         let leftWall = SKShapeNode(rect: CGRectMake(0, size.height * 0.15, size.width * 0.05, size.height))
         leftWall.fillColor = SKColor.whiteColor()
         leftWall.physicsBody = SKPhysicsBody(edgeFromPoint: CGPointMake(size.width * 0.05, size.height * 0.25), toPoint: CGPointMake(size.width * 0.05, size.height))
-        leftWall.physicsBody?.dynamic = false
         leftWall.physicsBody?.categoryBitMask = PhysicsCategory.World
+        leftWall.physicsBody?.dynamic = false
+        leftWall.physicsBody?.restitution = 0.0
         self.addChild(leftWall)
         
         // create right wall
         let rightWall = SKShapeNode(rect: CGRectMake(size.width * 0.95, size.height * 0.15, size.width * 0.05, size.height))
         rightWall.fillColor = SKColor.whiteColor()
         rightWall.physicsBody = SKPhysicsBody(edgeFromPoint: CGPointMake(size.width * 0.95, size.height * 0.25), toPoint: CGPointMake(size.width * 0.95, size.height))
-        rightWall.physicsBody?.dynamic = false
         rightWall.physicsBody?.categoryBitMask = PhysicsCategory.World
+        rightWall.physicsBody?.dynamic = false
+        rightWall.physicsBody?.restitution = 0.0
         self.addChild(rightWall)
         
         // add tap recogizer
