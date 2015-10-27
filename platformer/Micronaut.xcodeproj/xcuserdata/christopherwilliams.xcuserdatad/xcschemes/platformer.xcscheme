@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4BA01AFE1BD42DFB00DA9AD8"
-               BuildableName = "platformer.app"
-               BlueprintName = "platformer"
-               ReferencedContainer = "container:platformer.xcodeproj">
+               BuildableName = "Micronaut.app"
+               BlueprintName = "Micronaut"
+               ReferencedContainer = "container:Micronaut.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4BA01B151BD42DFB00DA9AD8"
-               BuildableName = "platformerTests.xctest"
-               BlueprintName = "platformerTests"
-               ReferencedContainer = "container:platformer.xcodeproj">
+               BuildableName = "Micronaut.xctest"
+               BlueprintName = "MicronautTests"
+               ReferencedContainer = "container:Micronaut.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4BA01B201BD42DFB00DA9AD8"
-               BuildableName = "platformerUITests.xctest"
-               BlueprintName = "platformerUITests"
-               ReferencedContainer = "container:platformer.xcodeproj">
+               BuildableName = "Micronaut.xctest"
+               BlueprintName = "MicronautUITests"
+               ReferencedContainer = "container:Micronaut.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4BA01AFE1BD42DFB00DA9AD8"
-            BuildableName = "platformer.app"
-            BlueprintName = "platformer"
-            ReferencedContainer = "container:platformer.xcodeproj">
+            BuildableName = "Micronaut.app"
+            BlueprintName = "Micronaut"
+            ReferencedContainer = "container:Micronaut.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4BA01AFE1BD42DFB00DA9AD8"
-            BuildableName = "platformer.app"
-            BlueprintName = "platformer"
-            ReferencedContainer = "container:platformer.xcodeproj">
+            BuildableName = "Micronaut.app"
+            BlueprintName = "Micronaut"
+            ReferencedContainer = "container:Micronaut.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4BA01AFE1BD42DFB00DA9AD8"
-            BuildableName = "platformer.app"
-            BlueprintName = "platformer"
-            ReferencedContainer = "container:platformer.xcodeproj">
+            BuildableName = "Micronaut.app"
+            BlueprintName = "Micronaut"
+            ReferencedContainer = "container:Micronaut.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

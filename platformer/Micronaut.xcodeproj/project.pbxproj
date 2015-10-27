@@ -36,7 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4BA01AFF1BD42DFB00DA9AD8 /* platformer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = platformer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BA01AFF1BD42DFB00DA9AD8 /* Micronaut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Micronaut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA01B021BD42DFB00DA9AD8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BA01B041BD42DFB00DA9AD8 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		4BA01B061BD42DFB00DA9AD8 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -45,10 +45,10 @@
 		4BA01B0D1BD42DFB00DA9AD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4BA01B0F1BD42DFB00DA9AD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BA01B111BD42DFB00DA9AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BA01B161BD42DFB00DA9AD8 /* platformerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = platformerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BA01B161BD42DFB00DA9AD8 /* Micronaut.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Micronaut.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA01B1A1BD42DFB00DA9AD8 /* platformerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = platformerTests.swift; sourceTree = "<group>"; };
 		4BA01B1C1BD42DFB00DA9AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4BA01B211BD42DFB00DA9AD8 /* platformerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = platformerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BA01B211BD42DFB00DA9AD8 /* Micronaut.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Micronaut.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA01B251BD42DFB00DA9AD8 /* platformerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = platformerUITests.swift; sourceTree = "<group>"; };
 		4BA01B271BD42DFB00DA9AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,9 +81,9 @@
 		4BA01AF61BD42DFB00DA9AD8 = {
 			isa = PBXGroup;
 			children = (
-				4BA01B011BD42DFB00DA9AD8 /* platformer */,
-				4BA01B191BD42DFB00DA9AD8 /* platformerTests */,
-				4BA01B241BD42DFB00DA9AD8 /* platformerUITests */,
+				4BA01B011BD42DFB00DA9AD8 /* Micronaut */,
+				4BA01B191BD42DFB00DA9AD8 /* MicronautTests */,
+				4BA01B241BD42DFB00DA9AD8 /* MicronautTests */,
 				4BA01B001BD42DFB00DA9AD8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,14 +91,14 @@
 		4BA01B001BD42DFB00DA9AD8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4BA01AFF1BD42DFB00DA9AD8 /* platformer.app */,
-				4BA01B161BD42DFB00DA9AD8 /* platformerTests.xctest */,
-				4BA01B211BD42DFB00DA9AD8 /* platformerUITests.xctest */,
+				4BA01AFF1BD42DFB00DA9AD8 /* Micronaut.app */,
+				4BA01B161BD42DFB00DA9AD8 /* Micronaut.xctest */,
+				4BA01B211BD42DFB00DA9AD8 /* Micronaut.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4BA01B011BD42DFB00DA9AD8 /* platformer */ = {
+		4BA01B011BD42DFB00DA9AD8 /* Micronaut */ = {
 			isa = PBXGroup;
 			children = (
 				4BA01B021BD42DFB00DA9AD8 /* AppDelegate.swift */,
@@ -110,33 +110,36 @@
 				4BA01B0F1BD42DFB00DA9AD8 /* Assets.xcassets */,
 				4BA01B111BD42DFB00DA9AD8 /* Info.plist */,
 			);
+			name = Micronaut;
 			path = platformer;
 			sourceTree = "<group>";
 		};
-		4BA01B191BD42DFB00DA9AD8 /* platformerTests */ = {
+		4BA01B191BD42DFB00DA9AD8 /* MicronautTests */ = {
 			isa = PBXGroup;
 			children = (
 				4BA01B1A1BD42DFB00DA9AD8 /* platformerTests.swift */,
 				4BA01B1C1BD42DFB00DA9AD8 /* Info.plist */,
 			);
+			name = MicronautTests;
 			path = platformerTests;
 			sourceTree = "<group>";
 		};
-		4BA01B241BD42DFB00DA9AD8 /* platformerUITests */ = {
+		4BA01B241BD42DFB00DA9AD8 /* MicronautTests */ = {
 			isa = PBXGroup;
 			children = (
 				4BA01B251BD42DFB00DA9AD8 /* platformerUITests.swift */,
 				4BA01B271BD42DFB00DA9AD8 /* Info.plist */,
 			);
+			name = MicronautTests;
 			path = platformerUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4BA01AFE1BD42DFB00DA9AD8 /* platformer */ = {
+		4BA01AFE1BD42DFB00DA9AD8 /* Micronaut */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4BA01B2A1BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "platformer" */;
+			buildConfigurationList = 4BA01B2A1BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "Micronaut" */;
 			buildPhases = (
 				4BA01AFB1BD42DFB00DA9AD8 /* Sources */,
 				4BA01AFC1BD42DFB00DA9AD8 /* Frameworks */,
@@ -146,14 +149,14 @@
 			);
 			dependencies = (
 			);
-			name = platformer;
+			name = Micronaut;
 			productName = platformer;
-			productReference = 4BA01AFF1BD42DFB00DA9AD8 /* platformer.app */;
+			productReference = 4BA01AFF1BD42DFB00DA9AD8 /* Micronaut.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4BA01B151BD42DFB00DA9AD8 /* platformerTests */ = {
+		4BA01B151BD42DFB00DA9AD8 /* MicronautTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4BA01B2D1BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "platformerTests" */;
+			buildConfigurationList = 4BA01B2D1BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "MicronautTests" */;
 			buildPhases = (
 				4BA01B121BD42DFB00DA9AD8 /* Sources */,
 				4BA01B131BD42DFB00DA9AD8 /* Frameworks */,
@@ -164,14 +167,14 @@
 			dependencies = (
 				4BA01B181BD42DFB00DA9AD8 /* PBXTargetDependency */,
 			);
-			name = platformerTests;
+			name = MicronautTests;
 			productName = platformerTests;
-			productReference = 4BA01B161BD42DFB00DA9AD8 /* platformerTests.xctest */;
+			productReference = 4BA01B161BD42DFB00DA9AD8 /* Micronaut.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4BA01B201BD42DFB00DA9AD8 /* platformerUITests */ = {
+		4BA01B201BD42DFB00DA9AD8 /* MicronautUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4BA01B301BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "platformerUITests" */;
+			buildConfigurationList = 4BA01B301BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "MicronautUITests" */;
 			buildPhases = (
 				4BA01B1D1BD42DFB00DA9AD8 /* Sources */,
 				4BA01B1E1BD42DFB00DA9AD8 /* Frameworks */,
@@ -182,9 +185,9 @@
 			dependencies = (
 				4BA01B231BD42DFB00DA9AD8 /* PBXTargetDependency */,
 			);
-			name = platformerUITests;
+			name = MicronautUITests;
 			productName = platformerUITests;
-			productReference = 4BA01B211BD42DFB00DA9AD8 /* platformerUITests.xctest */;
+			productReference = 4BA01B211BD42DFB00DA9AD8 /* Micronaut.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +214,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4BA01AFA1BD42DFB00DA9AD8 /* Build configuration list for PBXProject "platformer" */;
+			buildConfigurationList = 4BA01AFA1BD42DFB00DA9AD8 /* Build configuration list for PBXProject "Micronaut" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -224,9 +227,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4BA01AFE1BD42DFB00DA9AD8 /* platformer */,
-				4BA01B151BD42DFB00DA9AD8 /* platformerTests */,
-				4BA01B201BD42DFB00DA9AD8 /* platformerUITests */,
+				4BA01AFE1BD42DFB00DA9AD8 /* Micronaut */,
+				4BA01B151BD42DFB00DA9AD8 /* MicronautTests */,
+				4BA01B201BD42DFB00DA9AD8 /* MicronautUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -291,12 +294,12 @@
 /* Begin PBXTargetDependency section */
 		4BA01B181BD42DFB00DA9AD8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4BA01AFE1BD42DFB00DA9AD8 /* platformer */;
+			target = 4BA01AFE1BD42DFB00DA9AD8 /* Micronaut */;
 			targetProxy = 4BA01B171BD42DFB00DA9AD8 /* PBXContainerItemProxy */;
 		};
 		4BA01B231BD42DFB00DA9AD8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4BA01AFE1BD42DFB00DA9AD8 /* platformer */;
+			target = 4BA01AFE1BD42DFB00DA9AD8 /* Micronaut */;
 			targetProxy = 4BA01B221BD42DFB00DA9AD8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -403,8 +406,8 @@
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = platformer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.platformer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.micronaut;
+				PRODUCT_NAME = Micronaut;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -418,8 +421,8 @@
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "iPhone Developer";
 				INFOPLIST_FILE = platformer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.platformer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.micronaut;
+				PRODUCT_NAME = Micronaut;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -432,8 +435,8 @@
 				INFOPLIST_FILE = platformerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.platformerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/platformer.app/platformer";
+				PRODUCT_NAME = Micronaut;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Micronaut.app/Micronaut";
 			};
 			name = Debug;
 		};
@@ -444,8 +447,8 @@
 				INFOPLIST_FILE = platformerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.platformerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/platformer.app/platformer";
+				PRODUCT_NAME = Micronaut;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Micronaut.app/Micronaut";
 			};
 			name = Release;
 		};
@@ -456,7 +459,7 @@
 				INFOPLIST_FILE = platformerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.platformerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Micronaut;
 				TEST_TARGET_NAME = platformer;
 				USES_XCTRUNNER = YES;
 			};
@@ -468,7 +471,7 @@
 				INFOPLIST_FILE = platformerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.christopherwilliams.platformerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Micronaut;
 				TEST_TARGET_NAME = platformer;
 				USES_XCTRUNNER = YES;
 			};
@@ -477,7 +480,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4BA01AFA1BD42DFB00DA9AD8 /* Build configuration list for PBXProject "platformer" */ = {
+		4BA01AFA1BD42DFB00DA9AD8 /* Build configuration list for PBXProject "Micronaut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BA01B281BD42DFB00DA9AD8 /* Debug */,
@@ -486,7 +489,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4BA01B2A1BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "platformer" */ = {
+		4BA01B2A1BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "Micronaut" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BA01B2B1BD42DFB00DA9AD8 /* Debug */,
@@ -495,7 +498,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4BA01B2D1BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "platformerTests" */ = {
+		4BA01B2D1BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "MicronautTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BA01B2E1BD42DFB00DA9AD8 /* Debug */,
@@ -504,7 +507,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4BA01B301BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "platformerUITests" */ = {
+		4BA01B301BD42DFB00DA9AD8 /* Build configuration list for PBXNativeTarget "MicronautUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4BA01B311BD42DFB00DA9AD8 /* Debug */,
