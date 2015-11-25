@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "tv",
+      "filename" : "astronaut-icon.png",
       "scale" : "1x"
     }
   ],
