@@ -17,3 +17,23 @@ func + (left: CGVector, right: CGVector) -> CGVector {
 func - (left: CGVector, right: CGVector) -> CGVector {
     return CGVector(dx: left.dx - right.dx, dy: left.dy - right.dy)
 }
+func * (scale: CGFloat, vector: CGVector) -> CGVector {
+    return CGVector(dx: scale * vector.dx, dy: scale * vector.dy)
+}
+// CGPoint operation overloading
+func + (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x + right.x, y: left.y + right.y)
+}
+func - (left: CGPoint, right: CGPoint) -> CGPoint {
+    return CGPoint(x: left.x - right.x, y: left.y - right.y)
+}
+
+class Utility {
+    // CGPoint & CGVector conversion
+    class func CGPointToCGVector(point: CGPoint) -> CGVector {
+        return CGVector(dx: point.x, dy: point.y)
+    }
+    class func CGVectorToCGPoint(vector: CGVector) -> CGPoint {
+        return CGPoint(x: vector.dx, y: vector.dy)
+    }
+}

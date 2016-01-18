@@ -13,10 +13,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         World.loadSprites(self)
-        Controller.loadControls(view)
+        Controller.loadGestures(view)
     }
 
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        Controller.touchBegan((touches.first?.locationInView(self.view))!)
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        Controller.touchMoved((touches.first?.locationInView(self.view))!)
     }
 }
