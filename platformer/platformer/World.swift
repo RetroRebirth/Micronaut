@@ -14,7 +14,6 @@ class World {
     static var sprites: [String:SKNode] = [String:SKNode]()
     
     class func loadSprites(scene: SKScene) {
-        // TODO use pointers
         sprites["player"] = scene.childNodeWithName("player")!
     }
     
