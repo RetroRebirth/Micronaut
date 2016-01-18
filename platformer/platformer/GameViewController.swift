@@ -1,6 +1,6 @@
 //
 //  GameViewController.swift
-//  platformer
+//  Micronaut
 //
 //  Created by Christopher Williams on 10/18/15.
 //  Copyright (c) 2015 Christopher Williams. All rights reserved.

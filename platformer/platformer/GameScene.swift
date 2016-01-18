@@ -15,7 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         World.loadSprites(self)
         Controller.loadControls(view)
     }
-   
+
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
     }

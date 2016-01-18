@@ -39,7 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4B11D8B21C436EE700C00B8C /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		4B92D1711C4AE0F600159256 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		4B92D1731C4AE12600159256 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		4B92D1751C4AE47B00159256 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
@@ -109,13 +108,12 @@
 			isa = PBXGroup;
 			children = (
 				4BA01B021BD42DFB00DA9AD8 /* AppDelegate.swift */,
+				4BA01B081BD42DFB00DA9AD8 /* GameViewController.swift */,
 				4BA01B041BD42DFB00DA9AD8 /* GameScene.sks */,
 				4BA01B061BD42DFB00DA9AD8 /* GameScene.swift */,
 				4B92D1751C4AE47B00159256 /* World.swift */,
 				4B92D1731C4AE12600159256 /* Utility.swift */,
 				4B92D1711C4AE0F600159256 /* Controller.swift */,
-				4B11D8B21C436EE700C00B8C /* Header.h */,
-				4BA01B081BD42DFB00DA9AD8 /* GameViewController.swift */,
 				4BA01B0A1BD42DFB00DA9AD8 /* Game.xcassets */,
 				4BA01B0C1BD42DFB00DA9AD8 /* Main.storyboard */,
 				4BA01B0F1BD42DFB00DA9AD8 /* Assets.xcassets */,
