@@ -30,9 +30,9 @@ class Controller: NSObject {
     class func touchBegan(pos: CGPoint) {
         initialTouchPos = pos
     }
-    
+
+    // Have the player move depending on where the touch has moved on the controller
     class func touchMoved(pos: CGPoint) {
-        // Have the player move depending on where the touch has moved on the controller
-        World.getPlayer().physicsBody?.velocity = CGVectorMake(speed * (pos - initialTouchPos).x, 0)
+        World.getPlayer().physicsBody?.velocity.dx = speed * (pos - initialTouchPos).x
     }
 }

@@ -18,6 +18,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
+        
+        // TODO abstract death logic to new class
+        // If the player fell, bring them back to start
+        if World.getPlayer().position.y < 0.0 {
+            World.getPlayer().position = CGPointMake(128, 768)
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
