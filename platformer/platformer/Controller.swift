@@ -12,9 +12,11 @@ import SpriteKit
 
 class Controller: NSObject {
     static private let speed = CGFloat(0.5)
-    static private let jumpForce = CGFloat(150)
+    static private let jumpForce = CGFloat(200)
     
-    static private var initialTouchPos = CGPointMake(0, 0) // Keep track of the relative positioning on the remote
+    // Keep track of the relative positioning on the remote
+    static private var initialTouchPos = CGPointMake(0, 0)
+    static private var currentTouchPos = CGPointMake(0, 0)
     
     class func loadGestures(view: SKView) {
         // Tap = Jump
@@ -29,10 +31,23 @@ class Controller: NSObject {
     
     class func touchBegan(pos: CGPoint) {
         initialTouchPos = pos
+        currentTouchPos = pos
     }
 
-    // Have the player move depending on where the touch has moved on the controller
     class func touchMoved(pos: CGPoint) {
-        World.getPlayer().physicsBody?.velocity.dx = speed * (pos - initialTouchPos).x
+        currentTouchPos = pos
+    }
+    
+    class func touchEnded() {
+        initialTouchPos = CGPointMake(0, 0)
+        currentTouchPos = CGPointMake(0, 0)
+    }
+    
+    // Have the player move depending on where the touch has moved on the controller
+    class func update() {
+        // This allows the player to slide
+        if (initialTouchPos.x != 0.0 && currentTouchPos.x != 0.0) {
+            World.getPlayer().physicsBody?.velocity.dx = speed * (currentTouchPos - initialTouchPos).x
+        }
     }
 }

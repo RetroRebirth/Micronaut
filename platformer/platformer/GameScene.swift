@@ -19,9 +19,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         
+        Controller.update()
+        
         // If the player fell, bring them back to start
         if World.getPlayer().position.y < 0.0 {
             World.getPlayer().position = CGPointMake(128, 768)
+            World.getBackground().position = CGPointMake(0, 0)
         }
         
         // Background horizontal parallax motion
@@ -34,5 +37,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         Controller.touchMoved((touches.first?.locationInView(self.view))!)
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        Controller.touchEnded()
     }
 }
