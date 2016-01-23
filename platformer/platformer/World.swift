@@ -17,6 +17,7 @@ class World {
     class func loadSprites(scene: SKScene) {
         sprites["player"] = scene.childNodeWithName("//player")!
         sprites["background"] = scene.childNodeWithName("//background")!
+        sprites["camera"] = scene.childNodeWithName("//camera")!
     }
     
     class func getSpriteByName(name: String) -> SKNode {
@@ -29,5 +30,9 @@ class World {
     
     class func getBackground() -> SKNode {
         return sprites["background"]!
+    }
+    
+    class func getCamera() -> SKNode {
+        return sprites["camera"]!
     }
 }

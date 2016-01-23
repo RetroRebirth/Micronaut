@@ -31,6 +31,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         World.getBackground().position.x += -0.01 * World.getPlayer().physicsBody!.velocity.dx
     }
     
+    override func didFinishUpdate() {
+        // Keep the camera's x-position focused on player
+        World.getCamera().position.x = World.getPlayer().position.x
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         Controller.touchBegan((touches.first?.locationInView(self.view))!)
     }
