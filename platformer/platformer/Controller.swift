@@ -26,7 +26,9 @@ class Controller: NSObject {
     }
     
     class func jump(gestureRecognizer: UIGestureRecognizer) {
-        World.getPlayer().physicsBody?.applyImpulse(CGVectorMake(0, jumpForce))
+        if World.getPlayer().physicsBody?.velocity.dy == 0.0 {
+            World.getPlayer().physicsBody?.applyImpulse(CGVectorMake(0, jumpForce))
+        }
     }
     
     class func touchBegan(pos: CGPoint) {
