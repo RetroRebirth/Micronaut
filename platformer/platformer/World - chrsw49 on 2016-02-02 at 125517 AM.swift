@@ -27,20 +27,14 @@ class World {
         return sprites["player"]!
     }
     
-    class func reset() {
+    class func update() {
         let player = sprites["player"]!
         let background = sprites["background"]!
         
-        player.position = CGPointMake(128, 768)
-        background.position.x = 0.0
-    }
-    
-    class func update() {
-        let player = sprites["player"]!
-        
         // If the player fell, bring them back to start
         if player.position.y < 0.0 {
-            reset()
+            player.position = CGPointMake(128, 768)
+            background.position.x = 0.0
         }
     }
     

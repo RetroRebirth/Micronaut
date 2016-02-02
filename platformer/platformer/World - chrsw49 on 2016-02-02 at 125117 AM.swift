@@ -27,26 +27,20 @@ class World {
         return sprites["player"]!
     }
     
-    class func reset() {
-        let player = sprites["player"]!
-        let background = sprites["background"]!
-        
-        player.position = CGPointMake(128, 768)
-        background.position.x = 0.0
-    }
-    
     class func update() {
+        // Grab the nodes that matter for each update
         let player = sprites["player"]!
         
         // If the player fell, bring them back to start
         if player.position.y < 0.0 {
-            reset()
+            player.position = CGPointMake(128, 768)
+            player.position = CGPointMake(0, 0)
         }
     }
     
     class func didFinishUpdate() {
-        let player = sprites["player"]!
         let background = sprites["background"]!
+        let player = sprites["player"]!
         
         // Background horizontal parallax motion
         background.position.x += -0.01 * player.physicsBody!.velocity.dx
