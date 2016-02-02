@@ -41,14 +41,20 @@ class Camera {
             xOffset = mag * 0.1
         }
     
-        // Keep the camera's x-position focused on player
-        cameraNode!.position.x = World.getPlayer().position.x + xOffset
+        // Calculate where the camera should go
+        var newCameraPosX = World.getPlayer().position.x + xOffset
         
         // Keep camera in bounds
-        if cameraNode!.position.x < 768 {
-            cameraNode!.position.x = 768
-        } else if cameraNode!.position.x > 4288 {
-            cameraNode!.position.x = 4288
+        if newCameraPosX < 768 {
+            newCameraPosX = 768
+        } else if newCameraPosX > 4288 {
+            newCameraPosX = 4288
         }
+        
+        // Background horizontal parallax motion
+        World.getBackground().position.x += -0.1 * (newCameraPosX - cameraNode!.position.x)
+        
+        // Move the camera
+        cameraNode!.position.x = newCameraPosX
     }
 }

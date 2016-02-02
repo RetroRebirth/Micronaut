@@ -27,6 +27,10 @@ class World {
         return sprites["player"]!
     }
     
+    class func getBackground() -> SKNode {
+        return sprites["background"]!
+    }
+    
     class func reset() {
         let player = sprites["player"]!
         let background = sprites["background"]!
@@ -42,13 +46,5 @@ class World {
         if player.position.y < 0.0 {
             reset()
         }
-    }
-    
-    class func didFinishUpdate() {
-        let player = sprites["player"]!
-        let background = sprites["background"]!
-        
-        // Background horizontal parallax motion
-        background.position.x += -0.01 * player.physicsBody!.velocity.dx
     }
 }

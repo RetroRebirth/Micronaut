@@ -24,7 +24,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didFinishUpdate() {
         Camera.didFinishUpdate()
-        World.didFinishUpdate()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
