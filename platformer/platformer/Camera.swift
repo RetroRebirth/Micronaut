@@ -43,5 +43,12 @@ class Camera {
     
         // Keep the camera's x-position focused on player
         cameraNode!.position.x = World.getPlayer().position.x + xOffset
+        
+        // Keep camera in bounds
+        if cameraNode!.position.x < 768 {
+            cameraNode!.position.x = 768
+        } else if cameraNode!.position.x > 4288 {
+            cameraNode!.position.x = 4288
+        }
     }
 }
