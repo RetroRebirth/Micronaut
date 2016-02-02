@@ -17,7 +17,6 @@ class World {
     class func loadSprites(scene: SKScene) {
         sprites["player"] = scene.childNodeWithName("//player")!
         sprites["background"] = scene.childNodeWithName("//background")!
-        sprites["camera"] = scene.childNodeWithName("//camera")!
     }
     
     class func getSpriteByName(name: String) -> SKNode {
@@ -28,11 +27,18 @@ class World {
         return sprites["player"]!
     }
     
-    class func getBackground() -> SKNode {
-        return sprites["background"]!
-    }
-    
-    class func getCamera() -> SKNode {
-        return sprites["camera"]!
+    class func update() {
+        // Grab the nodes that matter for each update
+        let player = sprites["player"]!
+        let background = sprites["background"]!
+        
+        // If the player fell, bring them back to start
+        if player.position.y < 0.0 {
+            player.position = CGPointMake(128, 768)
+            player.position = CGPointMake(0, 0)
+        }
+        
+        // Background horizontal parallax motion
+        background.position.x += -0.01 * player.physicsBody!.velocity.dx
     }
 }

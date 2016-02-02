@@ -19,6 +19,7 @@
 		4BA01B101BD42DFB00DA9AD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BA01B0F1BD42DFB00DA9AD8 /* Assets.xcassets */; };
 		4BA01B1B1BD42DFB00DA9AD8 /* platformerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA01B1A1BD42DFB00DA9AD8 /* platformerTests.swift */; };
 		4BA01B261BD42DFB00DA9AD8 /* platformerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA01B251BD42DFB00DA9AD8 /* platformerUITests.swift */; };
+		4BCA2E221C604B6800D299CC /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA2E211C604B6800D299CC /* Camera.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		4BA01B211BD42DFB00DA9AD8 /* platformerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = platformerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BA01B251BD42DFB00DA9AD8 /* platformerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = platformerUITests.swift; sourceTree = "<group>"; };
 		4BA01B271BD42DFB00DA9AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BCA2E211C604B6800D299CC /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				4BA01B041BD42DFB00DA9AD8 /* GameScene.sks */,
 				4BA01B061BD42DFB00DA9AD8 /* GameScene.swift */,
 				4B92D1751C4AE47B00159256 /* World.swift */,
+				4BCA2E211C604B6800D299CC /* Camera.swift */,
 				4B92D1731C4AE12600159256 /* Utility.swift */,
 				4B92D1711C4AE0F600159256 /* Controller.swift */,
 				4BA01B0A1BD42DFB00DA9AD8 /* Game.xcassets */,
@@ -278,6 +281,7 @@
 				4BA01B071BD42DFB00DA9AD8 /* GameScene.swift in Sources */,
 				4B92D1721C4AE0F600159256 /* Controller.swift in Sources */,
 				4BA01B091BD42DFB00DA9AD8 /* GameViewController.swift in Sources */,
+				4BCA2E221C604B6800D299CC /* Camera.swift in Sources */,
 				4BA01B031BD42DFB00DA9AD8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

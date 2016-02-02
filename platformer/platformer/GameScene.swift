@@ -13,27 +13,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         World.loadSprites(self)
+        Camera.loadCamera(self)
         Controller.loadGestures(view)
     }
 
     override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-        
         Controller.update()
-        
-        // If the player fell, bring them back to start
-        if World.getPlayer().position.y < 0.0 {
-            World.getPlayer().position = CGPointMake(128, 768)
-            World.getBackground().position = CGPointMake(0, 0)
-        }
-        
-        // Background horizontal parallax motion
-        World.getBackground().position.x += -0.01 * World.getPlayer().physicsBody!.velocity.dx
+        World.update()
     }
     
     override func didFinishUpdate() {
-        // Keep the camera's x-position focused on player
-        World.getCamera().position.x = World.getPlayer().position.x
+        Camera.didFinishUpdate()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
