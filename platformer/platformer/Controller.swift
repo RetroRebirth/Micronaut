@@ -52,4 +52,9 @@ class Controller: NSObject {
             World.getPlayer().physicsBody?.velocity.dx = speed * (currentTouchPos - initialTouchPos).x
         }
     }
+    
+    // Calculates the distance the player is having the character move
+    class func getTouchMagnitudeX() -> CGFloat {
+        return (currentTouchPos - initialTouchPos).x
+    }
 }

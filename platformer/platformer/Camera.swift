@@ -26,24 +26,21 @@ class Camera {
     }
     
     class func didFinishUpdate() {
-        // Offset the camera by tweening to look ahead of the player
-        let incr:CGFloat = 5.0
-        let dir = World.getPlayer().physicsBody?.velocity.dx
-        if dir > 0.0 && xOffset < X_OFFSET_MAX {
-            // Player running right, offset right
-            xOffset += incr
-        } else if dir < 0.0 && xOffset > -X_OFFSET_MAX {
-            // Player running left, offset left
-            xOffset -= incr
-        } else if dir == 0.0 && xOffset != 0.0 {
+        // Offset the camera by tweening to look ahead of the player (based on input velocity)
+        let mag = Controller.getTouchMagnitudeX()
+        if mag == 0.0 && xOffset != 0.0 {
             // Player standing still, return camera to center
-            if xOffset < 0.0 {
-                xOffset += incr
+            if abs(xOffset) < 5.0 {
+                xOffset = 0.0
+            } else if xOffset < 0.0 {
+                xOffset += 5.0
             } else {
-                xOffset -= incr
+                xOffset -= 5.0
             }
+        } else {
+            xOffset = mag * 0.1
         }
-        
+    
         // Keep the camera's x-position focused on player
         cameraNode!.position.x = World.getPlayer().position.x + xOffset
     }
