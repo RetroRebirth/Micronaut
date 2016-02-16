@@ -26,8 +26,8 @@ class World {
 
     // Player either died or acheived the goal. Reset the sprites.
     class func reset() {
-        let player = getSpriteByName(Constants.Sprite_Player)
-        let background = getSpriteByName(Constants.Sprite_Background)
+        let player = World.getSpriteByName(Constants.Sprite_Player)
+        let background = World.getSpriteByName(Constants.Sprite_Background)
         
         player.position = Constants.PlayerStartPos
         player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
@@ -37,11 +37,11 @@ class World {
     
     // Gets called with every frame.
     class func update() {
-        let player = getSpriteByName(Constants.Sprite_Player)
+        let player = World.getSpriteByName(Constants.Sprite_Player)
         
         // If the player fell, reset the world
         if player.position.y < 0.0 {
-            reset()
+            World.reset()
         }
     }
     
@@ -50,11 +50,15 @@ class World {
         
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Enemy != 0)) {
-                playerHit(bodyA, enemyBody: bodyB)
+                World.playerHit(bodyA, enemyBody: bodyB)
+        }
+        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
+            (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
+                World.reset()
         }
     }
     
-    class func playerHit(playerBody: SKPhysicsBody, enemyBody: SKPhysicsBody) {
+    private class func playerHit(playerBody: SKPhysicsBody, enemyBody: SKPhysicsBody) {
         let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))
         playerBody.applyImpulse(hurtImpulse)
     }

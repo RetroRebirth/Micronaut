@@ -19,7 +19,7 @@ class Camera {
         let camera = World.getSpriteByName(Constants.Sprite_Camera)
         
         // Calculate the new camera's position
-        let newCameraPosX = calcNewCameraPosX()
+        let newCameraPosX = Camera.calcNewCameraPosX()
         
         // Background horizontal parallax motion before moving the camera
         World.getSpriteByName(Constants.Sprite_Background).position.x += Constants.BackgroundParallaxVelocity * Utility.distance(CGPointMake(newCameraPosX, camera.position.y), p2: camera.position)

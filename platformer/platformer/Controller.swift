@@ -47,7 +47,7 @@ class Controller: NSObject {
     class func update() {
         // Don't update the player's velocity unless we are influencing it
         if (initialTouchPos.x != 0.0 && currentTouchPos.x != 0.0) {
-            World.getSpriteByName(Constants.Sprite_Player).physicsBody?.velocity.dx = calcNewPlayerVelocityDx()
+            World.getSpriteByName(Constants.Sprite_Player).physicsBody?.velocity.dx = Controller.calcNewPlayerVelocityDx()
         }
     }
     
@@ -57,6 +57,6 @@ class Controller: NSObject {
     }
     
     class func calcNewPlayerVelocityDx() -> CGFloat {
-        return Constants.PlayerSpeed * getTouchMagnitudeX()
+        return Constants.PlayerSpeed * Controller.getTouchMagnitudeX()
     }
 }
