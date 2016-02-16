@@ -36,4 +36,19 @@ class Utility {
     class func CGVectorToCGPoint(vector: CGVector) -> CGPoint {
         return CGPoint(x: vector.dx, y: vector.dy)
     }
+    class func distance(p1: CGPoint, p2: CGPoint) -> CGFloat {
+        let xDist = (p2.x - p1.x);
+        let yDist = (p2.y - p1.y);
+        return sqrt((xDist * xDist) + (yDist * yDist));
+    }
+    // Standard math extension
+    class func NumberWithinBounds(value: CGFloat, min: CGFloat, max: CGFloat) -> CGFloat {
+        if value < min {
+            return min
+        } else if value > max {
+            return max
+        } else {
+            return value
+        }
+    }
 }

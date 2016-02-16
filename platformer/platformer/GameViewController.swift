@@ -5,6 +5,7 @@
 //  Created by Christopher Williams on 10/18/15.
 //  Copyright (c) 2015 Christopher Williams. All rights reserved.
 //
+//  Gets things started by creating a new scene and initializing it.
 
 import UIKit
 import SpriteKit

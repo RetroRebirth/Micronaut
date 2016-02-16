@@ -11,9 +11,6 @@ import Foundation
 import SpriteKit
 
 class Controller: NSObject {
-    static private let speed = CGFloat(0.5)
-    static private let jumpForce = CGFloat(200)
-    
     // Keep track of the relative positioning on the remote
     static private var initialTouchPos = CGPointMake(0, 0)
     static private var currentTouchPos = CGPointMake(0, 0)
@@ -26,8 +23,9 @@ class Controller: NSObject {
     }
     
     class func jump(gestureRecognizer: UIGestureRecognizer) {
-        if World.getPlayer().physicsBody?.velocity.dy == 0.0 {
-            World.getPlayer().physicsBody?.applyImpulse(CGVectorMake(0, jumpForce))
+        // Only jump when the player is standing on ground
+        if World.getSpriteByName(Constants.Sprite_Player).physicsBody?.velocity.dy == 0.0 {
+            World.getSpriteByName(Constants.Sprite_Player).physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
         }
     }
     
@@ -45,16 +43,20 @@ class Controller: NSObject {
         currentTouchPos = CGPointMake(0, 0)
     }
     
-    // Have the player move depending on where the touch has moved on the controller
+    // Gets called with every frame.
     class func update() {
-        // This allows the player to slide
+        // Don't update the player's velocity unless we are influencing it
         if (initialTouchPos.x != 0.0 && currentTouchPos.x != 0.0) {
-            World.getPlayer().physicsBody?.velocity.dx = speed * (currentTouchPos - initialTouchPos).x
+            World.getSpriteByName(Constants.Sprite_Player).physicsBody?.velocity.dx = calcNewPlayerVelocityDx()
         }
     }
     
-    // Calculates the distance the player is having the character move
+    // Calculates the distance the user has moved their input along the X axis
     class func getTouchMagnitudeX() -> CGFloat {
         return (currentTouchPos - initialTouchPos).x
+    }
+    
+    class func calcNewPlayerVelocityDx() -> CGFloat {
+        return Constants.PlayerSpeed * getTouchMagnitudeX()
     }
 }

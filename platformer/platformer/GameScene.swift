@@ -13,7 +13,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         World.loadSprites(self)
-        Camera.loadCamera(self)
         Controller.loadGestures(view)
     }
 
