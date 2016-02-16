@@ -11,7 +11,8 @@ import Foundation
 import SpriteKit
 
 class World {
-    static private var sprites: [String:SKNode] = [String:SKNode]()
+    static private var sprites:[String:SKNode] = [String:SKNode]()
+    static private var shouldReset:Bool = false
     
     // Adding "//" searches for nodes recursively https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/index.html#//apple_ref/occ/cl/SKNode
     class func loadSprites(scene: SKScene) {
@@ -33,6 +34,8 @@ class World {
         player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
         background.position.x = 0.0
         Camera.reset()
+        
+        shouldReset = false
     }
     
     // Gets called with every frame.
@@ -40,21 +43,20 @@ class World {
         let player = World.getSpriteByName(Constants.Sprite_Player)
         
         // If the player fell, reset the world
-        if player.position.y < 0.0 {
+        if player.position.y < 0.0 || shouldReset {
             World.reset()
         }
     }
     
     class func didBeginContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
-        debugPrint(bodyA.categoryBitMask, bodyB.categoryBitMask)
-        
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Enemy != 0)) {
                 World.playerHit(bodyA, enemyBody: bodyB)
         }
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
-                World.reset()
+                // TODO why can't I call World.reset here?
+                shouldReset = true // Set a flag to reset the world on the next update
         }
     }
     
