@@ -14,7 +14,7 @@ import SpriteKit
 class Camera {
     static private var xOffset: CGFloat = 0.0 // The offset of the camera from the player
     
-    // Gets called at the end of each frame.
+    // Gets called at the end of every frame.
     class func didFinishUpdate() {
         let camera = World.getSpriteByName(Constants.Sprite_Camera)
         
@@ -49,5 +49,12 @@ class Camera {
         
         // Keep the camera in bounds
         return Utility.NumberWithinBounds(newPosX, min: Constants.CameraMinXBound, max: Constants.CameraMaxXBound)
+    }
+    
+    class func reset() {
+        let camera = World.getSpriteByName(Constants.Sprite_Camera)
+            
+        camera.position.x = 0.0
+        xOffset = 0.0
     }
 }

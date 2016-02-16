@@ -30,7 +30,9 @@ class World {
         let background = getSpriteByName(Constants.Sprite_Background)
         
         player.position = Constants.PlayerStartPos
+        player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
         background.position.x = 0.0
+        Camera.reset()
     }
     
     // Gets called with every frame.
