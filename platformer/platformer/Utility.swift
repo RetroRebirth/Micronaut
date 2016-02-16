@@ -41,6 +41,10 @@ class Utility {
         let yDist = (p2.y - p1.y);
         return sqrt((xDist * xDist) + (yDist * yDist));
     }
+    class func normal(vector: CGVector) -> CGVector {
+        let mag = sqrt(vector.dx * vector.dx + vector.dy * vector.dy)
+        return CGVectorMake(vector.dx / mag, vector.dy / mag)
+    }
     // Standard math extension
     class func NumberWithinBounds(value: CGFloat, min: CGFloat, max: CGFloat) -> CGFloat {
         if value < min {
@@ -50,5 +54,20 @@ class Utility {
         } else {
             return value
         }
+    }
+    // Collision detection
+    class func SortCollisionBodies(contact: SKPhysicsContact) -> (bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
+        // Sort bodies by category bit
+        var bodyA: SKPhysicsBody
+        var bodyB: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            bodyA = contact.bodyA
+            bodyB = contact.bodyB
+        } else {
+            bodyA = contact.bodyB
+            bodyB = contact.bodyA
+        }
+        
+        return (bodyA, bodyB)
     }
 }

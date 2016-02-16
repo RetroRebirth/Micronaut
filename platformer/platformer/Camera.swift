@@ -51,6 +51,7 @@ class Camera {
         return Utility.NumberWithinBounds(newPosX, min: Constants.CameraMinXBound, max: Constants.CameraMaxXBound)
     }
     
+    // Player either died or acheived the goal. Reset the camera.
     class func reset() {
         let camera = World.getSpriteByName(Constants.Sprite_Camera)
             

@@ -17,6 +17,7 @@ struct Constants {
     
     // Sprite Properties
     static let PlayerStartPos = CGPointMake(128, 768)
+    static let PlayerHurtForce:CGFloat = 150
     static let BackgroundParallaxVelocity:CGFloat = -0.1
     
     // Camera
@@ -28,4 +29,10 @@ struct Constants {
     // Controller
     static let PlayerSpeed:CGFloat = 0.5
     static let PlayerJumpForce:CGFloat = 200
+    
+    // Collision Classes (assigned in GameScene.sks by hand)
+    static let CollisionCategory_Ground:UInt32 = 0x1 << 0
+    static let CollisionCategory_Player:UInt32 = 0x1 << 1
+    static let CollisionCategory_Enemy:UInt32 = 0x1 << 2
+    static let CollisionCategory_Goal:UInt32 = 0x1 << 3
 }

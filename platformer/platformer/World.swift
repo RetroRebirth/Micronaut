@@ -39,9 +39,23 @@ class World {
     class func update() {
         let player = getSpriteByName(Constants.Sprite_Player)
         
-        // If the player fell, bring them back to start
+        // If the player fell, reset the world
         if player.position.y < 0.0 {
             reset()
         }
+    }
+    
+    class func didBeginContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
+        debugPrint(bodyA.categoryBitMask, bodyB.categoryBitMask)
+        
+        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
+            (bodyB.categoryBitMask & Constants.CollisionCategory_Enemy != 0)) {
+                playerHit(bodyA, enemyBody: bodyB)
+        }
+    }
+    
+    class func playerHit(playerBody: SKPhysicsBody, enemyBody: SKPhysicsBody) {
+        let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))
+        playerBody.applyImpulse(hurtImpulse)
     }
 }
