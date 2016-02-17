@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B3B0FE31C72F44B00F5D8E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B0FE21C72F44B00F5D8E5 /* Constants.swift */; };
+		4B847FB01C74509000DA9842 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B847FAF1C74509000DA9842 /* Player.swift */; };
 		4B92D1721C4AE0F600159256 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B92D1711C4AE0F600159256 /* Controller.swift */; };
 		4B92D1741C4AE12600159256 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B92D1731C4AE12600159256 /* Utility.swift */; };
 		4B92D1761C4AE47B00159256 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B92D1751C4AE47B00159256 /* World.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		4B3B0FE21C72F44B00F5D8E5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4B847FAF1C74509000DA9842 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4B92D1711C4AE0F600159256 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		4B92D1731C4AE12600159256 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		4B92D1751C4AE47B00159256 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				4BA01B021BD42DFB00DA9AD8 /* AppDelegate.swift */,
 				4BA01B081BD42DFB00DA9AD8 /* GameViewController.swift */,
 				4BA01B041BD42DFB00DA9AD8 /* GameScene.sks */,
+				4B847FAF1C74509000DA9842 /* Player.swift */,
 				4BA01B061BD42DFB00DA9AD8 /* GameScene.swift */,
 				4B92D1751C4AE47B00159256 /* World.swift */,
 				4B3B0FE21C72F44B00F5D8E5 /* Constants.swift */,
@@ -286,6 +289,7 @@
 				4BA01B091BD42DFB00DA9AD8 /* GameViewController.swift in Sources */,
 				4BCA2E221C604B6800D299CC /* Camera.swift in Sources */,
 				4BA01B031BD42DFB00DA9AD8 /* AppDelegate.swift in Sources */,
+				4B847FB01C74509000DA9842 /* Player.swift in Sources */,
 				4B3B0FE31C72F44B00F5D8E5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

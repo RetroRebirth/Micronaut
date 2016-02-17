@@ -11,8 +11,9 @@ import Foundation
 import SpriteKit
 
 class World {
+    static var ShouldReset:Bool = false
+    
     static private var sprites:[String:SKNode] = [String:SKNode]()
-    static private var shouldReset:Bool = false
     
     // Adding "//" searches for nodes recursively https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/index.html#//apple_ref/occ/cl/SKNode
     class func loadSprites(scene: SKScene) {
@@ -27,41 +28,19 @@ class World {
 
     // Player either died or acheived the goal. Reset the sprites.
     class func reset() {
-        let player = World.getSpriteByName(Constants.Sprite_Player)
-        let background = World.getSpriteByName(Constants.Sprite_Background)
-        
-        player.position = Constants.PlayerStartPos
-        player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
-        background.position.x = 0.0
+        World.getSpriteByName(Constants.Sprite_Background).position.x = 0.0
+
+        Player.reset()
         Camera.reset()
         
-        shouldReset = false
+        World.ShouldReset = false
     }
     
     // Gets called with every frame.
     class func update() {
-        let player = World.getSpriteByName(Constants.Sprite_Player)
-        
-        // If the player fell, reset the world
-        if player.position.y < 0.0 || shouldReset {
+        // Check if we need to reset the world
+        if World.ShouldReset {
             World.reset()
         }
-    }
-    
-    class func didBeginContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
-        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
-            (bodyB.categoryBitMask & Constants.CollisionCategory_Enemy != 0)) {
-                World.playerHit(bodyA, enemyBody: bodyB)
-        }
-        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
-            (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
-                // TODO why can't I call World.reset here?
-                shouldReset = true // Set a flag to reset the world on the next update
-        }
-    }
-    
-    private class func playerHit(playerBody: SKPhysicsBody, enemyBody: SKPhysicsBody) {
-        let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))
-        playerBody.applyImpulse(hurtImpulse)
     }
 }

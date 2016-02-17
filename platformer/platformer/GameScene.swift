@@ -19,7 +19,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
     override func update(currentTime: CFTimeInterval) {
+        Utility.update(currentTime) // Handles time management. Reference necessary time from here
         Controller.update()
+        Player.update()
         World.update()
     }
     
@@ -45,6 +47,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBeginContact(contact: SKPhysicsContact) {
         let bodies = Utility.SortCollisionBodies(contact)
         
-        World.didBeginContact(bodies.bodyA, bodyB: bodies.bodyB)
+        Utility.didBeginContact(bodies.bodyA, bodyB: bodies.bodyB)
     }
 }

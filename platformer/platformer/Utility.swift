@@ -29,6 +29,29 @@ func - (left: CGPoint, right: CGPoint) -> CGPoint {
 }
 
 class Utility {
+    static var dt:CGFloat = 0.0
+    
+    static private var previousTime:CFTimeInterval = 0.0
+    
+    class func update(currentTime: CFTimeInterval) {
+        // Convert the current time to delta time (dt)
+        Utility.dt = CGFloat(currentTime - previousTime)
+        Utility.previousTime = currentTime
+    }
+    // Handle collisions
+    class func didBeginContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
+        // Player contacted enemy
+        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
+            (bodyB.categoryBitMask & Constants.CollisionCategory_Enemy != 0)) {
+                Player.hurtBy(bodyB)
+        }
+        // Player contacted goal
+        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
+            (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
+                World.ShouldReset = true // Set a flag to reset the world on the next update
+        }
+    }
+    
     // CGPoint & CGVector conversion
     class func CGPointToCGVector(point: CGPoint) -> CGVector {
         return CGVector(dx: point.x, dy: point.y)

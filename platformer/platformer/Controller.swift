@@ -16,17 +16,15 @@ class Controller: NSObject {
     static private var currentTouchPos = CGPointMake(0, 0)
     
     class func loadGestures(view: SKView) {
-        // Tap = Jump
-        let tapRecognizer = UITapGestureRecognizer(target: Controller.self, action: "jump:")
+        // Tap
+        let tapRecognizer = UITapGestureRecognizer(target: Controller.self, action: "tapped:")
         tapRecognizer.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)];
         view.addGestureRecognizer(tapRecognizer)
     }
     
-    class func jump(gestureRecognizer: UIGestureRecognizer) {
-        // Only jump when the player is standing on ground
-        if World.getSpriteByName(Constants.Sprite_Player).physicsBody?.velocity.dy == 0.0 {
-            World.getSpriteByName(Constants.Sprite_Player).physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
-        }
+    class func tapped(gestureRecognizer: UIGestureRecognizer) {
+        // The player jumps when the controller is tapped
+        Player.jump()
     }
     
     class func touchBegan(pos: CGPoint) {
@@ -47,7 +45,7 @@ class Controller: NSObject {
     class func update() {
         // Don't update the player's velocity unless we are influencing it
         if (initialTouchPos.x != 0.0 && currentTouchPos.x != 0.0) {
-            World.getSpriteByName(Constants.Sprite_Player).physicsBody?.velocity.dx = Controller.calcNewPlayerVelocityDx()
+            Player.setVelocityX(Controller.calcNewPlayerVelocityDx())
         }
     }
     
