@@ -20,7 +20,7 @@ struct Constants {
     static let PlayerHurtForce:CGFloat = 150
     static let PlayerHurtStunTime:CGFloat = 2.0
     static let PlayerSpeed:CGFloat = 0.5
-    static let PlayerJumpForce:CGFloat = 200
+    static let PlayerJumpForce:CGFloat = 500
     
     // Background Properties
     static let BackgroundParallaxVelocity:CGFloat = -0.1
@@ -28,7 +28,7 @@ struct Constants {
     // Camera
     static let CameraMinXBound:CGFloat = 768
     static let CameraMaxXBound:CGFloat = 4288
-    static let CameraTweenResetVelocity:CGFloat = 5.0
+    static let CameraTweenResetVelocity:CGFloat = 2.0
     static let CameraLookAheadMagnitude:CGFloat = 0.1
     
     // Collision Classes (assigned in GameScene.sks by hand)
