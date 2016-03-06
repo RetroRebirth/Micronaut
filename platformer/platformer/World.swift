@@ -46,7 +46,7 @@ class World {
     
     class func nextLevel() {
         // Increment the level or loop back to the beginning
-        World.Level = ++World.Level % Constants.NumLevels
+        World.Level = ++World.Level % Constants.LevelSpawnPoints.count
         World.ShouldReset = true
     }
 }

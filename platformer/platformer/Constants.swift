@@ -37,5 +37,4 @@ struct Constants {
     
     // World Levels
     static let LevelSpawnPoints = [CGPointMake(128, 768), CGPointMake(5308, 768)]
-    static let NumLevels = 2
 }
