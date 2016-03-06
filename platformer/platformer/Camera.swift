@@ -30,32 +30,25 @@ class Camera {
     
     class func calcNewCameraPosX() -> CGFloat {
         // Offset the camera by tweening to look ahead of the player based on input touch distance
-        let mag = Controller.getTouchMagnitudeX()
-        if mag == 0.0 && xOffset != 0.0 {
-            // Player standing still, return camera to center
-            if abs(xOffset) < Constants.CameraTweenResetVelocity {
-                xOffset = 0.0
-            } else if xOffset < 0.0 {
-                xOffset += Constants.CameraTweenResetVelocity
-            } else {
-                xOffset -= Constants.CameraTweenResetVelocity
-            }
-        } else {
-            xOffset = mag * Constants.CameraLookAheadMagnitude
-        }
+//        let mag = Controller.getTouchMagnitudeX()
+//        if mag == 0.0 && xOffset != 0.0 {
+//            // Player standing still, return camera to center
+//            if abs(xOffset) < Constants.CameraTweenResetVelocity {
+//                xOffset = 0.0
+//            } else if xOffset < 0.0 {
+//                xOffset += Constants.CameraTweenResetVelocity
+//            } else {
+//                xOffset -= Constants.CameraTweenResetVelocity
+//            }
+//        } else {
+//            xOffset = mag * Constants.CameraLookAheadMagnitude
+//        }
         
         // Calculate where the camera should go
         let newPosX = World.getSpriteByName(Constants.Sprite_Player).position.x + xOffset
         
         // Keep the camera in bounds
-        return Utility.NumberWithinBounds(newPosX, min: Constants.CameraMinXBound, max: Constants.CameraMaxXBound)
-    }
-    
-    // Player either died or acheived the goal. Reset the camera.
-    class func reset() {
-        let camera = World.getSpriteByName(Constants.Sprite_Camera)
-            
-        camera.position.x = 0.0
-        xOffset = 0.0
+        let bounds = Constants.LevelCameraBounds[World.Level]
+        return Utility.NumberWithinBounds(newPosX, min: CGFloat(bounds[0]), max: CGFloat(bounds[1]))
     }
 }

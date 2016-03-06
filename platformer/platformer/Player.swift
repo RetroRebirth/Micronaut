@@ -58,10 +58,14 @@ class Player {
     }
     
     class func reset() {
+        Player.setPos(Constants.LevelSpawnPoints[World.Level])
+    }
+    
+    class func setPos(pos: CGPoint) {
         let player = World.getSpriteByName(Constants.Sprite_Player)
         
         // Place the player back at start with no velocity
-        player.position = Constants.PlayerStartPos
+        player.position = pos
         player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
     }
     

@@ -16,7 +16,6 @@ struct Constants {
     static let Sprite_Camera = "camera"
     
     // Player Properties
-    static let PlayerStartPos = CGPointMake(128, 768)
     static let PlayerHurtForce:CGFloat = 150
     static let PlayerHurtStunTime:CGFloat = 2.0
     static let PlayerSpeed:CGFloat = 0.5
@@ -26,8 +25,7 @@ struct Constants {
     static let BackgroundParallaxVelocity:CGFloat = -0.1
     
     // Camera
-    static let CameraMinXBound:CGFloat = 768
-    static let CameraMaxXBound:CGFloat = 4288
+    static let LevelCameraBounds = [[768, 4286], [5948, 7700]]
     static let CameraTweenResetVelocity:CGFloat = 2.0
     static let CameraLookAheadMagnitude:CGFloat = 0.1
     
@@ -36,4 +34,8 @@ struct Constants {
     static let CollisionCategory_Player:UInt32 = 0x1 << 1
     static let CollisionCategory_Enemy:UInt32 = 0x1 << 2
     static let CollisionCategory_Goal:UInt32 = 0x1 << 3
+    
+    // World Levels
+    static let LevelSpawnPoints = [CGPointMake(128, 768), CGPointMake(5308, 768)]
+    static let NumLevels = 2
 }

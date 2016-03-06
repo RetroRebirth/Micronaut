@@ -48,7 +48,7 @@ class Utility {
         // Player contacted goal
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
-                World.ShouldReset = true // Set a flag to reset the world on the next update
+                World.nextLevel()
         }
     }
     

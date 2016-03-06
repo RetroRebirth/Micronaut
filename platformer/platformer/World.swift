@@ -12,6 +12,7 @@ import SpriteKit
 
 class World {
     static var ShouldReset:Bool = false
+    static var Level:Int = 0
     
     static private var sprites:[String:SKNode] = [String:SKNode]()
     
@@ -31,7 +32,6 @@ class World {
         World.getSpriteByName(Constants.Sprite_Background).position.x = 0.0
 
         Player.reset()
-        Camera.reset()
         
         World.ShouldReset = false
     }
@@ -42,5 +42,11 @@ class World {
         if World.ShouldReset {
             World.reset()
         }
+    }
+    
+    class func nextLevel() {
+        // Increment the level or loop back to the beginning
+        World.Level = ++World.Level % Constants.NumLevels
+        World.ShouldReset = true
     }
 }
