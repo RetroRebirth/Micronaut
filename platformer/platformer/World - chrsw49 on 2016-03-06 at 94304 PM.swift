@@ -25,7 +25,7 @@ class World {
         
         // Initialize enemies
         // TODO how to search for all enemy nodes?
-        enemies.insert(BasicEnemy(sprite: scene.childNodeWithName("//basic_enemy")!))
+        enemies.insert(BasicEnemy(sprite: scene.childNodeWithName("//enemy")!))
     }
     
     class func getSpriteByName(name: String) -> SKNode {
@@ -46,10 +46,6 @@ class World {
         // Check if we need to reset the world
         if World.ShouldReset {
             World.reset()
-        }
-        // Update enemies
-        for enemy in enemies {
-            enemy.update()
         }
     }
     
