@@ -29,25 +29,26 @@ class Camera {
     }
     
     class func calcNewCameraPosX() -> CGFloat {
-        // Offset the camera by tweening to look ahead of the player based on input touch distance
-        let mag = Controller.getTouchMagnitudeX()
-        // TODO fix reset tweening
-//        if abs(mag) <= 1000.0 && xOffset != 0.0 {
-////        if ((mag > 0.0 && xOffset > 0.0) || (mag < 0.0 && xOffset < 0.0)) {
-////            // Player switched directions, ease camera to other side
-////            xOffset += Constants.CameraTweenResetVelocity * mag > 0.0 ? -1.0 : 1.0
-//            // Player is standing still, return camera to neutral position
-//            if abs(xOffset) < Constants.CameraTweenResetVelocity {
-//                xOffset = 0.0
-//            } else if xOffset < 0.0 {
-//                xOffset += Constants.CameraTweenResetVelocity
-//            } else {
-//                xOffset -= Constants.CameraTweenResetVelocity
-//            }
-//        } else {
-//            xOffset = mag * Constants.CameraLookAheadMagnitude
-//        }
-        xOffset = mag * Constants.CameraLookAheadMagnitude
+        // TODO fix momentum camera
+//         Offset the camera by tweening to look ahead of the player based on input touch distance
+//        let mag = Controller.getTouchMagnitudeX()
+//        // TODO fix reset tweening
+////        if abs(mag) <= 1000.0 && xOffset != 0.0 {
+//////        if ((mag > 0.0 && xOffset > 0.0) || (mag < 0.0 && xOffset < 0.0)) {
+//////            // Player switched directions, ease camera to other side
+//////            xOffset += Constants.CameraTweenResetVelocity * mag > 0.0 ? -1.0 : 1.0
+////            // Player is standing still, return camera to neutral position
+////            if abs(xOffset) < Constants.CameraTweenResetVelocity {
+////                xOffset = 0.0
+////            } else if xOffset < 0.0 {
+////                xOffset += Constants.CameraTweenResetVelocity
+////            } else {
+////                xOffset -= Constants.CameraTweenResetVelocity
+////            }
+////        } else {
+////            xOffset = mag * Constants.CameraLookAheadMagnitude
+////        }
+//        xOffset = mag * Constants.CameraLookAheadMagnitude
         
         // Calculate where the camera should go
         let newPosX = World.getSpriteByName(Constants.Sprite_Player).position.x + xOffset
