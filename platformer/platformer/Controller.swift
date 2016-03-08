@@ -37,8 +37,8 @@ class Controller: NSObject {
     }
     
     class func touchEnded() {
-        initialTouchPos = CGPointMake(0, 0)
-        currentTouchPos = CGPointMake(0, 0)
+//        initialTouchPos = CGPointMake(0, 0)
+//        currentTouchPos = CGPointMake(0, 0)
     }
     
     // Gets called with every frame.
