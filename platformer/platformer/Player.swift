@@ -14,7 +14,7 @@ class Player {
     static private var stunCounter:CGFloat = 0.0
     
     class func update() {
-        let player = World.getSpriteByName(Constants.Sprite_Player)
+        let player = World.getSpriteByName(Constants.Sprite_Player) as! SKSpriteNode
         
         // If the player fell, reset the world
         if player.position.y < 0.0 {
@@ -22,6 +22,10 @@ class Player {
         }
         if Player.stunCounter > 0.0 {
             Player.stunCounter -= Utility.dt
+            // Stun timer is done, change player sprite back to normal
+            if Player.stunCounter <= 0.0 {
+                player.texture = SKTexture(image: UIImage(named: Constants.Player_Image)!)
+            }
         }
     }
     
@@ -73,9 +77,11 @@ class Player {
     }
     
     class func hurtBy(enemyBody: SKPhysicsBody) {
-        let playerBody = World.getSpriteByName(Constants.Sprite_Player).physicsBody!
+        let playerSprite = World.getSpriteByName(Constants.Sprite_Player) as! SKSpriteNode
+        let playerBody = playerSprite.physicsBody!
         
         // TODO change player sprite to hurt
+        playerSprite.texture = SKTexture(vectorNoiseWithSmoothness: 0.5, size: CGSize(width: 128, height: 128))
         
         // Knock-back player
         let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))

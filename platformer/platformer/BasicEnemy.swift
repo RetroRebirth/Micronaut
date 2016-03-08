@@ -14,7 +14,7 @@ class BasicEnemy: Enemy {
     private static let MAX_WALKING_TIME:CGFloat = 2 // Max time the enemy should walk around
     
     private var walkingTimer:CGFloat = BasicEnemy.NEW_WALKING_TIME() // Amount of time the enemy should spend walking around
-    private var speed:CGFloat = 50.0
+    private var speed:CGFloat = 100.0
     private var direction = 0 // negative = left, zero = standing, positive = right
     
     private static func NEW_WALKING_TIME() -> CGFloat {

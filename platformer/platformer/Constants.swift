@@ -10,7 +10,10 @@ import Foundation
 import SpriteKit
 
 struct Constants {
-    // Sprites
+    // Sprite Image Files
+    static let Player_Image = "player-1"
+    
+    // Node Names
     static let Sprite_Player = "player"
     static let Sprite_Background = "background"
     static let Sprite_Camera = "camera"
