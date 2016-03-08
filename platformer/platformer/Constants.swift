@@ -29,7 +29,7 @@ struct Constants {
     
     // Camera
     static let LevelCameraBounds = [[768, 4286], [5948, 7700], [9358, 10350]]
-    static let CameraTweenResetVelocity:CGFloat = 2.0
+    static let CameraTweenResetVelocity:CGFloat = 5.0
     static let CameraLookAheadMagnitude:CGFloat = 0.1
     
     // Collision Classes (assigned in GameScene.sks by hand)
