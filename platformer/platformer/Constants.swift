@@ -18,7 +18,7 @@ struct Constants {
     // Player Properties
     static let PlayerHurtForce:CGFloat = 150
     static let PlayerHurtStunTime:CGFloat = 1.0
-    static let PlayerSpeed:CGFloat = 0.5
+    static let PlayerSpeed:CGFloat = 0.3
     static let PlayerJumpForce:CGFloat = 500
     
     // Background Properties

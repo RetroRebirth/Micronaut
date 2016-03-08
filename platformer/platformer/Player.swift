@@ -49,8 +49,11 @@ class Player {
         }
         
         // TODO change player sprite image to running based on direction
-        // Change the player's X velocity
-        player.physicsBody?.velocity.dx = velocityX
+        
+        // Only run when on the ground
+        if player.physicsBody?.velocity.dy == 0.0 {
+            player.physicsBody?.velocity.dx = velocityX
+        }
     }
     
     class func isStunned() -> Bool {
