@@ -49,4 +49,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         Utility.didBeginContact(bodies.bodyA, bodyB: bodies.bodyB)
     }
+    
+    func didEndContact(contact: SKPhysicsContact) {
+        let bodies = Utility.SortCollisionBodies(contact)
+        
+        Utility.didEndContact(bodies.bodyA, bodyB: bodies.bodyB)
+    }
 }

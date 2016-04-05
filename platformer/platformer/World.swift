@@ -55,7 +55,10 @@ class World {
     
     class func nextLevel() {
         // Increment the level or loop back to the beginning
-        World.Level = ++World.Level % Constants.LevelSpawnPoints.count
-        World.ShouldReset = true
+        // If statement checks to make sure a goal isn't registered twice
+        if (World.ShouldReset == false) {
+            World.Level = (World.Level + 1) % Constants.LevelSpawnPoints.count
+            World.ShouldReset = true
+        }
     }
 }

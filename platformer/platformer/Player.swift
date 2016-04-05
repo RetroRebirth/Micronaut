@@ -12,6 +12,7 @@ import SpriteKit
 
 class Player {
     static private var stunCounter:CGFloat = 0.0
+    static var canJump:Bool = false
     
     class func update() {
         let player = World.getSpriteByName(Constants.Sprite_Player) as! SKSpriteNode
@@ -37,11 +38,20 @@ class Player {
             return
         }
         
-        // Only jump when the player is standing on ground
-        if player.physicsBody?.velocity.dy == 0.0 {
-            // TODO change player sprite image to jumping
-            player.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
+        // Only jump when the player is "standing on ground"
+        if let dy = player.physicsBody?.velocity.dy {
+            
+//            debugPrint(dy)
+            
+            if fabs(dy) <= 5.0 {
+                // TODO change player sprite image to jumping
+                player.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
+            }
         }
+        
+//        if canJump {
+//            player.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
+//        }
     }
     
     class func setVelocityX(velocityX: CGFloat) {

@@ -50,6 +50,20 @@ class Utility {
             (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
                 World.nextLevel()
         }
+        // Player contacted ground
+        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Ground != 0) &&
+            (bodyB.categoryBitMask & Constants.CollisionCategory_Player != 0)) {
+//                debugPrint("touched ground")
+                Player.canJump = true
+        }
+    }
+    class func didEndContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
+        // Player left ground
+        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Ground != 0) &&
+            (bodyB.categoryBitMask & Constants.CollisionCategory_Player != 0)) {
+//                debugPrint("left ground")
+                Player.canJump = false
+        }
     }
     
     // CGPoint & CGVector conversion
