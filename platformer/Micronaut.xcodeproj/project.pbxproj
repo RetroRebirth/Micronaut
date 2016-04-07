@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		4B08E31E1C8D151800194635 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B08E31D1C8D151800194635 /* Enemy.swift */; };
 		4B08E3241C8D1CF700194635 /* BasicEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B08E3231C8D1CF700194635 /* BasicEnemy.swift */; };
+		4B2240061CB7126100FA6249 /* hurt.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4B2240031CB7126100FA6249 /* hurt.wav */; };
+		4B2240071CB7126100FA6249 /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4B2240041CB7126100FA6249 /* jump.wav */; };
+		4B2240081CB7126100FA6249 /* ominous.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4B2240051CB7126100FA6249 /* ominous.wav */; };
+		4B22400A1CB7138900FA6249 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2240091CB7138900FA6249 /* Sound.swift */; };
 		4B3B0FE31C72F44B00F5D8E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B0FE21C72F44B00F5D8E5 /* Constants.swift */; };
 		4B847FB01C74509000DA9842 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B847FAF1C74509000DA9842 /* Player.swift */; };
 		4B92D1721C4AE0F600159256 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B92D1711C4AE0F600159256 /* Controller.swift */; };
@@ -46,6 +50,10 @@
 /* Begin PBXFileReference section */
 		4B08E31D1C8D151800194635 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		4B08E3231C8D1CF700194635 /* BasicEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicEnemy.swift; sourceTree = "<group>"; };
+		4B2240031CB7126100FA6249 /* hurt.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hurt.wav; sourceTree = "<group>"; };
+		4B2240041CB7126100FA6249 /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
+		4B2240051CB7126100FA6249 /* ominous.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ominous.wav; sourceTree = "<group>"; };
+		4B2240091CB7138900FA6249 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		4B3B0FE21C72F44B00F5D8E5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4B847FAF1C74509000DA9842 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4B92D1711C4AE0F600159256 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
@@ -94,6 +102,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B2240021CB7124400FA6249 /* Sound-Effects */ = {
+			isa = PBXGroup;
+			children = (
+				4B2240031CB7126100FA6249 /* hurt.wav */,
+				4B2240041CB7126100FA6249 /* jump.wav */,
+				4B2240051CB7126100FA6249 /* ominous.wav */,
+			);
+			name = "Sound-Effects";
+			sourceTree = "<group>";
+		};
 		4BA01AF61BD42DFB00DA9AD8 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +135,7 @@
 		4BA01B011BD42DFB00DA9AD8 /* platformer */ = {
 			isa = PBXGroup;
 			children = (
+				4B2240021CB7124400FA6249 /* Sound-Effects */,
 				4BA01B021BD42DFB00DA9AD8 /* AppDelegate.swift */,
 				4BA01B081BD42DFB00DA9AD8 /* GameViewController.swift */,
 				4BA01B041BD42DFB00DA9AD8 /* GameScene.sks */,
@@ -129,6 +148,7 @@
 				4B92D1731C4AE12600159256 /* Utility.swift */,
 				4B92D1711C4AE0F600159256 /* Controller.swift */,
 				4BA01B0A1BD42DFB00DA9AD8 /* Game.xcassets */,
+				4B2240091CB7138900FA6249 /* Sound.swift */,
 				4BA01B0C1BD42DFB00DA9AD8 /* Main.storyboard */,
 				4BA01B0F1BD42DFB00DA9AD8 /* Assets.xcassets */,
 				4BA01B111BD42DFB00DA9AD8 /* Info.plist */,
@@ -260,6 +280,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B2240071CB7126100FA6249 /* jump.wav in Resources */,
+				4B2240061CB7126100FA6249 /* hurt.wav in Resources */,
+				4B2240081CB7126100FA6249 /* ominous.wav in Resources */,
 				4BA01B0E1BD42DFB00DA9AD8 /* Main.storyboard in Resources */,
 				4BA01B051BD42DFB00DA9AD8 /* GameScene.sks in Resources */,
 				4BA01B101BD42DFB00DA9AD8 /* Assets.xcassets in Resources */,
@@ -295,6 +318,7 @@
 				4BA01B091BD42DFB00DA9AD8 /* GameViewController.swift in Sources */,
 				4BCA2E221C604B6800D299CC /* Camera.swift in Sources */,
 				4B08E31E1C8D151800194635 /* Enemy.swift in Sources */,
+				4B22400A1CB7138900FA6249 /* Sound.swift in Sources */,
 				4BA01B031BD42DFB00DA9AD8 /* AppDelegate.swift in Sources */,
 				4B08E3241C8D1CF700194635 /* BasicEnemy.swift in Sources */,
 				4B847FB01C74509000DA9842 /* Player.swift in Sources */,

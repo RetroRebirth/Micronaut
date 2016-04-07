@@ -14,6 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMoveToView(view: SKView) {
         self.physicsWorld.contactDelegate = self // Initialize collision engine
         
+        Sound.initialize(self)
         World.loadSprites(self)
         Controller.loadGestures(view)
     }

@@ -46,7 +46,8 @@ class Player {
             
             if fabs(dy) <= 5.0 {
                 // TODO Change player sprite image to jumping
-                // TODO Play jumping sound effect
+                // Play jumping sound effect
+                Sound.play("jump.wav")
                 // Enact an impulse on the player
                 player.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
             }
@@ -98,6 +99,7 @@ class Player {
         // TODO Change player sprite to hurt
         playerSprite.texture = SKTexture(vectorNoiseWithSmoothness: 0.5, size: CGSize(width: 128, height: 128))
         // TODO Play hurt sound effect
+        Sound.play("hurt.wav")
         
         // Knock-back player
         let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))

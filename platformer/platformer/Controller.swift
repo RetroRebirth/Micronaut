@@ -47,26 +47,21 @@ class Controller: NSObject {
     }
     
     class func tapped(gestureRecognizer: UIGestureRecognizer) {
-        debugPrint("tapped")
         Player.setVelocityX(0)
     }
     
     class func swipedUp(gestureRecognizer: UIGestureRecognizer) {
-        debugPrint("up")
         Player.jump()
     }
     
     class func swipedDown(gestureRecognizer: UIGestureRecognizer) {
-        debugPrint("down")
     }
 
     class func swipedRight(gestureRecognizer: UIGestureRecognizer) {
-        debugPrint("right")
         Player.setVelocityX(Constants.PlayerSpeed)
     }
     
     class func swipedLeft(gestureRecognizer: UIGestureRecognizer) {
-        debugPrint("left")
         Player.setVelocityX(-Constants.PlayerSpeed)
     }
     
