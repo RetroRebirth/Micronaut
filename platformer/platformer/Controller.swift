@@ -15,16 +15,59 @@ class Controller: NSObject {
     static private var initialTouchPos = CGPointMake(0, 0)
     static private var currentTouchPos = CGPointMake(0, 0)
     
+    // Gets called with every frame.
+//    class func update() {
+//        // Don't update the player's velocity unless we are influencing it
+//        if (initialTouchPos.x != 0.0 && currentTouchPos.x != 0.0) {
+//            Player.setVelocityX(Controller.calcNewPlayerVelocityDx())
+//        }
+//    }
+    
     class func loadGestures(view: SKView) {
         // Tap
-        let tapRecognizer = UITapGestureRecognizer(target: Controller.self, action: "tapped:")
+        let tapRecognizer = UITapGestureRecognizer(target: Controller.self, action: #selector(Controller.tapped(_:)))
         tapRecognizer.allowedPressTypes = [NSNumber(integer: UIPressType.Select.rawValue)];
         view.addGestureRecognizer(tapRecognizer)
+        // Swipe Up
+        let swipeUpRecognizer = UISwipeGestureRecognizer(target: Controller.self, action: #selector(Controller.swipedUp(_:)))
+        swipeUpRecognizer.direction = .Up
+        view.addGestureRecognizer(swipeUpRecognizer)
+        // Swipe Down
+        let swipeDownRecognizer = UISwipeGestureRecognizer(target: Controller.self, action: #selector(Controller.swipedDown(_:)))
+        swipeDownRecognizer.direction = .Down
+        view.addGestureRecognizer(swipeDownRecognizer)
+        // Swipe Right
+        let swipeRightRecognizer = UISwipeGestureRecognizer(target: Controller.self, action: #selector(Controller.swipedRight(_:)))
+        swipeRightRecognizer.direction = .Right
+        view.addGestureRecognizer(swipeRightRecognizer)
+        // Swipe Left
+        let swipeLeftRecognizer = UISwipeGestureRecognizer(target: Controller.self, action: #selector(Controller.swipedLeft(_:)))
+        swipeLeftRecognizer.direction = .Left
+        view.addGestureRecognizer(swipeLeftRecognizer)
     }
     
     class func tapped(gestureRecognizer: UIGestureRecognizer) {
-        // The player jumps when the controller is tapped
+        debugPrint("tapped")
+        Player.setVelocityX(0)
+    }
+    
+    class func swipedUp(gestureRecognizer: UIGestureRecognizer) {
+        debugPrint("up")
         Player.jump()
+    }
+    
+    class func swipedDown(gestureRecognizer: UIGestureRecognizer) {
+        debugPrint("down")
+    }
+
+    class func swipedRight(gestureRecognizer: UIGestureRecognizer) {
+        debugPrint("right")
+        Player.setVelocityX(Constants.PlayerSpeed)
+    }
+    
+    class func swipedLeft(gestureRecognizer: UIGestureRecognizer) {
+        debugPrint("left")
+        Player.setVelocityX(-Constants.PlayerSpeed)
     }
     
     class func touchBegan(pos: CGPoint) {
@@ -41,20 +84,12 @@ class Controller: NSObject {
 //        currentTouchPos = CGPointMake(0, 0)
     }
     
-    // Gets called with every frame.
-    class func update() {
-        // Don't update the player's velocity unless we are influencing it
-        if (initialTouchPos.x != 0.0 && currentTouchPos.x != 0.0) {
-            Player.setVelocityX(Controller.calcNewPlayerVelocityDx())
-        }
-    }
-    
     // Calculates the distance the user has moved their input along the X axis
     class func getTouchMagnitudeX() -> CGFloat {
         return (currentTouchPos - initialTouchPos).x
     }
     
-    class func calcNewPlayerVelocityDx() -> CGFloat {
-        return Constants.PlayerSpeed * Controller.getTouchMagnitudeX()
-    }
+//    class func calcNewPlayerVelocityDx() -> CGFloat {
+//        return Constants.PlayerSpeed * Controller.getTouchMagnitudeX()
+//    }
 }

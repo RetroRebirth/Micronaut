@@ -21,9 +21,10 @@ class Player {
         if player.position.y < 0.0 {
             World.ShouldReset = true
         }
+        // If the player is stunned, decrement the stun counter
         if Player.stunCounter > 0.0 {
             Player.stunCounter -= Utility.dt
-            // Stun timer is done, change player sprite back to normal
+            // TODO Stun timer is done, change player sprite back to normal
             if Player.stunCounter <= 0.0 {
                 player.texture = SKTexture(image: UIImage(named: Constants.Player_Image)!)
             }
@@ -44,7 +45,9 @@ class Player {
 //            debugPrint(dy)
             
             if fabs(dy) <= 5.0 {
-                // TODO change player sprite image to jumping
+                // TODO Change player sprite image to jumping
+                // TODO Play jumping sound effect
+                // Enact an impulse on the player
                 player.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
             }
         }
@@ -64,7 +67,7 @@ class Player {
         
         // TODO change player sprite image to running based on direction
         
-        // Only run when on the ground
+        // Only move when on the ground
         if player.physicsBody?.velocity.dy == 0.0 {
             player.physicsBody?.velocity.dx = velocityX
         }
@@ -84,14 +87,17 @@ class Player {
         // Place the player back at start with no velocity
         player.position = pos
         player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+        
+        // TODO Change player sprite to default
     }
     
     class func hurtBy(enemyBody: SKPhysicsBody) {
         let playerSprite = World.getSpriteByName(Constants.Sprite_Player) as! SKSpriteNode
         let playerBody = playerSprite.physicsBody!
         
-        // TODO change player sprite to hurt
+        // TODO Change player sprite to hurt
         playerSprite.texture = SKTexture(vectorNoiseWithSmoothness: 0.5, size: CGSize(width: 128, height: 128))
+        // TODO Play hurt sound effect
         
         // Knock-back player
         let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))
