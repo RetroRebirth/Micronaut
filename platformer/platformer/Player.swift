@@ -10,12 +10,29 @@
 import Foundation
 import SpriteKit
 
-class Player {
+class Player: AnimatedSprite {
     static private var stunCounter:CGFloat = 0.0
-    static var canJump:Bool = false
+//    static var canJump:Bool = false
+    
+    override class func initialize(node: SKNode) {
+        super.initialize(node)
+
+        animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
+    }
+    
+    override class func loadSprites() {
+        super.loadSprites()
+        
+        // Resting
+        loadSprite(Constants.Sprite_PlayerResting, frames: 8)
+        // Walking
+        loadSprite(Constants.Sprite_PlayerWalking, frames: 8)
+        // Jumping
+        loadSprite(Constants.Sprite_PlayerJumping, frames: 8)
+    }
     
     class func update() {
-        let player = World.getSpriteByName(Constants.Sprite_Player) as! SKSpriteNode
+        let player = World.getSpriteByName(Constants.Node_Player) as! SKSpriteNode
         
         // If the player fell, reset the world
         if player.position.y < 0.0 {
@@ -24,15 +41,15 @@ class Player {
         // If the player is stunned, decrement the stun counter
         if Player.stunCounter > 0.0 {
             Player.stunCounter -= Utility.dt
-            // TODO Stun timer is done, change player sprite back to normal
+            // Stun timer is done, change player sprite back to normal
             if Player.stunCounter <= 0.0 {
-                player.texture = SKTexture(image: UIImage(named: Constants.Player_Image)!)
+                animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
             }
         }
     }
     
     class func jump() {
-        let player = World.getSpriteByName(Constants.Sprite_Player)
+        let player = World.getSpriteByName(Constants.Node_Player)
         
         if Player.isStunned() {
             // Do nothing, the player is stunned
@@ -45,7 +62,8 @@ class Player {
 //            debugPrint(dy)
             
             if fabs(dy) <= 5.0 {
-                // TODO Change player sprite image to jumping
+                // Change player sprite image to jumping
+                animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
                 // Play jumping sound effect
                 Sound.play("jump.wav")
                 // Enact an impulse on the player
@@ -59,18 +77,27 @@ class Player {
     }
     
     class func setVelocityX(velocityX: CGFloat) {
-        let player = World.getSpriteByName(Constants.Sprite_Player)
-        
         if Player.isStunned() {
             // Do nothing, the player is stunned
             return
         }
         
-        // TODO change player sprite image to running based on direction
+        let player = World.getSpriteByName(Constants.Node_Player)
         
         // Only move when on the ground
         if player.physicsBody?.velocity.dy == 0.0 {
             player.physicsBody?.velocity.dx = velocityX
+            
+            // Change player sprite animation
+            if velocityX == 0.0 {
+                animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
+            } else {
+                // Flip image depending on which way the player is moving
+                if (velocityX > 0.0 && player.xScale < 0.0) || (velocityX < 0.0 && player.xScale > 0.0) {
+                    player.xScale = -1.0 * player.xScale
+                }
+                animateContinuously(Constants.Sprite_PlayerWalking, timePerFrame: 0.1)
+            }
         }
     }
     
@@ -83,22 +110,28 @@ class Player {
     }
     
     class func setPos(pos: CGPoint) {
-        let player = World.getSpriteByName(Constants.Sprite_Player)
+        let player = World.getSpriteByName(Constants.Node_Player)
         
         // Place the player back at start with no velocity
         player.position = pos
         player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
         
-        // TODO Change player sprite to default
+        // Change player sprite to default
+        animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
     }
     
     class func hurtBy(enemyBody: SKPhysicsBody) {
-        let playerSprite = World.getSpriteByName(Constants.Sprite_Player) as! SKSpriteNode
-        let playerBody = playerSprite.physicsBody!
+        if Player.isStunned() {
+            // Do nothing, the player is stunned
+            return
+        }
+        
+        let player = World.getSpriteByName(Constants.Node_Player) as! SKSpriteNode
+        let playerBody = player.physicsBody!
         
         // TODO Change player sprite to hurt
-        playerSprite.texture = SKTexture(vectorNoiseWithSmoothness: 0.5, size: CGSize(width: 128, height: 128))
-        // TODO Play hurt sound effect
+        animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
+        // Play hurt sound effect
         Sound.play("hurt.wav")
         
         // Knock-back player

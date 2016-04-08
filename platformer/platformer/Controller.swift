@@ -23,6 +23,10 @@ class Controller: NSObject {
 //        }
 //    }
     
+    class func initialize(view: SKView) {
+        loadGestures(view)
+    }
+    
     class func loadGestures(view: SKView) {
         // Tap
         let tapRecognizer = UITapGestureRecognizer(target: Controller.self, action: #selector(Controller.tapped(_:)))

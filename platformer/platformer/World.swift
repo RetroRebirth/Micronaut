@@ -17,11 +17,15 @@ class World {
     static private var sprites:[String:SKNode] = [String:SKNode]()
     static private var enemies = Set<Enemy>()
     
+    class func initialize(scene: SKScene) {
+        loadSprites(scene)
+    }
+    
     // Adding "//" searches for nodes recursively https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/index.html#//apple_ref/occ/cl/SKNode
     class func loadSprites(scene: SKScene) {
-        sprites[Constants.Sprite_Player] = scene.childNodeWithName("//\(Constants.Sprite_Player)")!
-        sprites[Constants.Sprite_Background] = scene.childNodeWithName("//\(Constants.Sprite_Background)")!
-        sprites[Constants.Sprite_Camera] = scene.childNodeWithName("//\(Constants.Sprite_Camera)")!
+        sprites[Constants.Node_Player] = scene.childNodeWithName("//\(Constants.Node_Player)")!
+        sprites[Constants.Node_Background] = scene.childNodeWithName("//\(Constants.Node_Background)")!
+        sprites[Constants.Node_Camera] = scene.childNodeWithName("//\(Constants.Node_Camera)")!
         
         // Initialize enemies
         // TODO how to search for all enemy nodes?
@@ -34,7 +38,7 @@ class World {
 
     // Player either died or acheived the goal. Reset the sprites.
     class func reset() {
-        World.getSpriteByName(Constants.Sprite_Background).position.x = 0.0
+        World.getSpriteByName(Constants.Node_Background).position.x = 0.0
 
         Player.reset()
         

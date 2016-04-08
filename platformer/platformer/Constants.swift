@@ -10,20 +10,22 @@ import Foundation
 import SpriteKit
 
 struct Constants {
-    // Sprite Image Files
-    static let Player_Image = "player-1"
+    // Animated Sprites
+    static let Sprite_PlayerResting = "resting"
+    static let Sprite_PlayerWalking = "walking"
+    static let Sprite_PlayerJumping = "jumping"
     
     // Node Names
-    static let Sprite_Player = "player"
-    static let Sprite_Background = "background"
-    static let Sprite_Camera = "camera"
+    static let Node_Player = "player"
+    static let Node_Background = "background"
+    static let Node_Camera = "camera"
     
     // Player Properties
     static let PlayerHurtForce:CGFloat = 150
     static let PlayerHurtStunTime:CGFloat = 1.0
 //    static let PlayerSpeed:CGFloat = 0.3
     static let PlayerSpeed:CGFloat = 500
-    static let PlayerJumpForce:CGFloat = 150
+    static let PlayerJumpForce:CGFloat = 300
     
     // Background Properties
     static let BackgroundParallaxVelocity:CGFloat = -0.1

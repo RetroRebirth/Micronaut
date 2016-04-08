@@ -16,13 +16,13 @@ class Camera {
     
     // Gets called at the end of every frame.
     class func didFinishUpdate() {
-        let camera = World.getSpriteByName(Constants.Sprite_Camera)
+        let camera = World.getSpriteByName(Constants.Node_Camera)
         
         // Calculate the new camera's position
         let newCameraPosX = Camera.calcNewCameraPosX()
         
         // Background horizontal parallax motion before moving the camera
-        World.getSpriteByName(Constants.Sprite_Background).position.x += Constants.BackgroundParallaxVelocity * Utility.distance(CGPointMake(newCameraPosX, camera.position.y), p2: camera.position)
+        World.getSpriteByName(Constants.Node_Background).position.x += Constants.BackgroundParallaxVelocity * Utility.distance(CGPointMake(newCameraPosX, camera.position.y), p2: camera.position)
         
         // Move the camera
         camera.position.x = newCameraPosX
@@ -51,7 +51,7 @@ class Camera {
 //        xOffset = mag * Constants.CameraLookAheadMagnitude
         
         // Calculate where the camera should go
-        let newPosX = World.getSpriteByName(Constants.Sprite_Player).position.x + xOffset
+        let newPosX = World.getSpriteByName(Constants.Node_Player).position.x + xOffset
         
         // Keep the camera in bounds
         let bounds = Constants.LevelCameraBounds[World.Level]

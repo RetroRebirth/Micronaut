@@ -15,8 +15,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self // Initialize collision engine
         
         Sound.initialize(self)
-        World.loadSprites(self)
-        Controller.loadGestures(view)
+        World.initialize(self)
+        Player.initialize(World.getSpriteByName(Constants.Node_Player))
+        Controller.initialize(view)
     }
 
     override func update(currentTime: CFTimeInterval) {

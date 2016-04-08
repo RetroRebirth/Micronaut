@@ -54,7 +54,7 @@ class Utility {
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Ground != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Player != 0)) {
 //                debugPrint("touched ground")
-                Player.canJump = true
+//                Player.canJump = true
         }
     }
     class func didEndContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
@@ -62,7 +62,7 @@ class Utility {
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Ground != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Player != 0)) {
 //                debugPrint("left ground")
-                Player.canJump = false
+//                Player.canJump = false
         }
     }
     
