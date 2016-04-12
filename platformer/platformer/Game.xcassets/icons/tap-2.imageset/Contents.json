@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "hand-touch-white.png",
+      "filename" : "tap.png",
       "scale" : "1x"
     },
     {
