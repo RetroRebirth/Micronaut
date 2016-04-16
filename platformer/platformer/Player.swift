@@ -63,7 +63,11 @@ class Player: AnimatedSprite {
                 // Play jumping sound effect
                 Sound.play("jump.wav")
                 // Enact an impulse on the player
-                node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
+                if isBig() {
+                    node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForceBig))
+                } else {
+                    node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForceSmall))
+                }
             }
         }
         
@@ -138,11 +142,24 @@ class Player: AnimatedSprite {
             return
         }
         
-        // Player is small, resize to normal
-        if node!.xScale < 1.0 {
-            node!.runAction(SKAction.scaleTo(1.0, duration: 0.1))
+        let duration = 0.1
+        let direction:CGFloat = directionX()
+        
+        // Is player small or big?
+        if isBig() {
+            node!.runAction(SKAction.scaleXTo(direction * 0.5, duration: duration))
+            node!.runAction(SKAction.scaleYTo(0.5, duration: duration))
         } else {
-            node!.runAction(SKAction.scaleTo(0.5, duration: 0.1))
+            node!.runAction(SKAction.scaleXTo(direction * 1.0, duration: duration))
+            node!.runAction(SKAction.scaleYTo(1.0, duration: duration))
         }
+    }
+    
+    class func isBig() -> Bool {
+        return node!.yScale >= 1.0
+    }
+    
+    class func directionX() -> CGFloat {
+        return node!.physicsBody!.velocity.dx > 0.0 ? 1.0 : -1.0
     }
 }
