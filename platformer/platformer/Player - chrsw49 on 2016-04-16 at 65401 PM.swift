@@ -83,18 +83,20 @@ class Player: AnimatedSprite {
         }
         
         // Only move when on the ground
-        node!.physicsBody?.velocity.dx = velocityX
-        
-        // Change player sprite animation
-        if velocityX == 0.0 {
-            animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
-        } else {
-            // Flip image depending on which way the player is moving
-            if (velocityX > 0.0 && node!.xScale < 0.0) || (velocityX < 0.0 && node!.xScale > 0.0) {
-                node!.xScale = -1.0 * node!.xScale
+//        if node!.physicsBody?.velocity.dy == 0.0 {
+            node!.physicsBody?.velocity.dx = velocityX
+            
+            // Change player sprite animation
+            if velocityX == 0.0 {
+                animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
+            } else {
+                // Flip image depending on which way the player is moving
+                if (velocityX > 0.0 && node!.xScale < 0.0) || (velocityX < 0.0 && node!.xScale > 0.0) {
+                    node!.xScale = -1.0 * node!.xScale
+                }
+                animateContinuously(Constants.Sprite_PlayerWalking, timePerFrame: 0.1)
             }
-            animateContinuously(Constants.Sprite_PlayerWalking, timePerFrame: 0.1)
-        }
+//        }
     }
     
     class func isStunned() -> Bool {

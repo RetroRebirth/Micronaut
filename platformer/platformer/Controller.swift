@@ -59,6 +59,7 @@ class Controller: NSObject {
     }
     
     class func swipedDown(gestureRecognizer: UIGestureRecognizer) {
+        Player.setVelocityX(0.0)
     }
 
     class func swipedRight(gestureRecognizer: UIGestureRecognizer) {
