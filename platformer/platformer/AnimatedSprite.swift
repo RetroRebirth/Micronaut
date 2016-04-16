@@ -11,7 +11,7 @@ import SpriteKit
 
 class AnimatedSprite {
     static private var sprites:[String:[SKTexture]] = [String:[SKTexture]]()
-    static private var node:SKNode?
+    static var node:SKNode?
     
     // Override: Define starting animation
     class func initialize(node: SKNode) {

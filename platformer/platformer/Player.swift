@@ -32,10 +32,8 @@ class Player: AnimatedSprite {
     }
     
     class func update() {
-        let player = World.getSpriteByName(Constants.Node_Player) as! SKSpriteNode
-        
         // If the player fell, reset the world
-        if player.position.y < 0.0 {
+        if node!.position.y < 0.0 {
             World.ShouldReset = true
         }
         // If the player is stunned, decrement the stun counter
@@ -49,15 +47,13 @@ class Player: AnimatedSprite {
     }
     
     class func jump() {
-        let player = World.getSpriteByName(Constants.Node_Player)
-        
         if Player.isStunned() {
             // Do nothing, the player is stunned
             return
         }
         
         // Only jump when the player is "standing on ground"
-        if let dy = player.physicsBody?.velocity.dy {
+        if let dy = node!.physicsBody?.velocity.dy {
             
 //            debugPrint(dy)
             
@@ -67,7 +63,7 @@ class Player: AnimatedSprite {
                 // Play jumping sound effect
                 Sound.play("jump.wav")
                 // Enact an impulse on the player
-                player.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
+                node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
             }
         }
         
@@ -82,19 +78,17 @@ class Player: AnimatedSprite {
             return
         }
         
-        let player = World.getSpriteByName(Constants.Node_Player)
-        
         // Only move when on the ground
-        if player.physicsBody?.velocity.dy == 0.0 {
-            player.physicsBody?.velocity.dx = velocityX
+        if node!.physicsBody?.velocity.dy == 0.0 {
+            node!.physicsBody?.velocity.dx = velocityX
             
             // Change player sprite animation
             if velocityX == 0.0 {
                 animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
             } else {
                 // Flip image depending on which way the player is moving
-                if (velocityX > 0.0 && player.xScale < 0.0) || (velocityX < 0.0 && player.xScale > 0.0) {
-                    player.xScale = -1.0 * player.xScale
+                if (velocityX > 0.0 && node!.xScale < 0.0) || (velocityX < 0.0 && node!.xScale > 0.0) {
+                    node!.xScale = -1.0 * node!.xScale
                 }
                 animateContinuously(Constants.Sprite_PlayerWalking, timePerFrame: 0.1)
             }
@@ -110,11 +104,9 @@ class Player: AnimatedSprite {
     }
     
     class func setPos(pos: CGPoint) {
-        let player = World.getSpriteByName(Constants.Node_Player)
-        
         // Place the player back at start with no velocity
-        player.position = pos
-        player.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
+        node!.position = pos
+        node!.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
         
         // Change player sprite to default
         animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
@@ -126,8 +118,7 @@ class Player: AnimatedSprite {
             return
         }
         
-        let player = World.getSpriteByName(Constants.Node_Player) as! SKSpriteNode
-        let playerBody = player.physicsBody!
+        let playerBody = node!.physicsBody!
         
         // TODO Change player sprite to hurt
         animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
@@ -139,5 +130,19 @@ class Player: AnimatedSprite {
         playerBody.applyImpulse(hurtImpulse)
         // Apply hit stun
         Player.stunCounter = Constants.PlayerHurtStunTime
+    }
+    
+    class func toggleShrink() {
+        if Player.isStunned() {
+            // Do nothing, the player is stunned
+            return
+        }
+        
+        // Player is small, resize to normal
+        if node!.xScale < 1.0 {
+            node!.runAction(SKAction.scaleTo(1.0, duration: 0.1))
+        } else {
+            node!.runAction(SKAction.scaleTo(0.5, duration: 0.1))
+        }
     }
 }
