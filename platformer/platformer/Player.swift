@@ -12,7 +12,7 @@ import SpriteKit
 
 class Player: AnimatedSprite {
     static private var stunCounter:CGFloat = 0.0
-//    static var canJump:Bool = false
+    static var onGround:Bool = false
     
     override class func initialize(node: SKNode) {
         super.initialize(node)
@@ -48,6 +48,14 @@ class Player: AnimatedSprite {
                 animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
             }
         }
+        // Check to see if the player is contacting the ground
+        Player.onGround = false
+        for body in node!.physicsBody!.allContactedBodies() {
+            if (body.categoryBitMask & Constants.CollisionCategory_Ground != 0) {
+                Player.onGround = true
+                break
+            }
+        }
     }
     
     class func jump() {
@@ -56,28 +64,20 @@ class Player: AnimatedSprite {
             return
         }
         
-        // Only jump when the player is "standing on ground"
-        if let dy = node!.physicsBody?.velocity.dy {
-            
-//            debugPrint(dy)
-            
-            if fabs(dy) <= 5.0 {
-                // Change player sprite image to jumping
-                animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
-                // Play jumping sound effect
-                Sound.play("jump.wav")
-                // Enact an impulse on the player
-                if isBig() {
-                    node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForceBig))
-                } else {
-                    node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForceSmall))
-                }
+        // Only jump when the player is standing on the ground
+//        if let dy = node!.physicsBody?.velocity.dy {
+        if Player.onGround {
+            // Change player sprite image to jumping
+            animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
+            // Play jumping sound effect
+            Sound.play("jump.wav")
+            // Enact an impulse on the player
+            if isBig() {
+                node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForceBig))
+            } else {
+                node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForceSmall))
             }
         }
-        
-//        if canJump {
-//            player.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForce))
-//        }
     }
     
     class func setVelocityX(velocityX: CGFloat) {
@@ -102,7 +102,7 @@ class Player: AnimatedSprite {
     }
     
     class func isStunned() -> Bool {
-        return stunCounter > 0.0
+        return Player.stunCounter > 0.0
     }
     
     class func reset() {
