@@ -26,7 +26,7 @@ struct Constants {
 //    static let PlayerSpeed:CGFloat = 0.3
     static let PlayerSpeed:CGFloat = 500
     static let PlayerJumpForceSmall:CGFloat = 300
-    static let PlayerJumpForceBig:CGFloat = 450
+    static let PlayerJumpForceBig:CGFloat = 400
     
     // Background Properties
     static let BackgroundParallaxVelocity:CGFloat = -0.1
