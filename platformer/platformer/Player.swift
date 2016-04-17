@@ -16,6 +16,10 @@ class Player: AnimatedSprite {
     
     override class func initialize(node: SKNode) {
         super.initialize(node)
+        
+        // Allow player to run
+        node.physicsBody?.friction = 0.0
+        node.physicsBody?.restitution = 0.0
 
         animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
     }

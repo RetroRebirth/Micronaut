@@ -32,7 +32,7 @@ struct Constants {
     static let BackgroundParallaxVelocity:CGFloat = -0.1
     
     // Camera
-    static let LevelCameraBounds = [[768, 4286], [5948, 7700], [9358, 10350]]
+//    static let LevelCameraBounds = [[768, 4286], [5948, 7700], [9358, 10350]]
     static let CameraTweenResetVelocity:CGFloat = 5.0
     static let CameraLookAheadMagnitude:CGFloat = 0.1
     
@@ -43,5 +43,5 @@ struct Constants {
     static let CollisionCategory_Goal:UInt32 = 0x1 << 3
     
     // World Levels
-    static let LevelSpawnPoints = [CGPointMake(256, 768), CGPointMake(5308, 200), CGPointMake(8718, 200)]
+    static let LevelSpawnPoints = [CGPointMake(256, 768), CGPointMake(6600, 200), CGPointMake(11900, 200)]
 }
