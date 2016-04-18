@@ -11,6 +11,8 @@ import Foundation
 import SpriteKit
 
 class Player: AnimatedSprite {
+    static private let shrinkScale:CGFloat = 0.5
+    
     static private var stunCounter:CGFloat = 0.0
     static var onGround:Bool = false
     
@@ -18,7 +20,7 @@ class Player: AnimatedSprite {
         super.initialize(node)
         
         // Allow player to run
-        node.physicsBody?.friction = 0.0
+        node.physicsBody?.friction = 0.00
         node.physicsBody?.restitution = 0.0
 
         animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
@@ -50,10 +52,21 @@ class Player: AnimatedSprite {
         }
         // Check to see if the player is contacting the ground
         Player.onGround = false
+        var groundContactCount = 0
         for body in node!.physicsBody!.allContactedBodies() {
             if (body.categoryBitMask & Constants.CollisionCategory_Ground != 0) {
                 Player.onGround = true
-                break
+                if !Player.isShrinkingOrGrowing() {
+                    break
+                } else {
+                    // If the player is touching two grounds at the same time while growing, have them shrink
+                    groundContactCount += 1
+                    // TODO why does allContactedBodies return duplicates?
+                    if groundContactCount == 3 {
+                        Player.setShrink(true)
+                        break
+                    }
+                }
             }
         }
     }
@@ -138,7 +151,7 @@ class Player: AnimatedSprite {
         Player.stunCounter = Constants.PlayerHurtStunTime
     }
     
-    class func toggleShrink() {
+    class func setShrink(shouldShrink:Bool) {
         if Player.isStunned() {
             // Do nothing, the player is stunned
             return
@@ -147,9 +160,8 @@ class Player: AnimatedSprite {
         let duration = 0.1
         let direction:CGFloat = directionX()
         
-        // Is player small or big?
-        if isBig() {
-            node!.runAction(SKAction.scaleXTo(direction * 0.5, duration: duration))
+        if shouldShrink {
+            node!.runAction(SKAction.scaleXTo(direction * Player.shrinkScale, duration: duration))
             node!.runAction(SKAction.scaleYTo(0.5, duration: duration))
         } else {
             node!.runAction(SKAction.scaleXTo(direction * 1.0, duration: duration))
@@ -159,6 +171,14 @@ class Player: AnimatedSprite {
     
     class func isBig() -> Bool {
         return node!.yScale >= 1.0
+    }
+    
+    class func isSmall() -> Bool {
+        return node!.yScale <= Player.shrinkScale
+    }
+    
+    class func isShrinkingOrGrowing() -> Bool {
+        return node!.yScale < 1.0 && node!.yScale > Player.shrinkScale
     }
     
     class func directionX() -> CGFloat {

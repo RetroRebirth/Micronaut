@@ -43,12 +43,12 @@ class Utility {
         // Player contacted enemy
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Enemy != 0)) {
-                Player.hurtBy(bodyB)
+            Player.hurtBy(bodyB)
         }
         // Player contacted goal
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
-                World.nextLevel()
+            World.nextLevel()
         }
     }
     class func didEndContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
