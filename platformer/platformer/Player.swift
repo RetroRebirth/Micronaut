@@ -46,6 +46,7 @@ class Player: AnimatedSprite {
         // If the player fell, reset the world
         if node!.position.y < 0.0 {
             World.ShouldReset = true
+            Player.setVelocityX(0.0, force: true)
         }
         // If the player is stunned, decrement the stun counter
         if Player.stunCounter > 0.0 {
@@ -98,8 +99,8 @@ class Player: AnimatedSprite {
         }
     }
     
-    class func setVelocityX(velocityX: CGFloat) {
-        if Player.isStunned() {
+    class func setVelocityX(velocityX: CGFloat, force: Bool) {
+        if Player.isStunned() && !force {
             // Do nothing, the player is stunned
             return
         }
@@ -141,6 +142,8 @@ class Player: AnimatedSprite {
             // Do nothing, the player is stunned
             return
         }
+        
+        Player.setVelocityX(0.0, force: true)
         
         let playerBody = node!.physicsBody!
         

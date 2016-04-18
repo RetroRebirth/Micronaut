@@ -65,6 +65,6 @@ class World {
             World.ShouldReset = true
         }
         // Stop the player's velocity
-        Player.setVelocityX(0.0)
+        Player.setVelocityX(0.0, force: true)
     }
 }

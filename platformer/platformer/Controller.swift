@@ -15,14 +15,6 @@ class Controller: NSObject {
     static private var initialTouchPos = CGPointMake(0, 0)
     static private var currentTouchPos = CGPointMake(0, 0)
     
-    // Gets called with every frame.
-//    class func update() {
-//        // Don't update the player's velocity unless we are influencing it
-//        if (initialTouchPos.x != 0.0 && currentTouchPos.x != 0.0) {
-//            Player.setVelocityX(Controller.calcNewPlayerVelocityDx())
-//        }
-//    }
-    
     class func initialize(view: SKView) {
         loadGestures(view)
     }
@@ -59,15 +51,15 @@ class Controller: NSObject {
     }
     
     class func swipedDown(gestureRecognizer: UIGestureRecognizer) {
-        Player.setVelocityX(0.0)
+        Player.setVelocityX(0.0, force: false)
     }
 
     class func swipedRight(gestureRecognizer: UIGestureRecognizer) {
-        Player.setVelocityX(Constants.PlayerSpeed)
+        Player.setVelocityX(Constants.PlayerSpeed, force: false)
     }
     
     class func swipedLeft(gestureRecognizer: UIGestureRecognizer) {
-        Player.setVelocityX(-Constants.PlayerSpeed)
+        Player.setVelocityX(-Constants.PlayerSpeed, force: false)
     }
     
     class func touchBegan(pos: CGPoint) {
