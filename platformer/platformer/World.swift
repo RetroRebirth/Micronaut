@@ -64,5 +64,7 @@ class World {
             World.Level = (World.Level + 1) % Constants.LevelSpawnPoints.count
             World.ShouldReset = true
         }
+        // Stop the player's velocity
+        Player.setVelocityX(0.0)
     }
 }

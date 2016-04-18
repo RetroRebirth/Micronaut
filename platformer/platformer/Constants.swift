@@ -23,7 +23,6 @@ struct Constants {
     // Player Properties
     static let PlayerHurtForce:CGFloat = 150
     static let PlayerHurtStunTime:CGFloat = 1.0
-//    static let PlayerSpeed:CGFloat = 0.3
     static let PlayerSpeed:CGFloat = 500
     static let PlayerJumpForceSmall:CGFloat = 300
     static let PlayerJumpForceBig:CGFloat = 400
@@ -37,15 +36,15 @@ struct Constants {
     static let CameraLookAheadMagnitude:CGFloat = 0.1
     
     // Collision Classes (assigned in GameScene.sks by hand)
-    static let CollisionCategory_Ground:UInt32 = 0x1 << 0
-    static let CollisionCategory_Player:UInt32 = 0x1 << 1
+    static let CollisionCategory_Player:UInt32 = 0x1 << 0
+    static let CollisionCategory_Ground:UInt32 = 0x1 << 1
     static let CollisionCategory_Enemy:UInt32 = 0x1 << 2
     static let CollisionCategory_Goal:UInt32 = 0x1 << 3
     
     // World Levels
-    static let LevelSpawnPoints = [CGPointMake(256, 200),
-                                   CGPointMake(6600, 200),
+    static let LevelSpawnPoints = [CGPointMake(256, 240),
+                                   CGPointMake(6600, 240),
                                    CGPointMake(12000, 768),
-                                   CGPointMake(16600, 200),
-                                   CGPointMake(21200, 200)]
+                                   CGPointMake(16600, 240),
+                                   CGPointMake(21200, 240)]
 }

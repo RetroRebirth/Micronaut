@@ -15,12 +15,13 @@ class Player: AnimatedSprite {
     
     static private var stunCounter:CGFloat = 0.0
     static var onGround:Bool = false
+    static var velocityX:CGFloat = 0.0
     
     override class func initialize(node: SKNode) {
         super.initialize(node)
         
         // Allow player to run
-        node.physicsBody?.friction = 0.00
+        node.physicsBody?.friction = 0.0
         node.physicsBody?.restitution = 0.0
 
         animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
@@ -38,6 +39,10 @@ class Player: AnimatedSprite {
     }
     
     class func update() {
+        // Keep the player running (unless they hit something)
+        if abs(Player.velocityX) > 0.0 {
+            node!.physicsBody?.velocity.dx = Player.velocityX
+        }
         // If the player fell, reset the world
         if node!.position.y < 0.0 {
             World.ShouldReset = true
@@ -99,7 +104,7 @@ class Player: AnimatedSprite {
             return
         }
         
-        // Only move when on the ground
+        Player.velocityX = velocityX
         node!.physicsBody?.velocity.dx = velocityX
         
         // Change player sprite animation
