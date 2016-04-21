@@ -35,7 +35,7 @@ class Camera {
     }
     
     class func calcNewCameraPos() -> CGPoint {
-        let camera = World.getSpriteByName(Constants.Node_Camera)
+//        let camera = World.getSpriteByName(Constants.Node_Camera)
         // TODO fix momentum camera
 //         Offset the camera by tweening to look ahead of the player based on input touch distance
 //        let mag = Controller.getTouchMagnitudeX()
@@ -58,8 +58,10 @@ class Camera {
 //        xOffset = mag * Constants.CameraLookAheadMagnitude
         
         // Calculate where the camera should go
-        let newPosX = World.getSpriteByName(Constants.Node_Player).position.x
-        return CGPointMake(newPosX, camera.position.y)
+        let player = World.getSpriteByName(Constants.Node_Player)
+        let newPosX = player.position.x
+        let newPosY = max(player.position.y - 200, 400)
+        return CGPointMake(newPosX, newPosY)
         
         // Keep the camera in bounds
 //        let bounds = Constants.LevelCameraBounds[World.Level]
