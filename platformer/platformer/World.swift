@@ -38,9 +38,8 @@ class World {
 
     // Player either died or acheived the goal. Reset the sprites.
     class func reset() {
-        World.getSpriteByName(Constants.Node_Background).position.x = 0.0
-
         Player.reset()
+        World.getSpriteByName(Constants.Node_Background).position.x = 0.0
         
         World.ShouldReset = false
     }

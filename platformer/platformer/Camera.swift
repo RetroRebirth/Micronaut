@@ -22,8 +22,9 @@ class Camera {
         let newCameraPosX = Camera.calcNewCameraPosX()
         
         // Background horizontal parallax motion before moving the camera
-        // TODO don't just do distance, account for "negative distance"
-        World.getSpriteByName(Constants.Node_Background).position.x += Constants.BackgroundParallaxVelocity * Utility.distance(CGPointMake(newCameraPosX, camera.position.y), p2: camera.position)
+        let playerVelX = World.getSpriteByName(Constants.Node_Player).physicsBody!.velocity.dx
+        let direction:CGFloat = abs(playerVelX) > 0.0 ? playerVelX / abs(playerVelX) : 0.0
+        World.getSpriteByName(Constants.Node_Background).position.x += Constants.BackgroundParallaxVelocity * direction * Utility.distance(CGPointMake(newCameraPosX, camera.position.y), p2: camera.position)
         
         // Move the camera
         camera.position.x = newCameraPosX
