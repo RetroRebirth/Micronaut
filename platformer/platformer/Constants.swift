@@ -46,5 +46,5 @@ struct Constants {
                                    CGPointMake(12200, 768),
                                    CGPointMake(16600, 240),
                                    CGPointMake(6600, 240),
-                                   CGPointMake(21200, 240)]
+                                   CGPointMake(22336, 240)]
 }
