@@ -12,25 +12,30 @@ import Foundation
 import SpriteKit
 
 class Camera {
-    static private var xOffset: CGFloat = 0.0 // The offset of the camera from the player
+//    static private var xOffset: CGFloat = 0.0 // The offset of the camera from the player
     
     // Gets called at the end of every frame.
     class func didFinishUpdate() {
         let camera = World.getSpriteByName(Constants.Node_Camera)
         
         // Calculate the new camera's position
-        let newCameraPosX = Camera.calcNewCameraPosX()
+        let newCameraPos = Camera.calcNewCameraPos()
         
         // Background horizontal parallax motion before moving the camera
-        let playerVelX = World.getSpriteByName(Constants.Node_Player).physicsBody!.velocity.dx
-        let direction:CGFloat = abs(playerVelX) > 0.0 ? playerVelX / abs(playerVelX) : 0.0
-        World.getSpriteByName(Constants.Node_Background).position.x += Constants.BackgroundParallaxVelocity * direction * Utility.distance(CGPointMake(newCameraPosX, camera.position.y), p2: camera.position)
+        let player = World.getSpriteByName(Constants.Node_Player)
+        let playerVelX = player.physicsBody!.velocity.dx
+        let directionX:CGFloat = abs(playerVelX) > 0.0 ? playerVelX / abs(playerVelX) : 0.0
+        let playerVelY = World.getSpriteByName(Constants.Node_Player).physicsBody!.velocity.dx
+        let directionY:CGFloat = abs(playerVelY) > 0.0 ? playerVelY / abs(playerVelY) : 0.0
+        World.getSpriteByName(Constants.Node_Background).position.x += Constants.BackgroundParallaxVelocity * directionX * Utility.distance(CGPointMake(newCameraPos.x, camera.position.y), p2: camera.position)
+        World.getSpriteByName(Constants.Node_Background).position.x += Constants.BackgroundParallaxVelocity * directionY * Utility.distance(CGPointMake(camera.position.x, newCameraPos.y), p2: camera.position)
         
         // Move the camera
-        camera.position.x = newCameraPosX
+        camera.position = newCameraPos
     }
     
-    class func calcNewCameraPosX() -> CGFloat {
+    class func calcNewCameraPos() -> CGPoint {
+        let camera = World.getSpriteByName(Constants.Node_Camera)
         // TODO fix momentum camera
 //         Offset the camera by tweening to look ahead of the player based on input touch distance
 //        let mag = Controller.getTouchMagnitudeX()
@@ -53,8 +58,8 @@ class Camera {
 //        xOffset = mag * Constants.CameraLookAheadMagnitude
         
         // Calculate where the camera should go
-        let newPosX = World.getSpriteByName(Constants.Node_Player).position.x + xOffset
-        return newPosX
+        let newPosX = World.getSpriteByName(Constants.Node_Player).position.x
+        return CGPointMake(newPosX, camera.position.y)
         
         // Keep the camera in bounds
 //        let bounds = Constants.LevelCameraBounds[World.Level]
