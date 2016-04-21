@@ -66,6 +66,7 @@ class World {
         // Stop the player's velocity
         Player.setVelocityX(0.0, force: true)
         // Use the next level's background texture
-        (World.getSpriteByName(Constants.Node_Background) as! SKSpriteNode).texture = SKTexture(imageNamed: "bg-\(World.Level)")
+        let background = (World.getSpriteByName(Constants.Node_Background) as! SKSpriteNode)
+        background.texture = SKTexture(imageNamed: "bg-\(World.Level)")
     }
 }
