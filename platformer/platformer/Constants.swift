@@ -42,10 +42,9 @@ struct Constants {
     static let CollisionCategory_Goal:UInt32 = 0x1 << 3
     
     // World Levels
-//    static let LevelSpawnPoints = [CGPointMake(0, 240),
-//                                   CGPointMake(12200, 768),
-//                                   CGPointMake(16600, 240),
-//                                   CGPointMake(6600, 240),
-//                                   CGPointMake(22336, 1240)]
-    static let LevelSpawnPoints = [CGPointMake(22336, 1240)]
+    static let LevelSpawnPoints = [CGPointMake(0, 240),
+                                   CGPointMake(12200, 768),
+                                   CGPointMake(16600, 240),
+                                   CGPointMake(6600, 240),
+                                   CGPointMake(22336, 1240)]
 }

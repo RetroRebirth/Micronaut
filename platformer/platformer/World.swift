@@ -68,5 +68,9 @@ class World {
         // Use the next level's background texture
         let background = (World.getSpriteByName(Constants.Node_Background) as! SKSpriteNode)
         background.texture = SKTexture(imageNamed: "bg-\(World.Level)")
+        // Play ominous music if last level
+        if World.Level == 4 {
+            Sound.play("ominous.wav", loop: false)
+        }
     }
 }

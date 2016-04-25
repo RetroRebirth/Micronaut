@@ -48,7 +48,7 @@ class Utility {
         // Player contacted goal
         if ((bodyA.categoryBitMask & Constants.CollisionCategory_Player != 0) &&
             (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
-            World.nextLevel()
+            Player.warp()
         }
     }
     class func didEndContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
