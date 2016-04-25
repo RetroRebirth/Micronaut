@@ -142,24 +142,20 @@ class Player: AnimatedSprite {
             return
         }
         
-        // Option 1: Player dies and goes back to start
-        Player.die()
+        Player.setVelocityX(0.0, force: true)
         
-        // Option 2: Knock the player back, no death
-//        Player.setVelocityX(0.0, force: true)
-//        
-//        let playerBody = node!.physicsBody!
-//        
-//        // TODO Change player sprite to hurt
-//        animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
-//        // Play hurt sound effect
-//        Sound.play("hurt.wav", loop: false)
-//        
-//        // Knock-back player
-//        let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))
-//        playerBody.applyImpulse(hurtImpulse)
-//        // Apply hit stun
-//        Player.stunCounter = Constants.PlayerHurtStunTime
+        let playerBody = node!.physicsBody!
+        
+        // TODO Change player sprite to hurt
+        animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
+        // Play hurt sound effect
+        Sound.play("hurt.wav", loop: false)
+        
+        // Knock-back player
+        let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))
+        playerBody.applyImpulse(hurtImpulse)
+        // Apply hit stun
+        Player.stunCounter = Constants.PlayerHurtStunTime
     }
     
     class func setShrink(shouldShrink:Bool) {
@@ -197,33 +193,14 @@ class Player: AnimatedSprite {
     }
     
     class func die() {
-        if Player.isStunned() {
-            // Do nothing, the player is stunned
-            return
-        }
-        
         let duration = 0.5
         // Animations to group together
-        let rotate = SKAction.rotateByAngle(CGFloat(4*M_PI), duration: duration)
+        let rotate = SKAction.rotateByAngle(2*M_PI, duration: duration)
         let scale = SKAction.scaleTo(0.0, duration: duration)
-        // Final animation
-        let death = SKAction.group([rotate, scale])
-        // Hold player still for better animation
-        Player.setVelocityX(0.0, force: true)
-        Player.stunCounter = CGFloat(duration + 0.2)
-        node!.physicsBody?.affectedByGravity = false
         
-        // Audio feedback
-        Sound.play("hurt.wav", loop: false)
-        // Visual feedback
-        node!.runAction(death, completion: { () -> Void in
-            // Reset player
-            node!.xScale = directionX()
-            node!.yScale = 1.0
-            node!.zRotation = 0.0
-            node!.physicsBody?.affectedByGravity = true
-            // Move player back to start of level
-            World.ShouldReset = true
-        })
+        node!.runAction(SKAction.rotateByAngle(2*M_PI, duration: 0.5), completion: <#T##() -> Void#>)
+        
+        World.ShouldReset = true
+        Player.setVelocityX(0.0, force: true)
     }
 }
