@@ -14,9 +14,15 @@ class Sound {
     
     class func initialize(scene: SKScene) {
         self.scene = scene
+        
+        play("Monster-Street-Fighters.mp3", loop: true)
     }
     
-    class func play(filename: String) {
-        scene!.runAction(SKAction.playSoundFileNamed(filename, waitForCompletion: false))
+    class func play(filename: String, loop: Bool) {
+        if loop {
+            scene!.runAction(SKAction.repeatActionForever(SKAction.playSoundFileNamed(filename, waitForCompletion: true)))
+        } else {
+            scene!.runAction(SKAction.playSoundFileNamed(filename, waitForCompletion: true))
+        }
     }
 }

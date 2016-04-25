@@ -89,7 +89,7 @@ class Player: AnimatedSprite {
             // Change player sprite image to jumping
             animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
             // Play jumping sound effect
-            Sound.play("jump.wav")
+            Sound.play("jump.wav", loop: false)
             // Enact an impulse on the player
             if isBig() {
                 node!.physicsBody?.applyImpulse(CGVectorMake(0, Constants.PlayerJumpForceBig))
@@ -150,7 +150,7 @@ class Player: AnimatedSprite {
         // TODO Change player sprite to hurt
         animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
         // Play hurt sound effect
-        Sound.play("hurt.wav")
+        Sound.play("hurt.wav", loop: false)
         
         // Knock-back player
         let hurtImpulse = Constants.PlayerHurtForce * Utility.normal(Utility.CGPointToCGVector((playerBody.node?.position)! - (enemyBody.node?.position)!))

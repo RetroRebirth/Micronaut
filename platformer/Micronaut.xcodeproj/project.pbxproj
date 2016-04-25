@@ -15,6 +15,7 @@
 		4B22400C1CB7166300FA6249 /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4B22400B1CB7166300FA6249 /* jump.wav */; };
 		4B22400E1CB7240B00FA6249 /* AnimatedSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B22400D1CB7240B00FA6249 /* AnimatedSprite.swift */; };
 		4B3B0FE31C72F44B00F5D8E5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B0FE21C72F44B00F5D8E5 /* Constants.swift */; };
+		4B574FCB1CCDF9EF002253B4 /* Monster-Street-Fighters.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4B574FCA1CCDF9EF002253B4 /* Monster-Street-Fighters.mp3 */; };
 		4B847FB01C74509000DA9842 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B847FAF1C74509000DA9842 /* Player.swift */; };
 		4B92D1721C4AE0F600159256 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B92D1711C4AE0F600159256 /* Controller.swift */; };
 		4B92D1741C4AE12600159256 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B92D1731C4AE12600159256 /* Utility.swift */; };
@@ -57,6 +58,7 @@
 		4B22400B1CB7166300FA6249 /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
 		4B22400D1CB7240B00FA6249 /* AnimatedSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedSprite.swift; sourceTree = "<group>"; };
 		4B3B0FE21C72F44B00F5D8E5 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4B574FCA1CCDF9EF002253B4 /* Monster-Street-Fighters.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Monster-Street-Fighters.mp3"; sourceTree = "<group>"; };
 		4B847FAF1C74509000DA9842 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4B92D1711C4AE0F600159256 /* Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		4B92D1731C4AE12600159256 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		4B2240021CB7124400FA6249 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
+				4B574FCA1CCDF9EF002253B4 /* Monster-Street-Fighters.mp3 */,
 				4B2240031CB7126100FA6249 /* hurt.wav */,
 				4B22400B1CB7166300FA6249 /* jump.wav */,
 				4B2240051CB7126100FA6249 /* ominous.wav */,
@@ -289,6 +292,7 @@
 				4B22400C1CB7166300FA6249 /* jump.wav in Resources */,
 				4BA01B051BD42DFB00DA9AD8 /* GameScene.sks in Resources */,
 				4BA01B101BD42DFB00DA9AD8 /* Assets.xcassets in Resources */,
+				4B574FCB1CCDF9EF002253B4 /* Monster-Street-Fighters.mp3 in Resources */,
 				4BA01B0B1BD42DFB00DA9AD8 /* Game.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
