@@ -104,14 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4B2240021CB7124400FA6249 /* Sound-Effects */ = {
+		4B2240021CB7124400FA6249 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
 				4B2240031CB7126100FA6249 /* hurt.wav */,
 				4B22400B1CB7166300FA6249 /* jump.wav */,
 				4B2240051CB7126100FA6249 /* ominous.wav */,
 			);
-			name = "Sound-Effects";
+			name = Sound;
 			sourceTree = "<group>";
 		};
 		4BA01AF61BD42DFB00DA9AD8 = {
@@ -137,7 +137,7 @@
 		4BA01B011BD42DFB00DA9AD8 /* platformer */ = {
 			isa = PBXGroup;
 			children = (
-				4B2240021CB7124400FA6249 /* Sound-Effects */,
+				4B2240021CB7124400FA6249 /* Sound */,
 				4BA01B021BD42DFB00DA9AD8 /* AppDelegate.swift */,
 				4BA01B081BD42DFB00DA9AD8 /* GameViewController.swift */,
 				4BA01B041BD42DFB00DA9AD8 /* GameScene.sks */,

@@ -21,7 +21,7 @@ struct Constants {
     static let Node_Camera = "camera"
     
     // Player Properties
-    static let PlayerHurtForce:CGFloat = 150
+    static let PlayerHurtForce:CGFloat = 3500
     static let PlayerHurtStunTime:CGFloat = 1.0
     static let PlayerSpeed:CGFloat = 500
     static let PlayerJumpForceSmall:CGFloat = 300
@@ -47,5 +47,5 @@ struct Constants {
 //                                   CGPointMake(16600, 240),
 //                                   CGPointMake(6600, 240),
 //                                   CGPointMake(22336, 240)]
-    static let LevelSpawnPoints = [CGPointMake(6600, 240)]
+    static let LevelSpawnPoints = [CGPointMake(22336, 240)]
 }
