@@ -16,6 +16,7 @@ class Player: AnimatedSprite {
     static private var stunCounter:CGFloat = 0.0
     static var onGround:Bool = false
     static var velocityX:CGFloat = 0.0
+    static var velocityY:CGFloat = 0.0
     
     override class func initialize(node: SKNode) {
         super.initialize(node)
@@ -23,6 +24,7 @@ class Player: AnimatedSprite {
         // Allow player to run
         node.physicsBody?.friction = 0.0
         node.physicsBody?.restitution = 0.0
+        node.physicsBody?.affectedByGravity = !Controller.debug
 
         animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
     }
@@ -42,6 +44,9 @@ class Player: AnimatedSprite {
         // Keep the player running (unless they hit something)
         if abs(Player.velocityX) > 0.0 {
             node!.physicsBody?.velocity.dx = Player.velocityX
+        }
+        if abs(Player.velocityY) > 0.0 {
+            node!.physicsBody?.velocity.dy = Player.velocityY
         }
         // If the player fell, reset the world
         if node!.position.y < 0.0 {
@@ -117,6 +122,25 @@ class Player: AnimatedSprite {
             }
             animateContinuously(Constants.Sprite_PlayerWalking, timePerFrame: 0.05)
         }
+    }
+    
+    class func setVelocityY(velocityY: CGFloat, force: Bool) {
+        if Player.isStunned() && !force {
+            // Do nothing, the player is stunned
+            return
+        }
+        
+        Player.velocityY = velocityY
+        node!.physicsBody?.velocity.dy = velocityY
+    }
+    
+    
+    class func clearVelocity() {
+        Player.velocityX = 0.0
+        Player.velocityY = 0.0
+        
+        node!.physicsBody?.velocity.dx = 0.0
+        node!.physicsBody?.velocity.dy = 0.0
     }
     
     class func isStunned() -> Bool {
@@ -221,7 +245,7 @@ class Player: AnimatedSprite {
             node!.xScale = directionX()
             node!.yScale = 1.0
             node!.zRotation = 0.0
-            node!.physicsBody?.affectedByGravity = true
+            node!.physicsBody?.affectedByGravity = !Controller.debug
             // Move player back to start of level
             World.ShouldReset = true
         })
@@ -249,7 +273,7 @@ class Player: AnimatedSprite {
         node!.runAction(group, completion: { () -> Void in
             // Reset player
             node!.alpha = 1.0
-            node!.physicsBody?.affectedByGravity = true
+            node!.physicsBody?.affectedByGravity = !Controller.debug
             // Move player to next level
             World.nextLevel()
         })

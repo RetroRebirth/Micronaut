@@ -11,6 +11,7 @@ import Foundation
 import SpriteKit
 
 class Controller: NSObject {
+    static var debug = false
     // Keep track of the relative positioning on the remote
     static private var initialTouchPos = CGPointMake(0, 0)
     static private var currentTouchPos = CGPointMake(0, 0)
@@ -40,6 +41,19 @@ class Controller: NSObject {
         let swipeLeftRecognizer = UISwipeGestureRecognizer(target: Controller.self, action: #selector(Controller.swipedLeft(_:)))
         swipeLeftRecognizer.direction = .Left
         view.addGestureRecognizer(swipeLeftRecognizer)
+        // Pressed play/pause button
+        let playRecognizer = UITapGestureRecognizer(target: Controller.self, action: #selector(Controller.play(_:)))
+        playRecognizer.allowedPressTypes = [NSNumber(integer: UIPressType.PlayPause.rawValue)];
+        view.addGestureRecognizer(playRecognizer)
+    }
+    
+    class func play(gestureRecognizer: UIGestureRecognizer) {
+        // Toggle debug controls
+        Controller.debug = !Controller.debug
+        Player.clearVelocity()
+        Player.node?.physicsBody?.affectedByGravity = !Controller.debug
+        
+        debugPrint("toggled debug to \(Controller.debug)")
     }
     
     class func tapped(gestureRecognizer: UIGestureRecognizer) {
@@ -47,18 +61,34 @@ class Controller: NSObject {
     }
     
     class func swipedUp(gestureRecognizer: UIGestureRecognizer) {
-        Player.jump()
+        if Controller.debug {
+            Player.clearVelocity()
+            Player.setVelocityY(Constants.PlayerSpeed, force: true)
+        } else {
+            Player.jump()
+        }
     }
     
     class func swipedDown(gestureRecognizer: UIGestureRecognizer) {
-        Player.setVelocityX(0.0, force: false)
+        if Controller.debug {
+            Player.clearVelocity()
+            Player.setVelocityY(-Constants.PlayerSpeed, force: true)
+        } else {
+            Player.setVelocityX(0.0, force: false)
+        }
     }
 
     class func swipedRight(gestureRecognizer: UIGestureRecognizer) {
+        if debug {
+            Player.clearVelocity()
+        }
         Player.setVelocityX(Constants.PlayerSpeed, force: false)
     }
     
     class func swipedLeft(gestureRecognizer: UIGestureRecognizer) {
+        if debug {
+            Player.clearVelocity()
+        }
         Player.setVelocityX(-Constants.PlayerSpeed, force: false)
     }
     
