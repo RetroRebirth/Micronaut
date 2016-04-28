@@ -115,7 +115,7 @@ class Player: AnimatedSprite {
             if (velocityX > 0.0 && node!.xScale < 0.0) || (velocityX < 0.0 && node!.xScale > 0.0) {
                 node!.xScale = -1.0 * node!.xScale
             }
-            animateContinuously(Constants.Sprite_PlayerWalking, timePerFrame: 0.1)
+            animateContinuously(Constants.Sprite_PlayerWalking, timePerFrame: 0.05)
         }
     }
     
