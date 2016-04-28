@@ -52,8 +52,6 @@ class Controller: NSObject {
         Controller.debug = !Controller.debug
         Player.clearVelocity()
         Player.node?.physicsBody?.affectedByGravity = !Controller.debug
-        
-        debugPrint("toggled debug to \(Controller.debug)")
     }
     
     class func tapped(gestureRecognizer: UIGestureRecognizer) {
