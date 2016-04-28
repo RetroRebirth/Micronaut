@@ -14,9 +14,9 @@ class Player: AnimatedSprite {
     static private let shrinkScale:CGFloat = 0.5
     
     static private var stunCounter:CGFloat = 0.0
-    static var onGround:Bool = false
     static var velocityX:CGFloat = 0.0
     static var velocityY:CGFloat = 0.0
+    static var jumpCounter:CGFloat = 0.0
     
     override class func initialize(node: SKNode) {
         super.initialize(node)
@@ -60,12 +60,14 @@ class Player: AnimatedSprite {
                 animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
             }
         }
-        // Check to see if the player is contacting the ground
-        Player.onGround = false
+        // Check to see if the player is recently contacting the ground
+        if Player.jumpCounter > 0.0 {
+            Player.jumpCounter -= Utility.dt
+        }
         var groundContactCount = 0
         for body in node!.physicsBody!.allContactedBodies() {
             if (body.categoryBitMask & Constants.CollisionCategory_Ground != 0) {
-                Player.onGround = true
+                Player.jumpCounter = 0.1
                 if !Player.isShrinkingOrGrowing() {
                     break
                 } else {
@@ -89,7 +91,7 @@ class Player: AnimatedSprite {
         
         // Only jump when the player is standing on the ground
 //        if let dy = node!.physicsBody?.velocity.dy {
-        if Player.onGround {
+        if Player.onGround() {
             // Change player sprite image to jumping
             animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
             // Play jumping sound effect
@@ -236,6 +238,7 @@ class Player: AnimatedSprite {
         Player.setVelocityX(0.0, force: true)
         Player.stunCounter = CGFloat(duration + 0.2)
         node!.physicsBody?.affectedByGravity = false
+        Player.clearVelocity()
         
         // Audio feedback
         Sound.play("hurt.wav", loop: false)
@@ -277,5 +280,9 @@ class Player: AnimatedSprite {
             // Move player to next level
             World.nextLevel()
         })
+    }
+    
+    class func onGround() -> Bool {
+        return Player.jumpCounter > 0.0
     }
 }
