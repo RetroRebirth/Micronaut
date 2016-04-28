@@ -55,7 +55,11 @@ class Controller: NSObject {
     }
     
     class func tapped(gestureRecognizer: UIGestureRecognizer) {
-        Player.setShrink(Player.isBig())
+        if Controller.debug {
+            Player.warp()
+        } else {
+            Player.setShrink(Player.isBig())
+        }
     }
     
     class func swipedUp(gestureRecognizer: UIGestureRecognizer) {

@@ -221,7 +221,7 @@ class Player: AnimatedSprite {
     }
     
     class func die() {
-        if Player.isStunned() {
+        if Player.isStunned() || Controller.debug {
             // Do nothing, the player is stunned
             return
         }
