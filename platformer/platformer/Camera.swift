@@ -60,7 +60,7 @@ class Camera {
         // Calculate where the camera should go
         let player = World.getSpriteByName(Constants.Node_Player)
         let newPosX = player.position.x
-        let newPosY = max(player.position.y - 160, 380)
+        let newPosY = max(player.position.y - 160, 360)
         return CGPointMake(newPosX, newPosY)
         
         // Keep the camera in bounds
