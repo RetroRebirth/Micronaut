@@ -66,20 +66,30 @@ class Player: AnimatedSprite {
         if Player.jumpCounter > 0.0 {
             Player.jumpCounter -= Utility.dt
         }
-        var groundContactCount = 0
+        
+//        var groundContactCount = 0
         for body in node!.physicsBody!.allContactedBodies() {
             if (body.categoryBitMask & Constants.CollisionCategory_Ground != 0) {
-                Player.jumpCounter = 0.1
+                // Reset the jump counter if the player has recently touched the ground
+                Player.jumpCounter = 0.5
+                // If the player isn't shrinking or growing then we don't care what happens now
                 if !Player.isShrinkingOrGrowing() {
                     break
-                } else {
-                    // If the player is touching two grounds at the same time while growing, have them shrink
-                    groundContactCount += 1
-                    // TODO why does allContactedBodies return duplicates?
-                    if groundContactCount == 3 {
-                        Player.setShrink(true)
-                        break
-                    }
+                }
+                // Measure the ground's position in relation to the player
+                // http://stackoverflow.com/questions/21853175/finding-absolute-position-of-child-sknode
+                let absoluteY = body.node!.position.y + body.node!.parent!.position.y
+                if absoluteY > node!.position.y {
+                    // If the player is squished between a floor and ceiling, force shrink
+                    Player.setShrink(true)
+                    break
+//                    // If the player is touching two grounds at the same time while growing, have them shrink
+//                    groundContactCount += 1
+//                    // TODO why does allContactedBodies return duplicates?
+//                    if groundContactCount == 3 {
+//                        Player.setShrink(true)
+//                        break
+//                    }
                 }
             }
         }
@@ -94,6 +104,8 @@ class Player: AnimatedSprite {
         // Only jump when the player is standing on the ground
 //        if let dy = node!.physicsBody?.velocity.dy {
         if Player.onGround() {
+            // Nullify the jump counter (until we touch ground again)
+            Player.jumpCounter = 0.0
             // Change player sprite image to jumping
             animateOnce(Constants.Sprite_PlayerJumping, timePerFrame: 0.1)
             // Play jumping sound effect
@@ -154,6 +166,8 @@ class Player: AnimatedSprite {
     class func reset() {
         Player.setPos(Constants.LevelSpawnPoints[World.Level])
         animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
+        node!.xScale = 1.0
+        node!.yScale = 1.0
         node!.alpha = 1.0
         node!.physicsBody?.affectedByGravity = !Controller.debug
         node!.physicsBody?.pinned = false
@@ -202,13 +216,13 @@ class Player: AnimatedSprite {
         }
         
         let duration = 0.1
-        let direction:CGFloat = directionX()
+        let directionX = node!.xScale / abs(node!.xScale)
         
         if shouldShrink {
-            node!.runAction(SKAction.scaleXTo(direction * Player.shrinkScale, duration: duration))
+            node!.runAction(SKAction.scaleXTo(directionX * Player.shrinkScale, duration: duration))
             node!.runAction(SKAction.scaleYTo(0.5, duration: duration))
         } else {
-            node!.runAction(SKAction.scaleXTo(direction * 1.0, duration: duration))
+            node!.runAction(SKAction.scaleXTo(directionX * 1.0, duration: duration))
             node!.runAction(SKAction.scaleYTo(1.0, duration: duration))
         }
     }
@@ -225,15 +239,13 @@ class Player: AnimatedSprite {
         return node!.yScale < 1.0 && node!.yScale > Player.shrinkScale
     }
     
-    class func directionX() -> CGFloat {
-        return node!.physicsBody!.velocity.dx > 0.0 ? 1.0 : -1.0
-    }
-    
     class func die() {
         if Player.isStunned() || Controller.debug {
             // Do nothing, the player is stunned
             return
         }
+        
+        setShrink(false) // actually, this works fine
         
         let duration = 1.0
         // Animations to group together
@@ -262,6 +274,8 @@ class Player: AnimatedSprite {
             // Do nothing, the player is stunned
             return
         }
+        
+        setShrink(false) // TODO better way to fix this?
         
         let duration = 0.5
         // Animations to group together
