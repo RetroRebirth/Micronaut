@@ -38,6 +38,8 @@ class Player: AnimatedSprite {
         loadSprite(Constants.Sprite_PlayerWalking, frames: 8)
         // Jumping
         loadSprite(Constants.Sprite_PlayerJumping, frames: 8)
+        // Death
+        loadSprite("spacemanDead", frames: 1)
     }
     
     class func update() {
@@ -151,6 +153,11 @@ class Player: AnimatedSprite {
     
     class func reset() {
         Player.setPos(Constants.LevelSpawnPoints[World.Level])
+        animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
+        node!.alpha = 1.0
+        node!.physicsBody?.affectedByGravity = !Controller.debug
+        node!.physicsBody?.pinned = false
+        node!.physicsBody?.dynamic = true
     }
     
     class func setPos(pos: CGPoint) {
@@ -228,27 +235,23 @@ class Player: AnimatedSprite {
             return
         }
         
-        let duration = 0.5
+        let duration = 1.0
         // Animations to group together
-        let rotate = SKAction.rotateByAngle(CGFloat(4*M_PI), duration: duration)
-        let scale = SKAction.scaleTo(0.0, duration: duration)
+        let image = SKAction.animateWithTextures(sprites["spacemanDead"]!, timePerFrame: duration)
+        let fade = SKAction.fadeOutWithDuration(duration)
         // Final animation
-        let group = SKAction.group([rotate, scale])
+        let group = SKAction.group([image, fade])
         // Hold player still for better animation
-        Player.setVelocityX(0.0, force: true)
         Player.stunCounter = CGFloat(duration + 0.2)
         node!.physicsBody?.affectedByGravity = false
+        node!.physicsBody?.pinned = true
+        node!.physicsBody?.dynamic = false
         Player.clearVelocity()
         
         // Audio feedback
         Sound.play("hurt.wav", loop: false)
         // Visual feedback
         node!.runAction(group, completion: { () -> Void in
-            // Reset player
-            node!.xScale = directionX()
-            node!.yScale = 1.0
-            node!.zRotation = 0.0
-            node!.physicsBody?.affectedByGravity = !Controller.debug
             // Move player back to start of level
             World.ShouldReset = true
         })
@@ -274,9 +277,6 @@ class Player: AnimatedSprite {
         Sound.play("warp.wav", loop: false)
         // Visual feedback
         node!.runAction(group, completion: { () -> Void in
-            // Reset player
-            node!.alpha = 1.0
-            node!.physicsBody?.affectedByGravity = !Controller.debug
             // Move player to next level
             World.nextLevel()
         })

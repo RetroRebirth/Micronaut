@@ -10,7 +10,7 @@
 import SpriteKit
 
 class AnimatedSprite {
-    static private var sprites:[String:[SKTexture]] = [String:[SKTexture]]()
+    static var sprites:[String:[SKTexture]] = [String:[SKTexture]]()
     static var node:SKNode?
     
     // Override: Define starting animation
