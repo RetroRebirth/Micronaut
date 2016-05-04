@@ -245,7 +245,7 @@ class Player: AnimatedSprite {
             return
         }
         
-        setShrink(false) // actually, this works fine
+        setShrink(false)
         
         let duration = 1.0
         // Animations to group together
@@ -275,7 +275,7 @@ class Player: AnimatedSprite {
             return
         }
         
-        setShrink(false) // TODO better way to fix this?
+        setShrink(false)
         
         let duration = 0.5
         // Animations to group together
