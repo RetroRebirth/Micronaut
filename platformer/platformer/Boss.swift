@@ -25,11 +25,7 @@ class Boss: AnimatedSprite {
     }
     
     class func reset() {
-        Boss.setPos(Constants.BossStartPos)
-    }
-    
-    class func setPos(pos: CGPoint) {
-        node!.position = pos
+        node!.position = Constants.BossStartPos
         node!.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
         
         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "bossAppear_00")

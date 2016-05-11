@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         Sound.initialize(self)
         World.initialize(self)
+        Boss.initialize(World.getSpriteByName(Constants.Node_Boss))
         Player.initialize(World.getSpriteByName(Constants.Node_Player))
         Controller.initialize(view)
     }
