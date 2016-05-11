@@ -14,11 +14,15 @@ struct Constants {
     static let Sprite_PlayerResting = "resting"
     static let Sprite_PlayerWalking = "walking"
     static let Sprite_PlayerJumping = "jumping"
+    static let Sprite_BossAppear = "bossAppear"
+    static let Sprite_BossWalk = "bossWalk"
+    static let Sprite_BossRetreat = "bossRetreat"
     
     // Node Names
     static let Node_Player = "player"
     static let Node_Background = "background"
     static let Node_Camera = "camera"
+    static let Node_Boss = "boss"
     
     // Player Properties
     static let PlayerHurtForce:CGFloat = 1000
@@ -26,6 +30,12 @@ struct Constants {
     static let PlayerSpeed:CGFloat = 500
     static let PlayerJumpForceSmall:CGFloat = 300
     static let PlayerJumpForceBig:CGFloat = 400
+    
+    // Player Properties
+    static let BossY:CGFloat = -960
+    static let BossLeftX:CGFloat = 1910
+    static let BossRightX:CGFloat = 3530
+    static let BossStartPos:CGPoint = CGPointMake(Constants.BossRightX, Constants.BossY)
     
     // Background Properties
     static let BackgroundParallaxVelocity:CGFloat = -0.1
