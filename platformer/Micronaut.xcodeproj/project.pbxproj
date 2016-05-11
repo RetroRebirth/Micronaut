@@ -31,6 +31,7 @@
 		4BA01B1B1BD42DFB00DA9AD8 /* platformerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA01B1A1BD42DFB00DA9AD8 /* platformerTests.swift */; };
 		4BA01B261BD42DFB00DA9AD8 /* platformerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BA01B251BD42DFB00DA9AD8 /* platformerUITests.swift */; };
 		4BCA2E221C604B6800D299CC /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCA2E211C604B6800D299CC /* Camera.swift */; };
+		4BDC29761CE2F374009B56BB /* Boss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDC29751CE2F374009B56BB /* Boss.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		4BA01B251BD42DFB00DA9AD8 /* platformerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = platformerUITests.swift; sourceTree = "<group>"; };
 		4BA01B271BD42DFB00DA9AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BCA2E211C604B6800D299CC /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		4BDC29751CE2F374009B56BB /* Boss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Boss.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				4BA01B041BD42DFB00DA9AD8 /* GameScene.sks */,
 				4B847FAF1C74509000DA9842 /* Player.swift */,
 				4BA01B061BD42DFB00DA9AD8 /* GameScene.swift */,
+				4BDC29751CE2F374009B56BB /* Boss.swift */,
 				4B08E31D1C8D151800194635 /* Enemy.swift */,
 				4B92D1751C4AE47B00159256 /* World.swift */,
 				4B3B0FE21C72F44B00F5D8E5 /* Constants.swift */,
@@ -324,6 +327,7 @@
 			files = (
 				4B92D1761C4AE47B00159256 /* World.swift in Sources */,
 				4B92D1741C4AE12600159256 /* Utility.swift in Sources */,
+				4BDC29761CE2F374009B56BB /* Boss.swift in Sources */,
 				4BA01B071BD42DFB00DA9AD8 /* GameScene.swift in Sources */,
 				4B92D1721C4AE0F600159256 /* Controller.swift in Sources */,
 				4BA01B091BD42DFB00DA9AD8 /* GameViewController.swift in Sources */,
