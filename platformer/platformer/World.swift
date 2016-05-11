@@ -15,7 +15,6 @@ class World {
     static var Level:Int = 0
     
     static private var sprites:[String:SKNode] = [String:SKNode]()
-    static private var enemies = Set<Enemy>()
     
     class func initialize(scene: SKScene) {
         loadSprites(scene)
@@ -26,10 +25,6 @@ class World {
         sprites[Constants.Node_Player] = scene.childNodeWithName("//\(Constants.Node_Player)")!
         sprites[Constants.Node_Background] = scene.childNodeWithName("//\(Constants.Node_Background)")!
         sprites[Constants.Node_Camera] = scene.childNodeWithName("//\(Constants.Node_Camera)")!
-        
-        // Initialize enemies
-        // TODO how to search for all enemy nodes?
-        enemies.insert(BasicEnemy(sprite: scene.childNodeWithName("//basic_enemy")!))
     }
     
     class func getSpriteByName(name: String) -> SKNode {
@@ -49,10 +44,6 @@ class World {
         // Check if we need to reset the world
         if World.ShouldReset {
             World.reset()
-        }
-        // Update enemies
-        for enemy in enemies {
-            enemy.update()
         }
     }
     
