@@ -5,7 +5,7 @@
 //  Created by Christopher Williams on 3/6/16.
 //  Copyright © 2016 Christopher Williams. All rights reserved.
 //
-//  A class that outlines a basic enemy's functions. It does nothing, but provides functions super classes should override.
+//  THIS IS NOT BEING USED BUT XCODE DOESN'T LIKE ME WHEN I DELETE THIS SO IT STAYS
 
 import Foundation
 import SpriteKit

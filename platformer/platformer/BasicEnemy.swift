@@ -5,7 +5,7 @@
 //  Created by Christopher Williams on 3/6/16.
 //  Copyright © 2016 Christopher Williams. All rights reserved.
 //
-//  A basic enemy that is invicible and walks back and forth
+//  THIS IS NOT BEING USED BUT XCODE DOESN'T LIKE ME WHEN I DELETE THIS SO IT STAYS
 
 import Foundation
 import SpriteKit
