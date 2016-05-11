@@ -25,6 +25,7 @@ class World {
         sprites[Constants.Node_Player] = scene.childNodeWithName("//\(Constants.Node_Player)")!
         sprites[Constants.Node_Background] = scene.childNodeWithName("//\(Constants.Node_Background)")!
         sprites[Constants.Node_Camera] = scene.childNodeWithName("//\(Constants.Node_Camera)")!
+//        sprites[Constants.Node_Boss] = scene.childNodeWithName("//\(Constants.Node_Boss)")!
     }
     
     class func getSpriteByName(name: String) -> SKNode {
@@ -34,6 +35,7 @@ class World {
     // Player either died or acheived the goal. Reset the sprites.
     class func reset() {
         Player.reset()
+//        Boss.reset()
         World.getSpriteByName(Constants.Node_Background).position.x = 0.0
         
         World.ShouldReset = false
