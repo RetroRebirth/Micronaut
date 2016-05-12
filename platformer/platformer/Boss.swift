@@ -30,4 +30,8 @@ class Boss: AnimatedSprite {
         
         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "bossAppear_00")
     }
+    
+    class func getPos() -> CGPoint {
+        return node!.position
+    }
 }

@@ -183,6 +183,10 @@ class Player: AnimatedSprite {
         animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
     }
     
+    class func getPos() -> CGPoint {
+        return node!.position
+    }
+    
     class func hurtBy(enemyBody: SKPhysicsBody) {
         if Player.isStunned() {
             // Do nothing, the player is stunned
