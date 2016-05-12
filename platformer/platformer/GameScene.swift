@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(currentTime: CFTimeInterval) {
         Utility.update(currentTime) // Handles time management. Reference necessary time from here
         Player.update()
+        Boss.update()
         World.update()
     }
     
