@@ -38,7 +38,7 @@ struct Constants {
     static let BossStartPos:CGPoint = CGPointMake(Constants.BossRightX, Constants.BossY)
     
     // Background Properties
-    static let BackgroundParallaxVelocity:CGFloat = -0.1
+    static let BGParallaxVelocity:CGFloat = -0.1
     
     // Camera
 //    static let LevelCameraBounds = [[768, 4286], [5948, 7700], [9358, 10350]]
