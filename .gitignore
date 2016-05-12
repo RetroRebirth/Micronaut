@@ -1,4 +1,5 @@
 *.xcuserstate
+*.xcuserdatad*
 
 # Compiled source #
 ###################
