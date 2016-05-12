@@ -23,9 +23,14 @@ class World {
     // Adding "//" searches for nodes recursively https://developer.apple.com/library/ios/documentation/SpriteKit/Reference/SKNode_Ref/index.html#//apple_ref/occ/cl/SKNode
     class func loadSprites(scene: SKScene) {
         sprites[Constants.Node_Player] = scene.childNodeWithName("//\(Constants.Node_Player)")!
-        sprites[Constants.Node_Background] = scene.childNodeWithName("//\(Constants.Node_Background)")!
         sprites[Constants.Node_Camera] = scene.childNodeWithName("//\(Constants.Node_Camera)")!
         sprites[Constants.Node_Boss] = scene.childNodeWithName("//\(Constants.Node_Boss)")!
+        // Load background nodes
+        sprites[Constants.Node_BG0] = scene.childNodeWithName("//\(Constants.Node_BG0)")!
+        sprites[Constants.Node_BG1] = scene.childNodeWithName("//\(Constants.Node_BG1)")!
+        sprites[Constants.Node_BG2] = scene.childNodeWithName("//\(Constants.Node_BG2)")!
+        sprites[Constants.Node_BG3] = scene.childNodeWithName("//\(Constants.Node_BG3)")!
+        sprites[Constants.Node_BG4] = scene.childNodeWithName("//\(Constants.Node_BG4)")!
     }
     
     class func getSpriteByName(name: String) -> SKNode {
@@ -36,7 +41,12 @@ class World {
     class func reset() {
         Boss.reset()
         Player.reset()
-        World.getSpriteByName(Constants.Node_Background).position.x = 0.0
+        
+//        World.getSpriteByName(Constants.Node_BG0).position.x = 0.0
+//        World.getSpriteByName(Constants.Node_BG1).position.x = 0.0
+//        World.getSpriteByName(Constants.Node_BG2).position.x = 0.0
+//        World.getSpriteByName(Constants.Node_BG3).position.x = 0.0
+//        World.getSpriteByName(Constants.Node_BG4).position.x = 0.0
         
         World.ShouldReset = false
     }
@@ -59,8 +69,8 @@ class World {
         // Stop the player's velocity
         Player.setVelocityX(0.0, force: true)
         // Use the next level's background texture
-        let background = (World.getSpriteByName(Constants.Node_Background) as! SKSpriteNode)
-        background.texture = SKTexture(imageNamed: "bg-\(World.Level)")
+//        let background = (World.getSpriteByName(Constants.Node_Background) as! SKSpriteNode)
+//        background.texture = SKTexture(imageNamed: "bg-\(World.Level)")
         // Play ominous music if last level
         if World.Level == 4 {
             Sound.play("ominous.wav", loop: false)

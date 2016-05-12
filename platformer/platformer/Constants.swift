@@ -20,7 +20,6 @@ struct Constants {
     
     // Node Names
     static let Node_Player = "player"
-    static let Node_Background = "background"
     static let Node_Camera = "camera"
     static let Node_Boss = "boss"
     
@@ -36,9 +35,6 @@ struct Constants {
     static let BossLeftX:CGFloat = 24246 //1910
     static let BossRightX:CGFloat = 25866 //3530
     static let BossStartPos:CGPoint = CGPointMake(Constants.BossRightX, Constants.BossY)
-    
-    // Background Properties
-    static let BGParallaxVelocity:CGFloat = -0.1
     
     // Camera
 //    static let LevelCameraBounds = [[768, 4286], [5948, 7700], [9358, 10350]]
@@ -57,4 +53,17 @@ struct Constants {
                                    CGPointMake(16600, 240),
                                    CGPointMake(6600, 240),
                                    CGPointMake(22336, 1240)]
+    
+    // Background node names
+    static let Node_BG0 = "bg-0"
+    static let Node_BG1 = "bg-1"
+    static let Node_BG2 = "bg-2"
+    static let Node_BG3 = "bg-3"
+    static let Node_BG4 = "bg-4"
+    // Background parallax values (greater means move movement)
+    static let BG0Parallax:CGFloat = 0.5
+    static let BG1Parallax:CGFloat = 0.4
+    static let BG2Parallax:CGFloat = 0.3
+    static let BG3Parallax:CGFloat = 0.2
+    static let BG4Parallax:CGFloat = 0.1
 }
