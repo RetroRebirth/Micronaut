@@ -31,10 +31,10 @@ struct Constants {
     static let PlayerJumpForceSmall:CGFloat = 300
     static let PlayerJumpForceBig:CGFloat = 400
     
-    // Player Properties
-    static let BossY:CGFloat = 280
-    static let BossLeftX:CGFloat = 24246
-    static let BossRightX:CGFloat = 25866
+    // Boss Properties (commented numbers are in relation to level4 node)
+    static let BossY:CGFloat = 280 //-960
+    static let BossLeftX:CGFloat = 24246 //1910
+    static let BossRightX:CGFloat = 25866 //3530
     static let BossStartPos:CGPoint = CGPointMake(Constants.BossRightX, Constants.BossY)
     
     // Background Properties
