@@ -24,11 +24,10 @@ class Camera {
         // Background horizontal parallax motion before moving the camera
         let player = World.getSpriteByName(Constants.Node_Player)
         let directionX:CGFloat = -1.0 * (player.physicsBody!.velocity.dx != 0 ? player.physicsBody!.velocity.dx / abs(player.physicsBody!.velocity.dx) : 1.0)
-        World.getSpriteByName(Constants.Node_BG0).position.x += Constants.BG0Parallax * directionX * Utility.distance(CGPointMake(newCameraPos.x, camera.position.y), p2: camera.position)
-        World.getSpriteByName(Constants.Node_BG1).position.x += Constants.BG1Parallax * directionX * Utility.distance(CGPointMake(newCameraPos.x, camera.position.y), p2: camera.position)
-        World.getSpriteByName(Constants.Node_BG2).position.x += Constants.BG2Parallax * directionX * Utility.distance(CGPointMake(newCameraPos.x, camera.position.y), p2: camera.position)
-        World.getSpriteByName(Constants.Node_BG3).position.x += Constants.BG3Parallax * directionX * Utility.distance(CGPointMake(newCameraPos.x, camera.position.y), p2: camera.position)
-        World.getSpriteByName(Constants.Node_BG4).position.x += Constants.BG4Parallax * directionX * Utility.distance(CGPointMake(newCameraPos.x, camera.position.y), p2: camera.position)
+        for i in 0..<Constants.Node_BG.count {
+            World.getSpriteByName(Constants.Node_BG[i]).position.x += Constants.BGParallax[i] * directionX * Utility.distance(CGPointMake(newCameraPos.x, camera.position.y), p2: camera.position)
+            World.getSpriteByName(Constants.Node_BG[i]).position.y += camera.position.y - newCameraPos.y
+        }
         
         // Move the camera
         camera.position = newCameraPos

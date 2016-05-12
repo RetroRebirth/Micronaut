@@ -54,16 +54,16 @@ struct Constants {
                                    CGPointMake(6600, 240),
                                    CGPointMake(22336, 1240)]
     
-    // Background node names
-    static let Node_BG0 = "bg-0"
-    static let Node_BG1 = "bg-1"
-    static let Node_BG2 = "bg-2"
-    static let Node_BG3 = "bg-3"
-    static let Node_BG4 = "bg-4"
-    // Background parallax values (greater means move movement)
-    static let BG0Parallax:CGFloat = 0.5
-    static let BG1Parallax:CGFloat = 0.4
-    static let BG2Parallax:CGFloat = 0.3
-    static let BG3Parallax:CGFloat = 0.2
-    static let BG4Parallax:CGFloat = 0.1
+    // Background
+    static let Node_BG = ["bg-0",
+                          "bg-1",
+                          "bg-2",
+                          "bg-3",
+                          "bg-4"]
+    // Bigger the value, the more it moves (matches with the layers defined above)
+    static let BGParallax:[CGFloat] = [0.4,
+                                       0.3,
+                                       0.2,
+                                       0.1,
+                                       0.0]
 }

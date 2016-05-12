@@ -26,11 +26,9 @@ class World {
         sprites[Constants.Node_Camera] = scene.childNodeWithName("//\(Constants.Node_Camera)")!
         sprites[Constants.Node_Boss] = scene.childNodeWithName("//\(Constants.Node_Boss)")!
         // Load background nodes
-        sprites[Constants.Node_BG0] = scene.childNodeWithName("//\(Constants.Node_BG0)")!
-        sprites[Constants.Node_BG1] = scene.childNodeWithName("//\(Constants.Node_BG1)")!
-        sprites[Constants.Node_BG2] = scene.childNodeWithName("//\(Constants.Node_BG2)")!
-        sprites[Constants.Node_BG3] = scene.childNodeWithName("//\(Constants.Node_BG3)")!
-        sprites[Constants.Node_BG4] = scene.childNodeWithName("//\(Constants.Node_BG4)")!
+        for name in Constants.Node_BG {
+            sprites[name] = scene.childNodeWithName("//\(name)")!
+        }
     }
     
     class func getSpriteByName(name: String) -> SKNode {
@@ -41,12 +39,10 @@ class World {
     class func reset() {
         Boss.reset()
         Player.reset()
-        
-//        World.getSpriteByName(Constants.Node_BG0).position.x = 0.0
-//        World.getSpriteByName(Constants.Node_BG1).position.x = 0.0
-//        World.getSpriteByName(Constants.Node_BG2).position.x = 0.0
-//        World.getSpriteByName(Constants.Node_BG3).position.x = 0.0
-//        World.getSpriteByName(Constants.Node_BG4).position.x = 0.0
+
+//        for name in Constants.Node_BG {
+//            World.getSpriteByName(name).position.x = 0.0
+//        }
         
         World.ShouldReset = false
     }
