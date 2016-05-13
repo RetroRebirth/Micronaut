@@ -13,6 +13,7 @@ import SpriteKit
 class Boss {
     static var sprites:[String:[SKTexture]] = [String:[SKTexture]]()
     static var node:SKNode?
+    static var awake:Bool = false
     
     class func initialize(node: SKNode) {
         Boss.loadSprite(Constants.Sprite_BossAppear, frames: 4)
@@ -30,15 +31,32 @@ class Boss {
         }
     }
     
-    class func animateOnce(name: String, timePerFrame: NSTimeInterval) {
-        node!.runAction(SKAction.animateWithTextures(sprites[name]!, timePerFrame: timePerFrame))
+    class func update() {
+        let playerPos = World.getSpriteByName(Constants.Node_Player).position
+        let bossPos = node!.position
+        
+        if awake {
+            // Chase player
+            let dir = Utility.direction(bossPos.x, x2: playerPos.x)
+            node!.physicsBody?.velocity.dx = dir * Constants.BossSpeed
+        } else {
+            // Check if player is close
+            let dist = Utility.distance(bossPos, p2: playerPos)
+            if dist < Constants.BossWakeRadius {
+                Boss.animateOnce(Constants.Sprite_BossAppear, timePerFrame: 0.3, completion: { () in
+                    Boss.animateContinuously(Constants.Sprite_BossWalk, timePerFrame: 0.1)
+                    awake = true
+                })
+            }
+        }
+    }
+    
+    class func animateOnce(name: String, timePerFrame: NSTimeInterval, completion: () -> Void) {
+        node!.runAction(SKAction.animateWithTextures(sprites[name]!, timePerFrame: timePerFrame), completion: completion)
     }
     
     class func animateContinuously(name: String, timePerFrame: NSTimeInterval) {
         node!.runAction(SKAction.repeatActionForever(SKAction.animateWithTextures(sprites[name]!, timePerFrame: timePerFrame)))
-    }
-    
-    class func update() {
     }
     
     class func didFinishUpdate() {
@@ -55,7 +73,10 @@ class Boss {
         node!.position = Constants.BossStartPos
         node!.physicsBody?.velocity = CGVectorMake(0.0, 0.0)
         
+        node!.removeAllActions()
         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "bossAppear_00")
+        
+        awake = false
     }
     
     class func getPos() -> CGPoint {

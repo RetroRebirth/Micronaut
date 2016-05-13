@@ -70,6 +70,11 @@ class Utility {
         let mag = sqrt(vector.dx * vector.dx + vector.dy * vector.dy)
         return CGVectorMake(vector.dx / mag, vector.dy / mag)
     }
+    class func direction(x1: CGFloat, x2: CGFloat) -> CGFloat {
+        // Returns 1.0, -1.0, or 0.0 depending on the relation of x1 and x2
+        let diff = x2 - x1
+        return diff == 0.0 ? 0.0 : (diff) / abs(diff)
+    }
     // Standard math extension
     class func NumberWithinBounds(value: CGFloat, min: CGFloat, max: CGFloat) -> CGFloat {
         if value < min {
