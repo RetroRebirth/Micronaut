@@ -19,10 +19,10 @@ class Sound {
     }
     
     class func play(filename: String, loop: Bool) {
-//        if loop {
-//            scene!.runAction(SKAction.repeatActionForever(SKAction.playSoundFileNamed(filename, waitForCompletion: true)))
-//        } else {
-//            scene!.runAction(SKAction.playSoundFileNamed(filename, waitForCompletion: true))
-//        }
+        if loop {
+            scene!.runAction(SKAction.repeatActionForever(SKAction.playSoundFileNamed(filename, waitForCompletion: true)))
+        } else {
+            scene!.runAction(SKAction.playSoundFileNamed(filename, waitForCompletion: true))
+        }
     }
 }
