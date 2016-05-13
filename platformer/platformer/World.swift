@@ -29,6 +29,33 @@ class World {
         for name in Constants.Node_BG {
             sprites[name] = scene.childNodeWithName("//\(name)")!
         }
+        // Shift physics body of ground down and reduce bottom by 10 px
+        let diff:CGFloat = -8
+        for name in Constants.Node_LV {
+            let node = scene.childNodeWithName("//\(name)")!
+            node.enumerateChildNodesWithName("ground", usingBlock: {
+                (node: SKNode!, stop: UnsafeMutablePointer <ObjCBool>) -> Void in
+                let physics = SKPhysicsBody(rectangleOfSize: CGSizeMake(64, 80+diff), center: CGPoint(x: 0, y: diff))
+                physics.dynamic = false
+                physics.allowsRotation = false
+                physics.pinned = true
+                physics.affectedByGravity = false
+                physics.categoryBitMask = Constants.CollisionCategory_Ground
+                physics.contactTestBitMask = Constants.CollisionCategory_Player
+                node.physicsBody = physics
+            })
+            node.enumerateChildNodesWithName("edge", usingBlock: {
+                (node: SKNode!, stop: UnsafeMutablePointer <ObjCBool>) -> Void in
+                let physics = SKPhysicsBody(rectangleOfSize: CGSizeMake(64, 80+diff), center: CGPoint(x: 0, y: diff))
+                physics.dynamic = false
+                physics.allowsRotation = false
+                physics.pinned = true
+                physics.affectedByGravity = false
+                physics.categoryBitMask = Constants.CollisionCategory_Ground
+                physics.contactTestBitMask = Constants.CollisionCategory_Player
+                node.physicsBody = physics
+            })
+        }
     }
     
     class func getSpriteByName(name: String) -> SKNode {

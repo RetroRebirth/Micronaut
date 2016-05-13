@@ -95,6 +95,9 @@ class Player: AnimatedSprite {
         }
     }
     
+    class func didFinishUpdate() {
+    }
+    
     class func jump() {
         if Player.isStunned() {
             // Do nothing, the player is stunned

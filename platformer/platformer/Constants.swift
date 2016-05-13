@@ -22,6 +22,11 @@ struct Constants {
     static let Node_Player = "player"
     static let Node_Camera = "camera"
     static let Node_Boss = "boss"
+    static let Node_LV = ["level_0",
+                          "level_1",
+                          "level_2",
+                          "level_3",
+                          "level_4"]
     
     // Player Properties
     static let PlayerHurtForce:CGFloat = 1000

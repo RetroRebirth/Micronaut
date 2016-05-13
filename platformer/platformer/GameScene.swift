@@ -29,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didFinishUpdate() {
+        Player.didFinishUpdate()
         Boss.didFinishUpdate()
         Camera.didFinishUpdate()
     }
