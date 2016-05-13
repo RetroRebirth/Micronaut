@@ -38,8 +38,10 @@ struct Constants {
     
     // Camera
 //    static let LevelCameraBounds = [[768, 4286], [5948, 7700], [9358, 10350]]
-    static let CameraTweenResetVelocity:CGFloat = 5.0
-    static let CameraLookAheadMagnitude:CGFloat = 0.1
+//    static let CameraTweenResetVelocity:CGFloat = 5.0
+//    static let CameraLookAheadMagnitude:CGFloat = 0.1
+    static let CameraMinY:CGFloat = 360.0
+    static let CameraYBuffer:CGFloat = 160.0
     
     // Collision Classes (assigned in GameScene.sks by hand)
     static let CollisionCategory_Player:UInt32 = 0x1 << 0
@@ -60,10 +62,12 @@ struct Constants {
                           "bg-2",
                           "bg-3",
                           "bg-4"]
-    // Bigger the value, the more it moves (matches with the layers defined above)
-    static let BGParallax:[CGFloat] = [0.4,
-                                       0.3,
-                                       0.2,
-                                       0.1,
-                                       0.0]
+    // The bigger the value the move it follows the camera:
+    //      1.0 follows the camera
+    //      0.0 follows the foreground
+    static let BGParallax:[CGFloat] = [0.0,
+                                       0.25,
+                                       0.5,
+                                       0.75,
+                                       1.0]
 }
