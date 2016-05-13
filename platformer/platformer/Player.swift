@@ -305,6 +305,11 @@ class Player: AnimatedSprite {
             // Move player to next level
             World.nextLevel()
         })
+        
+        // Completed the game!
+        if World.Level == Constants.LevelSpawnPoints.count-1 {
+            World.displayCongrats()
+        }
     }
     
     class func onGround() -> Bool {

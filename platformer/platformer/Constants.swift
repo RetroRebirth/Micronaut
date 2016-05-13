@@ -27,6 +27,7 @@ struct Constants {
                           "level_2",
                           "level_3",
                           "level_4"]
+    static let Node_Congrats = "congrats"
     
     // Player Properties
     static let PlayerHurtForce:CGFloat = 1000

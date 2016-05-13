@@ -25,6 +25,8 @@ class World {
         sprites[Constants.Node_Player] = scene.childNodeWithName("//\(Constants.Node_Player)")!
         sprites[Constants.Node_Camera] = scene.childNodeWithName("//\(Constants.Node_Camera)")!
         sprites[Constants.Node_Boss] = scene.childNodeWithName("//\(Constants.Node_Boss)")!
+        sprites[Constants.Node_Congrats] = scene.childNodeWithName("//\(Constants.Node_Congrats)")!
+        sprites[Constants.Node_Congrats]?.hidden = true
         // Load background nodes
         for name in Constants.Node_BG {
             sprites[name] = scene.childNodeWithName("//\(name)")!
@@ -98,5 +100,10 @@ class World {
         if World.Level == 4 {
             Sound.play("ominous.wav", loop: false)
         }
+    }
+    
+    class func displayCongrats() {
+        let congrats = World.getSpriteByName(Constants.Node_Congrats)
+        congrats.hidden = false
     }
 }
