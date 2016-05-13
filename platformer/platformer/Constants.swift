@@ -36,7 +36,7 @@ struct Constants {
     static let PlayerJumpForceBig:CGFloat = 400
     
     // Boss Properties (commented numbers are in relation to level4 node)
-    static let BossY:CGFloat = 280
+    static let BossY:CGFloat = 1260
     static let BossLeftX:CGFloat = 24246
     static let BossRightX:CGFloat = 25866
     static let BossStartPos:CGPoint = CGPointMake(Constants.BossRightX, Constants.BossY)
@@ -62,7 +62,7 @@ struct Constants {
                                    CGPointMake(12200, 768),
                                    CGPointMake(16600, 240),
                                    CGPointMake(6600, 240),
-                                   CGPointMake(22336, 1240)]
+                                   CGPointMake(22336, 2240)]
     
     // Background
     static let Node_BG = ["bg-0",
