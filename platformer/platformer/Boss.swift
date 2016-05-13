@@ -36,9 +36,18 @@ class Boss {
         let bossPos = node!.position
         
         if awake {
-            // Chase player
+            // Chase player by acceleration
             let dir = Utility.direction(bossPos.x, x2: playerPos.x)
-            node!.physicsBody?.velocity.dx = dir * Constants.BossSpeed
+            if Player.dying {
+                // Humorous "eating" movement
+                node!.physicsBody!.velocity.dx = dir * Constants.BossMaxSpeed
+            } else {
+                // Otherwise, chase with acceleration
+                node!.physicsBody!.velocity.dx += dir * Utility.dt * Constants.BossAccel
+                if abs(node!.physicsBody!.velocity.dx) > Constants.BossMaxSpeed {
+                    node!.physicsBody!.velocity.dx = dir * Constants.BossMaxSpeed
+                }
+            }
         } else {
             // Check if player is close
             let dist = Utility.distance(bossPos, p2: playerPos)
@@ -65,7 +74,7 @@ class Boss {
         if node?.position.x < Constants.BossLeftX {
             node!.position.x = Constants.BossLeftX
         } else if node?.position.x > Constants.BossRightX {
-            node!.position.x = Constants.BossLeftX
+            node!.position.x = Constants.BossRightX
         }
     }
     

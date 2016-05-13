@@ -40,8 +40,9 @@ struct Constants {
     static let BossLeftX:CGFloat = 24246
     static let BossRightX:CGFloat = 25866
     static let BossStartPos:CGPoint = CGPointMake(Constants.BossRightX, Constants.BossY)
-    static let BossWakeRadius:CGFloat = 500
-    static let BossSpeed:CGFloat = Constants.PlayerSpeed - 100
+    static let BossWakeRadius:CGFloat = 800
+    static let BossMaxSpeed:CGFloat = Constants.PlayerSpeed - 200
+    static let BossAccel:CGFloat = 500
     
     // Camera
 //    static let LevelCameraBounds = [[768, 4286], [5948, 7700], [9358, 10350]]

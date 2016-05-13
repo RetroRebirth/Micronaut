@@ -17,6 +17,7 @@ class Player: AnimatedSprite {
     static var velocityX:CGFloat = 0.0
     static var velocityY:CGFloat = 0.0
     static var jumpCounter:CGFloat = 0.0
+    static var dying:Bool = false
     
     override class func initialize(node: SKNode) {
         super.initialize(node)
@@ -273,7 +274,10 @@ class Player: AnimatedSprite {
         node!.runAction(group, completion: { () -> Void in
             // Move player back to start of level
             World.ShouldReset = true
+            Player.dying = false
         })
+        
+        Player.dying = true
     }
     
     class func warp() {
