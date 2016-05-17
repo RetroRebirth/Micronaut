@@ -88,7 +88,7 @@ class World {
         // Increment the level or loop back to the beginning
         // If statement checks to make sure a goal isn't registered twice
         if (World.ShouldReset == false) {
-            World.Level = (World.Level + 1) % Constants.LevelSpawnPoints.count
+            World.Level = (World.Level + 1) % World.numLevels()
             World.ShouldReset = true
         }
         // Stop the player's velocity
@@ -96,14 +96,29 @@ class World {
         // Use the next level's background texture
 //        let background = (World.getSpriteByName(Constants.Node_Background) as! SKSpriteNode)
 //        background.texture = SKTexture(imageNamed: "bg-\(World.Level)")
-        // Play ominous music if last level
-        if World.Level == 4 {
+        if World.Level == World.numLevels() - 1 {
+            // Play ominous music if last/boss level
             Sound.play("ominous.wav", loop: false)
+        }
+        else if World.Level == 0 {
+            // Completed the game!
+            World.displayCongrats()
+//        } else {
+//            World.hideCongrats()
         }
     }
     
     class func displayCongrats() {
         let congrats = World.getSpriteByName(Constants.Node_Congrats)
         congrats.hidden = false
+    }
+    
+    class func hideCongrats() {
+        let congrats = World.getSpriteByName(Constants.Node_Congrats)
+        congrats.hidden = true
+    }
+    
+    class func numLevels() -> Int {
+        return Constants.LevelSpawnPoints.count
     }
 }
