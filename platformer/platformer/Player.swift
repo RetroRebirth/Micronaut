@@ -294,7 +294,7 @@ class Player: AnimatedSprite {
         // Final animation
         let group = SKAction.group([fade])
         // Hold player still for better animation
-//        Player.setVelocityX(0.0, force: true)
+        Player.setVelocityX(0.0, force: true)
         Player.stunCounter = CGFloat(duration + 0.2)
         node!.physicsBody?.affectedByGravity = false
         
