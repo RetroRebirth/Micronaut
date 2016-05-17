@@ -298,6 +298,16 @@ class Player: AnimatedSprite {
         Player.stunCounter = CGFloat(duration + 0.2)
         node!.physicsBody?.affectedByGravity = false
         
+        // Warp goal animation
+        let goal = World.getSpriteByName("goal-\(World.Level)")
+        let shrink = SKAction.scaleTo(0.8, duration: 0.2)
+        let grow = SKAction.scaleTo(1.2, duration: 0.5)
+        let groupStar = SKAction.sequence([shrink, grow])
+        goal.runAction(groupStar, completion: { () -> Void in
+            goal.xScale = 1.0
+            goal.yScale = 1.0
+        })
+        
         // Audio feedback
         Sound.play("warp.wav", loop: false)
         // Visual feedback

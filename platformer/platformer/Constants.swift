@@ -28,6 +28,11 @@ struct Constants {
                           "level_3",
                           "level_4"]
     static let Node_Congrats = "congrats"
+    static let Node_Goals = ["goal-0",
+                             "goal-1",
+                             "goal-2",
+                             "goal-3",
+                             "goal-4"]
     
     // Player Properties
     static let PlayerHurtForce:CGFloat = 1000

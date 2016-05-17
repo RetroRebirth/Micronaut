@@ -31,6 +31,10 @@ class World {
         for name in Constants.Node_BG {
             sprites[name] = scene.childNodeWithName("//\(name)")!
         }
+        // Load goal nodes
+        for name in Constants.Node_Goals {
+            sprites[name] = scene.childNodeWithName("//\(name)")!
+        }
         // Shift physics body of ground down and reduce bottom by 10 px
         let diff:CGFloat = -8
         for name in Constants.Node_LV {
@@ -96,6 +100,7 @@ class World {
         // Use the next level's background texture
 //        let background = (World.getSpriteByName(Constants.Node_Background) as! SKSpriteNode)
 //        background.texture = SKTexture(imageNamed: "bg-\(World.Level)")
+        // Special conditions for specific level
         if World.Level == World.numLevels() - 1 {
             // Play ominous music if last/boss level
             Sound.play("ominous.wav", loop: false)
