@@ -20,6 +20,16 @@ class Boss {
         Boss.loadSprite(Constants.Sprite_BossWalk, frames: 6)
         Boss.loadSprite(Constants.Sprite_BossRetreat, frames: 4)
         
+        // TODO Custom sprite collision body for better detection
+//        let physics = SKPhysicsBody(rectangleOfSize: CGSizeMake(210 * node.xScale, 150 * node.yScale), center: CGPoint(x: 150 * node.xScale, y: 175 * node.yScale))
+//        physics.dynamic = true
+//        physics.allowsRotation = false
+//        physics.pinned = false
+//        physics.affectedByGravity = false
+//        physics.categoryBitMask = Constants.CollisionCategory_Enemy
+//        physics.contactTestBitMask = Constants.CollisionCategory_Player
+//        node.physicsBody = physics
+        
         self.node = node
     }
     
@@ -34,28 +44,36 @@ class Boss {
     class func update() {
         let playerPos = World.getSpriteByName(Constants.Node_Player).position
         let bossPos = node!.position
+
+        // TODO chase by staying certain distance behind (so long as running?)
+        // TODO if player not running keep boss momentum
+        // TODO what to do if player stops and runs? (boss will just be forever closer)
+
+        // TODO cutscene
+        // 1) boss is sleeping, player runs past, when run far enough stun player, black bars appear on top and bottom (to indicate cut scene), boss appears on left side, begins chasing player when player moves
         
         if awake {
             // Chase player by acceleration
             let dir = Utility.direction(bossPos.x, x2: playerPos.x)
-            if Player.dying {
-                // Humorous "eating" movement
-                node!.physicsBody!.velocity.dx = dir * Constants.BossMaxSpeed
-            } else {
-                // Otherwise, chase with acceleration
-                node!.physicsBody!.velocity.dx += dir * Utility.dt * Constants.BossAccel
-                if abs(node!.physicsBody!.velocity.dx) > Constants.BossMaxSpeed {
-                    node!.physicsBody!.velocity.dx = dir * Constants.BossMaxSpeed
-                }
-            }
+            node!.physicsBody!.velocity.dx = dir * Constants.PlayerSpeed
+//            if Player.dying {
+//                // Humorous "eating" movement
+//                node!.physicsBody!.velocity.dx = dir * Constants.PlayerSpeed
+//            } else {
+//                // Otherwise, chase with acceleration
+//                node!.physicsBody!.velocity.dx += dir * Utility.dt * Constants.BossAccel
+//                if abs(node!.physicsBody!.velocity.dx) > Constants.BossMaxSpeed {
+//                    node!.physicsBody!.velocity.dx = dir * Constants.BossMaxSpeed
+//                }
+//            }
         } else {
-            // Check if player is close
-            let dist = Utility.distance(bossPos, p2: playerPos)
-            if dist < Constants.BossWakeRadius {
-                Boss.animateOnce(Constants.Sprite_BossAppear, timePerFrame: 0.3, completion: { () in
-                    Boss.animateContinuously(Constants.Sprite_BossWalk, timePerFrame: 0.1)
-                    awake = true
-                })
+            // Check if player is walking away from the boss
+            if playerPos.x >= Constants.BossWakeX {
+                awake = true
+//                Boss.animateOnce(Constants.Sprite_BossAppear, timePerFrame: 0.3, completion: { () in
+//                    Boss.animateContinuously(Constants.Sprite_BossWalk, timePerFrame: 0.1)
+//                    awake = true
+//                })
             }
         }
     }
@@ -69,13 +87,13 @@ class Boss {
     }
     
     class func didFinishUpdate() {
-        // Keep boss clipped within bounds
-        node!.position.y = Constants.BossY
-        if node?.position.x < Constants.BossLeftX {
-            node!.position.x = Constants.BossLeftX
-        } else if node?.position.x > Constants.BossRightX {
-            node!.position.x = Constants.BossRightX
-        }
+//        // Keep boss clipped within bounds
+//        node!.position.y = Constants.BossY
+//        if node?.position.x < Constants.BossLeftX {
+//            node!.position.x = Constants.BossLeftX
+//        } else if node?.position.x > Constants.BossRightX {
+//            node!.position.x = Constants.BossRightX
+//        }
     }
     
     class func reset() {

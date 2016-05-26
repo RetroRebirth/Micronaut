@@ -42,13 +42,10 @@ struct Constants {
     static let PlayerJumpForceBig:CGFloat = 400
     
     // Boss Properties (commented numbers are in relation to level4 node)
-    static let BossY:CGFloat = 1260
-    static let BossLeftX:CGFloat = 24246
-    static let BossRightX:CGFloat = 25866
-    static let BossStartPos:CGPoint = CGPointMake(Constants.BossRightX, Constants.BossY)
-    static let BossWakeRadius:CGFloat = 800
-    static let BossMaxSpeed:CGFloat = Constants.PlayerSpeed - 200
-    static let BossAccel:CGFloat = 500
+    static let BossY:CGFloat = 480
+    static let BossStartX:CGFloat = 23210
+    static let BossWakeX:CGFloat = 24890
+    static let BossStartPos:CGPoint = CGPointMake(Constants.BossStartX, Constants.BossY)
     
     // Camera
 //    static let LevelCameraBounds = [[768, 4286], [5948, 7700], [9358, 10350]]
@@ -68,7 +65,7 @@ struct Constants {
                                    CGPointMake(12200, 768),
                                    CGPointMake(16600, 240),
                                    CGPointMake(6600, 240),
-                                   CGPointMake(22336, 2240)]
+                                   CGPointMake(22336, 1240)]
     
     // Background
     static let Node_BG = ["bg-0",
