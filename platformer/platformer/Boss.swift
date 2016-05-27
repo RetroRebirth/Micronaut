@@ -13,7 +13,14 @@ import SpriteKit
 class Boss {
     static var sprites:[String:[SKTexture]] = [String:[SKTexture]]()
     static var node:SKNode?
-    static var awake:Bool = false
+    static var state:BossState = BossState.Sleeping
+    
+    enum BossState {
+        case Sleeping
+        case Cutscene
+        case Waiting
+        case Chasing
+    }
     
     class func initialize(node: SKNode) {
         Boss.loadSprite(Constants.Sprite_BossAppear, frames: 4)
@@ -49,11 +56,9 @@ class Boss {
         // TODO if player not running keep boss momentum
         // TODO what to do if player stops and runs? (boss will just be forever closer)
 
-        // TODO cutscene
-        // 1) boss is sleeping, player runs past, when run far enough stun player, black bars appear on top and bottom (to indicate cut scene), boss appears on left side, begins chasing player when player moves
         
-        if awake {
-            // Chase player by acceleration
+        if state == BossState.Chasing {
+            // Chase player
             let dir = Utility.direction(bossPos.x, x2: playerPos.x)
             node!.physicsBody!.velocity.dx = dir * Constants.PlayerSpeed
 //            if Player.dying {
@@ -66,14 +71,20 @@ class Boss {
 //                    node!.physicsBody!.velocity.dx = dir * Constants.BossMaxSpeed
 //                }
 //            }
-        } else {
-            // Check if player is walking away from the boss
+        } else if state == BossState.Waiting {
+            // Stand still and wait for the player to move left or right
+            state = BossState.Chasing
+        } else if state == BossState.Cutscene {
+            // Play the cutscene
+            // stun player
+            Player.clearVelocity()
+            // black bars appear on top and bottom (to indicate cut scene)
+            // boss appears on left side
+            state = BossState.Waiting
+        } else /* state == BossState.Sleeping */{
+            // Wait for player to get in position
             if playerPos.x >= Constants.BossWakeX {
-                awake = true
-//                Boss.animateOnce(Constants.Sprite_BossAppear, timePerFrame: 0.3, completion: { () in
-//                    Boss.animateContinuously(Constants.Sprite_BossWalk, timePerFrame: 0.1)
-//                    awake = true
-//                })
+                state = BossState.Cutscene
             }
         }
     }
@@ -103,7 +114,7 @@ class Boss {
         node!.removeAllActions()
         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "bossAppear_00")
         
-        awake = false
+        state = BossState.Sleeping
     }
     
     class func getPos() -> CGPoint {
