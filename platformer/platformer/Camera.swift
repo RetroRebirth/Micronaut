@@ -13,6 +13,7 @@ import SpriteKit
 
 class Camera {
 //    static private var xOffset: CGFloat = 0.0 // The offset of the camera from the player
+    static private var shakeOffsets: [CGPoint] = [CGPoint]()
     
     // Gets called at the end of every frame.
     class func didFinishUpdate() {
@@ -58,10 +59,32 @@ class Camera {
         let player = World.getSpriteByName(Constants.Node_Player)
         let newPosX = player.position.x
         let newPosY = max(player.position.y - Constants.CameraYBuffer, Constants.CameraMinY)
-        return CGPointMake(newPosX, newPosY)
+        var point = CGPointMake(newPosX, newPosY)
+        
+        if !shakeOffsets.isEmpty {
+            point = (shakeOffsets.popLast()! as CGPoint)
+        }
+        
+        return point
         
         // Keep the camera in bounds
 //        let bounds = Constants.LevelCameraBounds[World.Level]
 //        return Utility.NumberWithinBounds(newPosX, min: CGFloat(bounds[0]), max: CGFloat(bounds[1]))
+    }
+    
+    // TODO causes camera to shake randomly for given duration
+    // http://stackoverflow.com/questions/20889860/a-camera-shake-effect-for-spritekit
+    class func shake(times: Int) {
+        let camera = World.getSpriteByName(Constants.Node_Camera)
+        
+        let pos = camera.position
+        let amplitudeX = 30
+        let amplitudeY = 30
+        
+        for _ in 0..<times {
+            let randX = pos.x + CGFloat(arc4random()) % CGFloat(amplitudeX - amplitudeX/2)
+            let randY = pos.y + CGFloat(arc4random()) % CGFloat(amplitudeY - amplitudeY/2)
+            shakeOffsets.append(CGPointMake(randX, randY))
+        }
     }
 }

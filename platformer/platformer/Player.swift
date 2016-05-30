@@ -13,7 +13,7 @@ import SpriteKit
 class Player: AnimatedSprite {
     static private let shrinkScale:CGFloat = 0.5
     
-    static private var stunCounter:CGFloat = 0.0
+    static var stunCounter:CGFloat = 0.0
     static var velocityX:CGFloat = 0.0
     static var velocityY:CGFloat = 0.0
     static var jumpCounter:CGFloat = 0.0
@@ -158,6 +158,8 @@ class Player: AnimatedSprite {
     class func clearVelocity() {
         Player.velocityX = 0.0
         Player.velocityY = 0.0
+        
+        animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
         
         node!.physicsBody?.velocity.dx = 0.0
         node!.physicsBody?.velocity.dy = 0.0

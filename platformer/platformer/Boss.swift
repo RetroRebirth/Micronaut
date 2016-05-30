@@ -78,7 +78,10 @@ class Boss {
             // Play the cutscene
             // stun player
             Player.clearVelocity()
-            // black bars appear on top and bottom (to indicate cut scene)
+            let duration = 1.0
+            Player.stunCounter = CGFloat(duration + 0.2)
+            // Have camera shake to simulate boss taking big steps
+            Camera.shake(15)
             // boss appears on left side
             state = BossState.Waiting
         } else /* state == BossState.Sleeping */{
