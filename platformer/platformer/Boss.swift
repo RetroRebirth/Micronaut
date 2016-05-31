@@ -79,13 +79,14 @@ class Boss {
             let playerVel = World.getSpriteByName(Constants.Node_Player).physicsBody!.velocity
             if abs(playerVel.dx) > 1.0 || abs(playerVel.dy) > 1.0 {
                 state = BossState.Chasing
+                animateContinuously(Constants.Sprite_BossWalk, timePerFrame: 0.1)
             }
         } else if state == BossState.Cutscene {
             // Stop the player from moving
             if Boss.shakeCounter == 0 {
                 // Stun player (if the cutscene just started)
                 Player.clearVelocity()
-                Player.stunCounter = CGFloat(8.2)
+                Player.stunCounter = CGFloat(10.0)
                 // TODO pan camera left
             }
             
@@ -101,9 +102,11 @@ class Boss {
                     node!.physicsBody!.velocity.dx = 140
                 }
             } else {
-                // Done shaking, boss is waiting for player to move
-                state = BossState.Waiting
-                // TODO pan camera to normal position
+                // Have boss pop out of his shell
+                animateOnce(Constants.Sprite_BossAppear, timePerFrame: 0.2) { () in
+                    // Done shaking, boss is waiting for player to move
+                    state = BossState.Waiting
+                }
             }
         } else /* state == BossState.Sleeping */{
             // Wait for player to get in position
@@ -137,6 +140,9 @@ class Boss {
         
         node!.removeAllActions()
         (node as! SKSpriteNode).texture = SKTexture(imageNamed: "bossAppear_00")
+        
+        Boss.shakeCounter = 0
+        Boss.shakeTime = 0
         
         state = BossState.Sleeping
     }
