@@ -99,7 +99,7 @@ class Boss {
                     Boss.shakeCounter += 1
                     node!.physicsBody!.velocity.dx = 0
                 } else if Utility.previousTime - Boss.shakeTime > 1.0 {
-                    node!.physicsBody!.velocity.dx = 140
+                    node!.physicsBody!.velocity.dx = 150
                 }
             } else {
                 // Have boss pop out of his shell
@@ -125,13 +125,8 @@ class Boss {
     }
     
     class func didFinishUpdate() {
-//        // Keep boss clipped within bounds
-//        node!.position.y = Constants.BossY
-//        if node?.position.x < Constants.BossLeftX {
-//            node!.position.x = Constants.BossLeftX
-//        } else if node?.position.x > Constants.BossRightX {
-//            node!.position.x = Constants.BossRightX
-//        }
+        // Keep boss clipped to height
+        node!.position.y = Constants.BossY
     }
     
     class func reset() {

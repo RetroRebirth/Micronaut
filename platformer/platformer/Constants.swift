@@ -43,8 +43,8 @@ struct Constants {
     
     // Boss Properties (commented numbers are in relation to level4 node)
     static let BossY:CGFloat = 480
-    static let BossStartX:CGFloat = 23210
-    static let BossWakeX:CGFloat = 24455
+    static let BossStartX:CGFloat = 23252
+    static let BossWakeX:CGFloat = 24490
     static let BossStartPos:CGPoint = CGPointMake(Constants.BossStartX, Constants.BossY)
     
     // Camera
@@ -59,6 +59,7 @@ struct Constants {
     static let CollisionCategory_Ground:UInt32 = 0x1 << 1
     static let CollisionCategory_Enemy:UInt32 = 0x1 << 2
     static let CollisionCategory_Goal:UInt32 = 0x1 << 3
+    static let CollisionCategory_Wall:UInt32 = 0x1 << 4
     
     // World Levels
     static let LevelSpawnPoints = [CGPointMake(0, 240),

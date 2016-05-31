@@ -62,6 +62,8 @@ class Player: AnimatedSprite {
             if Player.stunCounter <= 0.0 {
                 animateContinuously(Constants.Sprite_PlayerResting, timePerFrame: 0.1)
             }
+            // Keep player still
+            Player.clearVelocity()
         }
         // Check to see if the player is recently contacting the ground
         if Player.jumpCounter > 0.0 {

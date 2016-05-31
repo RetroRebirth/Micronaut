@@ -50,6 +50,19 @@ class Utility {
             (bodyB.categoryBitMask & Constants.CollisionCategory_Goal != 0)) {
             Player.warp()
         }
+        // Boss hit a wall
+        if ((bodyA.categoryBitMask & Constants.CollisionCategory_Enemy != 0) &&
+            (bodyB.categoryBitMask & Constants.CollisionCategory_Wall != 0)) {
+            // Make ground fly away
+            bodyB.node?.physicsBody?.collisionBitMask = 0
+            bodyB.node?.physicsBody?.contactTestBitMask = 0
+            bodyB.node?.physicsBody?.dynamic = true
+            bodyB.node?.physicsBody?.allowsRotation = true
+            bodyB.node?.physicsBody?.pinned = false
+            bodyB.node?.physicsBody?.affectedByGravity = true
+            bodyB.node?.physicsBody?.applyTorque(10)
+            bodyB.node?.physicsBody?.applyImpulse(CGVectorMake(100, 100))
+        }
     }
     class func didEndContact(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody) {
     }
