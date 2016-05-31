@@ -15,6 +15,9 @@ class Boss {
     static var node:SKNode?
     static var state:BossState = BossState.Sleeping
     
+    static private var shakeTime:CFTimeInterval = 0
+    static private var shakeCounter = 0
+    
     enum BossState {
         case Sleeping
         case Cutscene
@@ -72,18 +75,36 @@ class Boss {
 //                }
 //            }
         } else if state == BossState.Waiting {
-            // Stand still and wait for the player to move left or right
-            state = BossState.Chasing
+            // Stand still and wait for the player to move
+            let playerVel = World.getSpriteByName(Constants.Node_Player).physicsBody!.velocity
+            if abs(playerVel.dx) > 1.0 || abs(playerVel.dy) > 1.0 {
+                state = BossState.Chasing
+            }
         } else if state == BossState.Cutscene {
-            // Play the cutscene
-            // stun player
-            Player.clearVelocity()
-            let duration = 1.0
-            Player.stunCounter = CGFloat(duration + 0.2)
-            // Have camera shake to simulate boss taking big steps
-            Camera.shake(15)
-            // boss appears on left side
-            state = BossState.Waiting
+            // Stop the player from moving
+            if Boss.shakeCounter == 0 {
+                // Stun player (if the cutscene just started)
+                Player.clearVelocity()
+                Player.stunCounter = CGFloat(8.2)
+                // TODO pan camera left
+            }
+            
+            // Play cutscene
+            if Boss.shakeCounter <= 4 {
+                if Utility.previousTime - Boss.shakeTime > 2.0 {
+                    // Have camera shake to simulate boss taking big steps
+                    Camera.shake(15)
+                    Boss.shakeTime = Utility.previousTime
+                    Boss.shakeCounter += 1
+                    node!.physicsBody!.velocity.dx = 0
+                } else if Utility.previousTime - Boss.shakeTime > 1.0 {
+                    node!.physicsBody!.velocity.dx = 140
+                }
+            } else {
+                // Done shaking, boss is waiting for player to move
+                state = BossState.Waiting
+                // TODO pan camera to normal position
+            }
         } else /* state == BossState.Sleeping */{
             // Wait for player to get in position
             if playerPos.x >= Constants.BossWakeX {

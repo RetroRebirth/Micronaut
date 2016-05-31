@@ -44,7 +44,7 @@ struct Constants {
     // Boss Properties (commented numbers are in relation to level4 node)
     static let BossY:CGFloat = 480
     static let BossStartX:CGFloat = 23210
-    static let BossWakeX:CGFloat = 24890
+    static let BossWakeX:CGFloat = 24455
     static let BossStartPos:CGPoint = CGPointMake(Constants.BossStartX, Constants.BossY)
     
     // Camera

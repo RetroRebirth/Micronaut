@@ -31,7 +31,7 @@ func - (left: CGPoint, right: CGPoint) -> CGPoint {
 class Utility {
     static var dt:CGFloat = 0.0
     
-    static private var previousTime:CFTimeInterval = 0.0
+    static var previousTime:CFTimeInterval = 0.0
     
     class func update(currentTime: CFTimeInterval) {
         // Convert the current time to delta time (dt)
