@@ -14,6 +14,7 @@ class Boss {
     static var sprites:[String:[SKTexture]] = [String:[SKTexture]]()
     static var node:SKNode?
     static var state:BossState = BossState.Sleeping
+    static var playedCutscene:Bool = false
     
     static private var shakeTime:CFTimeInterval = 0
     static private var shakeCounter = 0
@@ -106,12 +107,17 @@ class Boss {
                 animateOnce(Constants.Sprite_BossAppear, timePerFrame: 0.2) { () in
                     // Done shaking, boss is waiting for player to move
                     state = BossState.Waiting
+                    Boss.playedCutscene = true
                 }
             }
         } else /* state == BossState.Sleeping */{
             // Wait for player to get in position
             if playerPos.x >= Constants.BossWakeX {
-                state = BossState.Cutscene
+                if Boss.playedCutscene {
+                    state = BossState.Waiting
+                } else {
+                    state = BossState.Cutscene
+                }
             }
         }
     }
